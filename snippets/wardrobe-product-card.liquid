@@ -19,12 +19,6 @@
           {{ 'product-1' | placeholder_svg_tag: 'wardrobe-product-card__placeholder-svg' }}
         </div>
       {% endif %}
-      
-      <!-- NEW Badge -->
-      {%- assign product_tags = product.tags | downcase -%}
-      {%- if product_tags contains 'new' -%}
-        <span class="wardrobe-product-card__badge">NEW</span>
-      {%- endif -%}
     </div>
     
     <div class="wardrobe-product-card__content">
