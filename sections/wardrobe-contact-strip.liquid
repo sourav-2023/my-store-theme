@@ -1,0 +1,92 @@
+{{ 'wardrobe-base.css' | asset_url | stylesheet_tag }}
+
+<div class="wardrobe-contact-strip" id="wardrobe-contact-strip">
+  <div class="wardrobe-contact-strip__container">
+    <!-- Left Content -->
+    <div class="wardrobe-contact-strip__left">
+      <div class="wardrobe-contact-strip__info">
+        <h3 class="wardrobe-contact-strip__title">Visit Our Store</h3>
+        <div class="wardrobe-contact-strip__details">
+          <div class="wardrobe-contact-strip__detail">
+            <div class="wardrobe-contact-strip__label">ADDRESS</div>
+            <div class="wardrobe-contact-strip__value">{{ section.settings.address }}</div>
+          </div>
+          <div class="wardrobe-contact-strip__detail">
+            <div class="wardrobe-contact-strip__label">HOURS</div>
+            <div class="wardrobe-contact-strip__value">{{ section.settings.hours }}</div>
+          </div>
+          <div class="wardrobe-contact-strip__detail">
+            <div class="wardrobe-contact-strip__label">PHONE</div>
+            <div class="wardrobe-contact-strip__value">{{ section.settings.phone }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Right Content -->
+    <div class="wardrobe-contact-strip__right">
+      <div class="wardrobe-contact-strip__map">
+        <!-- Map iframe placeholder -->
+        <div class="wardrobe-contact-strip__map-placeholder">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1d26.793001!4d26.793001!2m3!3d0.793001!6m1!1s1&z=14&iwloc=A"
+            width="100%" 
+            height="300" 
+            style="border:0; margin:0; padding:0;"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+      
+      <!-- CTAs -->
+      <div class="wardrobe-contact-strip__ctas">
+        <a href="mailto:{{ section.settings.whatsapp | replace: ' ', '' | append: '@c.us' }}" class="wardrobe-button wardrobe-button--primary">
+          MESSAGE ON WHATSAPP
+        </a>
+        <a href="/collections/all" class="wardrobe-button wardrobe-button--ghost">
+          VIEW ALL PRODUCTS
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact Strip",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "address",
+      "label": "Store Address",
+      "default": "Police Bazar, Police Bazar Road, Shillong, Meghalaya 793001"
+    },
+    {
+      "type": "text",
+      "id": "hours",
+      "label": "Store Hours",
+      "default": "Monday-Saturday 11:00 AM - 8:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone Number",
+      "default": "+91 94361 12345"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp",
+      "label": "WhatsApp Number",
+      "default": "94361 12345"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Strip",
+      "category": "Wardrobe"
+    }
+  ]
+}
+{% endschema %}

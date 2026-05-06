@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "wardrobe-collection-header": {
+      "type": "wardrobe-collection-header",
+      "settings": {
+        "title": "ACCESSORIES",
+        "subtitle": "Curated luxury accessories"
+      }
+    },
+    "wardrobe-product-grid": {
+      "type": "wardrobe-product-grid",
+      "settings": {
+        "products_per_page": 12,
+        "show_vendor": true
+      }
+    }
+  },
+  "order": [
+    "wardrobe-collection-header",
+    "wardrobe-product-grid"
+  ]
+}
