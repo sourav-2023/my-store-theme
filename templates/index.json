@@ -16,16 +16,39 @@
     "wardrobe-arrivals": {
       "type": "wardrobe-arrivals",
       "settings": {
-        "title": "This Week's Arrivals",
         "featured_collection": "all",
         "products_to_show": 4,
         "view_all_text": "VIEW ALL",
         "view_all_link": "/collections/all"
       }
+    },
+    "wardrobe-story": {
+      "type": "wardrobe-story",
+      "settings": {
+        "title": "Curating Shillong's Finest Since Day One",
+        "cta_text": "DISCOVER MORE",
+        "cta_link": "/pages/about"
+      }
+    },
+    "wardrobe-categories": {
+      "type": "wardrobe-categories",
+      "settings": {}
+    },
+    "wardrobe-contact-strip": {
+      "type": "wardrobe-contact-strip",
+      "settings": {
+        "address": "Umsohsun Rd, Umsohsun, Police Bazar, Shillong, Meghalaya 793001",
+        "hours": "Mon–Sun, 11:00–20:00",
+        "phone": "+91 98765 43210",
+        "whatsapp": "98765 43210"
+      }
     }
   },
   "order": [
     "wardrobe-hero",
-    "wardrobe-arrivals"
+    "wardrobe-arrivals",
+    "wardrobe-story",
+    "wardrobe-categories",
+    "wardrobe-contact-strip"
   ]
 }

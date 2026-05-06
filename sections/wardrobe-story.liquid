@@ -1,0 +1,57 @@
+{{ 'wardrobe-base.css' | asset_url | stylesheet_tag }}
+
+<div class="wardrobe-story" id="wardrobe-story">
+  <div class="wardrobe-story__container">
+    <div class="wardrobe-story__content">
+      <div class="wardrobe-story__label">OUR STORY</div>
+      <h2 class="wardrobe-story__title">{{ section.settings.title }}</h2>
+      <div class="wardrobe-story__text">
+        <p>From Police Bazar to your door. We curate the finest pieces from around the world, bringing premium fashion to Shillong.</p>
+        <p>Every item is hand-selected, authenticated, and cared for. We don't restock. When it's gone, it's gone.</p>
+      </div>
+      <a href="{{ section.settings.cta_link }}" class="wardrobe-button wardrobe-button--ghost">
+        {{ section.settings.cta_text }} →
+      </a>
+    </div>
+    <div class="wardrobe-story__image">
+      <div class="wardrobe-story__image-placeholder">
+        <!-- Store photo placeholder -->
+        <img src="{{ 'wardrobe-store.jpg' | asset_url }}" alt="The Wardrobe Shillong Store" class="wardrobe-story__store-photo" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Story Section",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Story Title",
+      "default": "Curating Shillong's Finest Since Day One"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "DISCOVER MORE"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Button Link",
+      "default": "/pages/about"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Story Section",
+      "category": "Wardrobe"
+    }
+  ]
+}
+{% endschema %}

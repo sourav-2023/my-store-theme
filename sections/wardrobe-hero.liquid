@@ -2,34 +2,29 @@
 
 <div class="wardrobe-hero" id="wardrobe-hero">
   <div class="wardrobe-hero__container">
-    <!-- Logo -->
-    <div class="wardrobe-hero__logo">
-      <img src="{{ 'wardrobe-logo.png' | asset_url }}" alt="The Wardrobe Shillong" class="wardrobe-hero__logo-img" onerror="this.style.display='none'">
-    </div>
-    
     <!-- Eyebrow -->
     <div class="wardrobe-hero__eyebrow">
-      POLICE BAZAR, SHILLONG · EST. 2023
+      {{ section.settings.eyebrow_text }}
     </div>
     
     <!-- Main Headline -->
     <div class="wardrobe-hero__headline">
       <h1 class="wardrobe-hero__title">
-        <span class="wardrobe-hero__title-main">Selected</span>
-        <span class="wardrobe-hero__title-accent">Acquisitions.</span>
+        <span class="wardrobe-hero__title-main">{{ section.settings.title_main }}</span>
+        <span class="wardrobe-hero__title-accent">{{ section.settings.title_accent }}</span>
       </h1>
       <div class="wardrobe-hero__subtitle">
-        POLICE BAZAR, SHILLONG — CURATED RESELLER
+        {{ section.settings.subtitle }}
       </div>
     </div>
     
     <!-- CTA Buttons -->
     <div class="wardrobe-hero__ctas">
-      <a href="/collections/sneakers" class="wardrobe-button wardrobe-button--primary">
-        SHOP SNEAKERS
+      <a href="{{ section.settings.primary_cta_link }}" class="wardrobe-button wardrobe-button--primary">
+        {{ section.settings.primary_cta_text }}
       </a>
-      <a href="/collections/accessories" class="wardrobe-button wardrobe-button--ghost">
-        VIEW ACCESSORIES
+      <a href="{{ section.settings.secondary_cta_link }}" class="wardrobe-button wardrobe-button--ghost">
+        {{ section.settings.secondary_cta_text }}
       </a>
     </div>
   </div>

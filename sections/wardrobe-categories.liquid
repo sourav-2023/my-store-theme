@@ -1,0 +1,58 @@
+{{ 'wardrobe-base.css' | asset_url | stylesheet_tag }}
+
+<div class="wardrobe-categories" id="wardrobe-categories">
+  <div class="wardrobe-categories__container">
+    <div class="wardrobe-categories__grid">
+      <a href="/collections/sneakers" class="wardrobe-categories__card">
+        <div class="wardrobe-categories__image">
+          <div class="wardrobe-categories__image-placeholder">
+            <img src="{{ 'wardrobe-sneakers.jpg' | asset_url }}" alt="Sneakers" class="wardrobe-categories__category-img" onerror="this.style.display='none'">
+          </div>
+        </div>
+        <div class="wardrobe-categories__overlay">
+          <h3 class="wardrobe-categories__title">SNEAKERS</h3>
+          <span class="wardrobe-categories__cta">SHOP →</span>
+        </div>
+      </a>
+      
+      <a href="/collections/clothing" class="wardrobe-categories__card">
+        <div class="wardrobe-categories__image">
+          <div class="wardrobe-categories__image-placeholder">
+            <img src="{{ 'wardrobe-clothing.jpg' | asset_url }}" alt="Clothing" class="wardrobe-categories__category-img" onerror="this.style.display='none'">
+          </div>
+        </div>
+        <div class="wardrobe-categories__overlay">
+          <h3 class="wardrobe-categories__title">CLOTHING</h3>
+          <span class="wardrobe-categories__cta">SHOP →</span>
+        </div>
+      </a>
+      
+      <a href="/collections/accessories" class="wardrobe-categories__card">
+        <div class="wardrobe-categories__image">
+          <div class="wardrobe-categories__image-placeholder">
+            <img src="{{ 'wardrobe-accessories.jpg' | asset_url }}" alt="Accessories" class="wardrobe-categories__category-img" onerror="this.style.display='none'">
+          </div>
+        </div>
+        <div class="wardrobe-categories__overlay">
+          <h3 class="wardrobe-categories__title">ACCESSORIES</h3>
+          <span class="wardrobe-categories__cta">SHOP →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Categories Section",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Categories Section",
+      "category": "Wardrobe"
+    }
+  ]
+}
+{% endschema %}
