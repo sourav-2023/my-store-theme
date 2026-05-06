@@ -1,0 +1,134 @@
+{%- comment -%}
+  Wardrobe Buy Form - Custom product form with variant selection and purchase buttons
+{%- endcomment -%}
+
+{%- form 'product', product, id: "wardrobe-product-form", novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
+  
+  <!-- Variant Selector -->
+  {%- unless product.has_only_default_variant -%}
+    <variant-selects class="wardrobe-variant-selects" data-section="{{ section.id }}" data-url="{{ product.url }}">
+      {%- for option in product.options_with_values -%}
+        <fieldset class="wardrobe-variant-fieldset">
+          <legend class="wardrobe-variant-label">
+            {{ option.name }}
+          </legend>
+          <div class="wardrobe-variant-options">
+            {%- for value in option.values -%}
+              <input 
+                type="radio" 
+                id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                name="{{ option.name }}"
+                value="{{ value | escape }}"
+                form="{{ product_form_id }}"
+                {% if option.selected_value == value %}checked{% endif %}
+                class="wardrobe-variant-input"
+              >
+              <label 
+                for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                class="wardrobe-variant-option"
+              >
+                {{ value }}
+              </label>
+            {%- endfor -%}
+          </div>
+        </fieldset>
+      {%- endfor -%}
+      
+      <script type="application/json" data-product-variants>
+        {{ product.variants | json }}
+      </script>
+    </variant-selects>
+  {%- endunless -%}
+
+  <!-- Quantity Selector (hidden by default, can be enabled) -->
+  {%- if show_quantity_selector -%}
+    <div class="wardrobe-quantity-selector">
+      <label class="wardrobe-quantity-label" for="Quantity-{{ section.id }}">
+        {{ 'products.product.quantity.label' | t }}
+      </label>
+      <quantity-input class="wardrobe-quantity-input">
+        <button class="wardrobe-quantity-button" name="minus" type="button">
+          <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}</span>
+          {% render 'icon-minus' %}
+        </button>
+        <input 
+          class="wardrobe-quantity-field" 
+          type="number" 
+          name="quantity" 
+          id="Quantity-{{ section.id }}" 
+          min="1" 
+          value="1" 
+          form="{{ product_form_id }}"
+        >
+        <button class="wardrobe-quantity-button" name="plus" type="button">
+          <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: product.title | escape }}</span>
+          {% render 'icon-plus' %}
+        </button>
+      </quantity-input>
+    </div>
+  {%- endif -%}
+
+  <!-- Buy Buttons -->
+  <div class="wardrobe-buy-buttons">
+    <button 
+      type="submit" 
+      name="add" 
+      class="wardrobe-button wardrobe-button--primary wardrobe-button--full wardrobe-button--add-to-cart{% if product.selected_or_first_available_variant.available == false %} disabled{% endif %}"
+      {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+    >
+      <span class="wardrobe-button-text">
+        {%- if product.selected_or_first_available_variant.available -%}
+          {{ 'products.product.add_to_cart' | t }}
+        {%- else -%}
+          {{ 'products.product.sold_out' | t }}
+        {%- endif -%}
+      </span>
+      <span class="wardrobe-loading-spinner" hidden>
+        {% render 'loading-spinner' %}
+      </span>
+    </button>
+
+    {%- if show_buy_now_button -%}
+      {{ form | payment_button }}
+    {%- endif -%}
+  </div>
+
+  <!-- Stock Status -->
+  {%- if product.selected_or_first_available_variant.inventory_management == 'shopify' -%}
+    {%- if product.selected_or_first_available_variant.inventory_quantity <= 1 and product.selected_or_first_available_variant.inventory_quantity > 0 -%}
+      <div class="wardrobe-stock-status wardrobe-stock-status--low">
+        Only {{ product.selected_or_first_available_variant.inventory_quantity }} left.
+      </div>
+    {%- elsif product.selected_or_first_available_variant.inventory_quantity <= 0 -%}
+      <div class="wardrobe-stock-status wardrobe-stock-status--out">
+        {{ 'products.product.inventory.out_of_stock' | t }}
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+
+  <!-- Pickup Availability -->
+  {%- assign pick_up_availabilities = product.selected_or_first_available_variant.store_availabilities | where: 'pick_up_enabled', true -%}
+  {%- if pick_up_availabilities.size > 0 -%}
+    <pickup-availability 
+      class="wardrobe-pickup-availability"
+      data-base-url="{{ shop.url }}{{ routes.root_url }}"
+      data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+      data-has-only-default-variant="{{ product.has_only_default_variant }}"
+    >
+      <template>
+        <pickup-availability-preview class="wardrobe-pickup-availability-preview">
+          {% render 'icon-unavailable' %}
+          <div class="wardrobe-pickup-availability-info">
+            <p class="wardrobe-pickup-availability-title">
+              {{ 'products.product.pickup_availability.unavailable' | t }}
+            </p>
+            <button class="wardrobe-pickup-availability-button">
+              {{ 'products.product.pickup_availability.refresh' | t }}
+            </button>
+          </div>
+        </pickup-availability-preview>
+      </template>
+    </pickup-availability>
+  {%- endif -%}
+{%- endform -%}

@@ -1,0 +1,42 @@
+{{ 'wardrobe-base.css' | asset_url | stylesheet_tag }}
+
+<div class="wardrobe-product-grid" id="wardrobe-product-grid">
+  <div class="wardrobe-product-grid__container">
+    {% for product in collection.products limit: section.settings.products_per_page %}
+      <div class="wardrobe-product-grid__item">
+        {% render 'wardrobe-product-card', product: product, show_vendor: section.settings.show_vendor %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Grid",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per Page",
+      "min": 4,
+      "max": 24,
+      "step": 4,
+      "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show Vendor",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Grid",
+      "category": "Wardrobe"
+    }
+  ]
+}
+{% endschema %}

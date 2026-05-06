@@ -1,0 +1,38 @@
+{{ 'wardrobe-base.css' | asset_url | stylesheet_tag }}
+
+<div class="wardrobe-collection-header" id="wardrobe-collection-header">
+  <div class="wardrobe-collection-header__container">
+    <div class="wardrobe-collection-header__overlay">
+      <h1 class="wardrobe-collection-header__title">{{ collection.title }}</h1>
+      <div class="wardrobe-collection-header__subtitle">{{ section.settings.subtitle }}</div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection Header",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Collection Title",
+      "info": "This will be overridden by the collection title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Curated collection of premium sneakers"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Header",
+      "category": "Wardrobe"
+    }
+  ]
+}
+{% endschema %}

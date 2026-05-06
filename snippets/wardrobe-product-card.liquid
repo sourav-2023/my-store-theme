@@ -1,0 +1,56 @@
+{%- comment -%}
+  Wardrobe Product Card - Product card for collection grids and featured products
+{%- endcomment -%}
+
+<div class="wardrobe-product-card">
+  <a href="{{ product.url }}" class="wardrobe-product-card__link">
+    <div class="wardrobe-product-card__image-container">
+      {% if product.featured_image %}
+        <img 
+          src="{{ product.featured_image | image_url: width: 400 }}" 
+          alt="{{ product.featured_image.alt | escape }}"
+          loading="lazy"
+          width="{{ product.featured_image.width }}"
+          height="{{ product.featured_image.height }}"
+          class="wardrobe-product-card__image"
+        >
+      {% else %}
+        <div class="wardrobe-product-card__placeholder">
+          {{ 'product-1' | placeholder_svg_tag: 'wardrobe-product-card__placeholder-svg' }}
+        </div>
+      {% endif %}
+      
+      <!-- NEW Badge -->
+      {%- assign product_tags = product.tags | downcase -%}
+      {%- if product_tags contains 'new' -%}
+        <span class="wardrobe-product-card__badge">NEW</span>
+      {%- endif -%}
+    </div>
+    
+    <div class="wardrobe-product-card__content">
+      <!-- Brand Name -->
+      {%- if product.vendor -%}
+        <div class="wardrobe-product-card__brand">
+          {{ product.vendor | upcase }}
+        </div>
+      {%- endif -%}
+      
+      <!-- Product Title -->
+      <h3 class="wardrobe-product-card__title">
+        {{ product.title }}
+      </h3>
+      
+      <!-- Price -->
+      <div class="wardrobe-product-card__price">
+        <span class="wardrobe-product-card__current-price">
+          {{ product.price | money }}
+        </span>
+        {%- if product.compare_at_price > product.price -%}
+          <span class="wardrobe-product-card__compare-price">
+            {{ product.compare_at_price | money }}
+          </span>
+        {%- endif -%}
+      </div>
+    </div>
+  </a>
+</div>

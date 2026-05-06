@@ -1,0 +1,166 @@
+{{ 'wardrobe-product.css' | asset_url | stylesheet_tag }}
+
+<div class="wardrobe-product-accordions" id="wardrobe-product-accordions">
+  <div class="wardrobe-product-accordions__container">
+    
+    <!-- Details Accordion -->
+    <details class="wardrobe-accordion" data-accordion="details">
+      <summary class="wardrobe-accordion__summary">
+        <span class="wardrobe-accordion__title">Details</span>
+        <span class="wardrobe-accordion__icon">
+          {% render 'icon-plus' %}
+        </span>
+      </summary>
+      <div class="wardrobe-accordion__content">
+        <div class="wardrobe-accordion__inner">
+          {% if product.description != blank %}
+            {{ product.description }}
+          {% else %}
+            <p>No additional details available for this product.</p>
+          {% endif %}
+        </div>
+      </div>
+    </details>
+
+    <!-- Condition Accordion -->
+    <details class="wardrobe-accordion" data-accordion="condition">
+      <summary class="wardrobe-accordion__summary">
+        <span class="wardrobe-accordion__title">Condition</span>
+        <span class="wardrobe-accordion__icon">
+          {% render 'icon-plus' %}
+        </span>
+      </summary>
+      <div class="wardrobe-accordion__content">
+        <div class="wardrobe-accordion__inner">
+          <p>All products are carefully inspected and verified for authenticity. Items are in new or like-new condition unless otherwise specified.</p>
+          <p>Each piece is sourced directly from authorized retailers or verified suppliers to ensure complete authenticity.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- Shipping Accordion -->
+    <details class="wardrobe-accordion" data-accordion="shipping">
+      <summary class="wardrobe-accordion__summary">
+        <span class="wardrobe-accordion__title">Shipping</span>
+        <span class="wardrobe-accordion__icon">
+          {% render 'icon-plus' %}
+        </span>
+      </summary>
+      <div class="wardrobe-accordion__content">
+        <div class="wardrobe-accordion__inner">
+          <h4>Delivery Time</h4>
+          <p>Standard delivery: 5-7 business days across India</p>
+          <p>Express delivery: 2-3 business days (select cities)</p>
+          
+          <h4>Shipping Cost</h4>
+          <p>Free shipping on orders above ₹5,000</p>
+          <p>Standard shipping: ₹150 for orders below ₹5,000</p>
+          
+          <h4>Order Processing</h4>
+          <p>Orders are processed within 24 hours on business days</p>
+          <p>You'll receive tracking details once your order ships</p>
+          
+          <h4>International Shipping</h4>
+          <p>Currently shipping within India only. International shipping coming soon.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- Returns Accordion -->
+    <details class="wardrobe-accordion" data-accordion="returns">
+      <summary class="wardrobe-accordion__summary">
+        <span class="wardrobe-accordion__title">Returns</span>
+        <span class="wardrobe-accordion__icon">
+          {% render 'icon-plus' %}
+        </span>
+      </summary>
+      <div class="wardrobe-accordion__content">
+        <div class="wardrobe-accordion__inner">
+          <h4>Order Cancellation</h4>
+          <p>Orders can be cancelled within 24 hours of placement</p>
+          
+          <h4>Returns Policy</h4>
+          <p><strong>Clothing & Accessories:</strong> Returns accepted within 7 days of delivery if item is unused and in original condition</p>
+          <p><strong>Sneakers:</strong> Returns accepted only if wrong item was sent or item is defective</p>
+          <p><strong>Non-returnable items:</strong> Watches, belts, sunglasses — all sales final</p>
+          
+          <h4>How to Initiate a Return</h4>
+          <p>Contact us via WhatsApp at +91 98765 43210 or email with your order number</p>
+          <p>Refunds processed within 7–10 business days to original payment method</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- Size Guide Accordion (if applicable) -->
+    {% if product.type contains 'Clothing' or product.type contains 'Sneakers' %}
+      <details class="wardrobe-accordion" data-accordion="size-guide">
+        <summary class="wardrobe-accordion__summary">
+          <span class="wardrobe-accordion__title">Size Guide</span>
+          <span class="wardrobe-accordion__icon">
+            {% render 'icon-plus' %}
+          </span>
+        </summary>
+        <div class="wardrobe-accordion__content">
+          <div class="wardrobe-accordion__inner">
+            {% if product.type contains 'Sneakers' %}
+              <h4>Sneaker Sizing</h4>
+              <p>We recommend ordering your true size. Jordan and Nike sneakers typically fit true to size.</p>
+              <p>If you're between sizes, we recommend sizing up for comfort.</p>
+              <p>For specific sizing questions, feel free to message us on WhatsApp.</p>
+            {% else %}
+              <h4>Clothing Sizing</h4>
+              <p>Our clothing follows standard sizing. Please refer to individual product measurements for the most accurate fit.</p>
+              <p>For oversized or relaxed fit styles, consider sizing up for the intended look.</p>
+            {% endif %}
+          </div>
+        </div>
+      </details>
+    {% endif %}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Accordions",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_details",
+      "label": "Show Details accordion",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_condition",
+      "label": "Show Condition accordion",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shipping",
+      "label": "Show Shipping accordion",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_returns",
+      "label": "Show Returns accordion",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_size_guide",
+      "label": "Show Size Guide accordion (when applicable)",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wardrobe Product Accordions"
+    }
+  ]
+}
+{% endschema %}

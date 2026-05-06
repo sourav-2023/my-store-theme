@@ -1,0 +1,151 @@
+{{ 'wardrobe-product.css' | asset_url | stylesheet_tag }}
+{{ 'wardrobe-product.js' | asset_url | script_tag }}
+
+<div class="wardrobe-product-hero" id="wardrobe-product-hero">
+  <div class="wardrobe-product-hero__container">
+    <div class="wardrobe-product-hero__gallery">
+      <!-- Main Product Gallery -->
+      <div class="wardrobe-product-gallery">
+        <div class="wardrobe-product-gallery__main">
+          {% for media in product.media %}
+            <div class="wardrobe-product-gallery__media" data-media-index="{{ forloop.index0 }}">
+              {% case media.media_type %}
+                {% when 'image' %}
+                  <img 
+                    src="{{ media | image_url: width: 800 }}" 
+                    alt="{{ media.alt | escape }}"
+                    loading="lazy"
+                    width="{{ media.width }}"
+                    height="{{ media.height }}"
+                  >
+                {% when 'video' %}
+                  {{ media | video_tag: controls: true, autoplay: false, loop: false, muted: false, image_size: "800x" }}
+                {% when 'external_video' %}
+                  {{ media | external_video_tag }}
+              {% endcase %}
+            </div>
+          {% endfor %}
+        </div>
+        
+        {% if product.media.size > 1 %}
+          <div class="wardrobe-product-gallery__thumbnails">
+            {% for media in product.media %}
+              <button 
+                class="wardrobe-product-gallery__thumbnail{% if forloop.first %} is-active{% endif %}"
+                data-media-index="{{ forloop.index0 }}"
+                aria-label="View {{ media.alt | default: 'product image' }}"
+              >
+                {% case media.media_type %}
+                  {% when 'image' %}
+                    <img 
+                      src="{{ media | image_url: width: 120 }}" 
+                      alt="{{ media.alt | escape }}"
+                      loading="lazy"
+                      width="{{ media.width }}"
+                      height="{{ media.height }}"
+                    >
+                  {% when 'video' %}
+                    <div class="wardrobe-product-gallery__thumbnail-video">
+                      {% render 'icon-play' %}
+                    </div>
+                  {% when 'external_video' %}
+                    <div class="wardrobe-product-gallery__thumbnail-video">
+                      {% render 'icon-play' %}
+                    </div>
+                {% endcase %}
+              </button>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="wardrobe-product-hero__details">
+      <!-- Product Information -->
+      <div class="wardrobe-product-info">
+        <!-- Brand Name -->
+        {% if product.vendor %}
+          <div class="wardrobe-product-info__brand">
+            {{ product.vendor | upcase }}
+          </div>
+        {% endif %}
+
+        <!-- Product Title -->
+        <h1 class="wardrobe-product-info__title">
+          {{ product.title }}
+        </h1>
+
+        <!-- Price -->
+        <div class="wardrobe-product-info__price">
+          <span class="wardrobe-product-info__current-price">
+            {{ product.price | money }}
+          </span>
+          {% if product.compare_at_price > product.price %}
+            <span class="wardrobe-product-info__compare-price">
+              {{ product.compare_at_price | money }}
+            </span>
+          {% endif %}
+        </div>
+
+        <!-- Product Form -->
+        {% render 'wardrobe-buy-form' %}
+
+        <!-- Trust Bar -->
+        {% render 'wardrobe-trust-bar' %}
+
+        <!-- Description -->
+        {% if product.description != blank %}
+          <div class="wardrobe-product-info__description">
+            {{ product.description }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Sticky Add to Cart -->
+<div class="wardrobe-product-hero__mobile-sticky">
+  <div class="wardrobe-product-hero__mobile-sticky-content">
+    <div class="wardrobe-product-hero__mobile-sticky-info">
+      <div class="wardrobe-product-hero__mobile-sticky-title">{{ product.title }}</div>
+      <div class="wardrobe-product-hero__mobile-sticky-price">{{ product.price | money }}</div>
+    </div>
+    <form class="wardrobe-product-hero__mobile-sticky-form" action="/cart/add" method="post">
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <button type="submit" class="wardrobe-button wardrobe-button--primary wardrobe-button--full">
+        Add to Cart
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- WhatsApp FAB -->
+{% render 'wardrobe-whatsapp-fab' %}
+
+{% schema %}
+{
+  "name": "Product Hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_gallery",
+      "label": "Enable sticky gallery on desktop",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mobile_sticky",
+      "label": "Enable sticky add to cart on mobile",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wardrobe Product Hero"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,74 @@
+{{ 'wardrobe-base.css' | asset_url | stylesheet_tag }}
+
+<div class="wardrobe-arrivals" id="wardrobe-arrivals">
+  <div class="wardrobe-arrivals__container">
+    <!-- Section Header -->
+    <div class="wardrobe-arrivals__header">
+      <h2 class="wardrobe-arrivals__title">This Week's Arrivals</h2>
+      <div class="wardrobe-arrivals__date">Week of {{ 'now' | date: '%B %d, %Y' }}</div>
+      <a href="/collections/all" class="wardrobe-arrivals__view-all">VIEW ALL</a>
+    </div>
+    
+    <!-- Product Grid -->
+    <div class="wardrobe-arrivals__grid">
+      {% assign arrivals = collections['all'].products | limit: 4 %}
+      {% for product in arrivals %}
+        <div class="wardrobe-arrivals__product">
+          {% render 'wardrobe-product-card', product: product %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- Thin divider -->
+<div class="wardrobe-arrivals__divider"></div>
+
+{% schema %}
+{
+  "name": "Wardrobe Arrivals",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "This Week's Arrivals"
+    },
+    {
+      "type": "collection",
+      "id": "featured_collection",
+      "label": "Featured Collection",
+      "info": "Select the collection to display products from"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to Show",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View All Text",
+      "default": "VIEW ALL"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Link",
+      "default": "/collections/all"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wardrobe Arrivals",
+      "category": "Wardrobe"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,670 @@
+/* Wardrobe Product Page Styles */
+
+/* CSS Variables */
+:root {
+  --w-cream: #F5F0E8;
+  --w-off-white: #FAF8F4;
+  --w-charcoal: #1A1A1A;
+  --w-sand: #8B7355;
+  --w-gold: #B8965A;
+  --w-dark-section: #1C1A17;
+  --w-muted: #6B6560;
+  --w-separator: #E8E3DA;
+  --w-warm-white: #FFFFFF;
+
+  --w-margin-desktop: 40px;
+  --w-margin-mobile: 20px;
+  --w-base-unit: 8px;
+}
+
+/* Typography */
+.w-serif {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.w-sans {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Product Hero Section */
+.wardrobe-product-hero {
+  background-color: var(--w-cream);
+  padding: calc(var(--w-margin-desktop) * 2) 0;
+}
+
+.wardrobe-product-hero__container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--w-margin-desktop);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--w-margin-desktop) * 2);
+  align-items: start;
+}
+
+/* Gallery Styles */
+.wardrobe-product-gallery {
+  position: sticky;
+  top: calc(var(--w-margin-desktop) + 64px);
+}
+
+.wardrobe-product-gallery__main {
+  margin-bottom: var(--w-margin-desktop);
+}
+
+.wardrobe-product-gallery__media {
+  border-radius: 0;
+  overflow: hidden;
+  background-color: var(--w-warm-white);
+}
+
+.wardrobe-product-gallery__media img,
+.wardrobe-product-gallery__media video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.wardrobe-product-gallery__media:not(:first-child) {
+  display: none;
+}
+
+.wardrobe-product-gallery__media.is-active {
+  display: block;
+}
+
+.wardrobe-product-gallery__thumbnails {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.wardrobe-product-gallery__thumbnail {
+  border: 1px solid var(--w-separator);
+  background-color: var(--w-warm-white);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 0;
+  transition: border-color 0.2s ease;
+  aspect-ratio: 4/5;
+}
+
+.wardrobe-product-gallery__thumbnail:hover {
+  border-color: var(--w-charcoal);
+}
+
+.wardrobe-product-gallery__thumbnail.is-active {
+  border-color: var(--w-charcoal);
+}
+
+.wardrobe-product-gallery__thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wardrobe-product-gallery__thumbnail-video {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--w-off-white);
+}
+
+/* Product Info */
+.wardrobe-product-info {
+  padding-top: var(--w-margin-desktop);
+}
+
+.wardrobe-product-info__brand {
+  font-family: var(--w-sans);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--w-gold);
+  margin-bottom: calc(var(--w-base-unit) * 2);
+}
+
+.wardrobe-product-info__title {
+  font-family: var(--w-serif);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--w-charcoal);
+  margin: 0 0 calc(var(--w-base-unit) * 3) 0;
+  line-height: 1.2;
+}
+
+.wardrobe-product-info__price {
+  margin-bottom: calc(var(--w-margin-desktop));
+}
+
+.wardrobe-product-info__current-price {
+  font-family: var(--w-sans);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--w-charcoal);
+}
+
+.wardrobe-product-info__compare-price {
+  font-family: var(--w-sans);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--w-muted);
+  text-decoration: line-through;
+  margin-left: calc(var(--w-base-unit) * 2);
+}
+
+/* Variant Selectors */
+.wardrobe-variant-fieldset {
+  border: none;
+  padding: 0;
+  margin: 0 0 calc(var(--w-margin-desktop)) 0;
+}
+
+.wardrobe-variant-label {
+  font-family: var(--w-sans);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--w-charcoal);
+  margin-bottom: calc(var(--w-base-unit) * 2);
+  display: block;
+}
+
+.wardrobe-variant-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--w-base-unit) * 2);
+}
+
+.wardrobe-variant-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.wardrobe-variant-option {
+  border: 1px solid var(--w-charcoal);
+  background-color: transparent;
+  color: var(--w-charcoal);
+  padding: calc(var(--w-base-unit) * 2) calc(var(--w-base-unit) * 3);
+  font-family: var(--w-sans);
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  border-radius: 0;
+  transition: all 0.15s ease;
+  min-width: 60px;
+  text-align: center;
+}
+
+.wardrobe-variant-option:hover {
+  background-color: var(--w-charcoal);
+  color: var(--w-warm-white);
+}
+
+.wardrobe-variant-input:checked+.wardrobe-variant-option {
+  background-color: var(--w-charcoal);
+  color: var(--w-warm-white);
+}
+
+.wardrobe-variant-input:disabled+.wardrobe-variant-option {
+  opacity: 0.5;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+/* Buttons */
+.wardrobe-button {
+  font-family: var(--w-sans);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 14px 28px;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--w-base-unit) * 2);
+  min-height: 48px;
+  border: 1px solid transparent;
+}
+
+.wardrobe-button--primary {
+  background-color: var(--w-charcoal);
+  color: var(--w-warm-white);
+  border-color: var(--w-charcoal);
+}
+
+.wardrobe-button--primary:hover:not(:disabled) {
+  background-color: var(--w-warm-white);
+  color: var(--w-charcoal);
+  border-color: var(--w-charcoal);
+}
+
+.wardrobe-button--ghost {
+  background-color: transparent;
+  color: var(--w-charcoal);
+  border-color: var(--w-charcoal);
+}
+
+.wardrobe-button--ghost:hover:not(:disabled) {
+  background-color: var(--w-charcoal);
+  color: var(--w-warm-white);
+}
+
+.wardrobe-button--full {
+  width: 100%;
+}
+
+.wardrobe-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.wardrobe-buy-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--w-base-unit) * 2);
+  margin-bottom: calc(var(--w-margin-desktop));
+}
+
+.wardrobe-loading-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--w-warm-white);
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Trust Bar */
+.wardrobe-trust-bar {
+  padding: calc(var(--w-base-unit) * 3) 0;
+  border-top: 1px solid var(--w-separator);
+  border-bottom: 1px solid var(--w-separator);
+  margin-bottom: calc(var(--w-margin-desktop));
+}
+
+.wardrobe-trust-bar__text {
+  font-family: var(--w-sans);
+  font-size: 13px;
+  color: var(--w-muted);
+  text-align: center;
+  margin: 0;
+}
+
+/* Description */
+.wardrobe-product-info__description {
+  font-family: var(--w-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--w-charcoal);
+  margin-bottom: calc(var(--w-margin-desktop));
+}
+
+.wardrobe-product-info__description p {
+  margin: 0 0 calc(var(--w-base-unit) * 2) 0;
+}
+
+.wardrobe-product-info__description p:last-child {
+  margin-bottom: 0;
+}
+
+/* Stock Status */
+.wardrobe-stock-status {
+  font-family: var(--w-sans);
+  font-size: 13px;
+  margin-bottom: calc(var(--w-base-unit) * 2);
+}
+
+.wardrobe-stock-status--low {
+  color: #d97706;
+}
+
+.wardrobe-stock-status--out {
+  color: #dc2626;
+}
+
+/* Accordions */
+.wardrobe-product-accordions {
+  background-color: var(--w-cream);
+  padding: calc(var(--w-margin-desktop) * 2) 0;
+}
+
+.wardrobe-product-accordions__container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--w-margin-desktop);
+}
+
+.wardrobe-accordion {
+  border-bottom: 1px solid var(--w-separator);
+  margin-bottom: 0;
+}
+
+.wardrobe-accordion:last-child {
+  border-bottom: none;
+}
+
+.wardrobe-accordion__summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: calc(var(--w-base-unit) * 4) 0;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--w-sans);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--w-charcoal);
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.wardrobe-accordion__summary::-webkit-details-marker {
+  display: none;
+}
+
+.wardrobe-accordion__title {
+  flex: 1;
+}
+
+.wardrobe-accordion__icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.wardrobe-accordion[open] .wardrobe-accordion__icon {
+  transform: rotate(45deg);
+}
+
+.wardrobe-accordion__content {
+  padding-bottom: calc(var(--w-base-unit) * 4);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.wardrobe-accordion__inner {
+  font-family: var(--w-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--w-muted);
+}
+
+.wardrobe-accordion__inner h4 {
+  font-family: var(--w-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--w-charcoal);
+  margin: calc(var(--w-base-unit) * 3) 0 calc(var(--w-base-unit) * 2) 0;
+}
+
+.wardrobe-accordion__inner h4:first-child {
+  margin-top: 0;
+}
+
+.wardrobe-accordion__inner p {
+  margin: 0 0 calc(var(--w-base-unit) * 2) 0;
+}
+
+.wardrobe-accordion__inner p:last-child {
+  margin-bottom: 0;
+}
+
+/* Product Card */
+.wardrobe-product-card {
+  background-color: var(--w-off-white);
+  border-radius: 0;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.wardrobe-product-card:hover {
+  transform: scale(1.02);
+}
+
+.wardrobe-product-card__link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.wardrobe-product-card__image-container {
+  position: relative;
+  aspect-ratio: 4/5;
+  background-color: var(--w-warm-white);
+  overflow: hidden;
+}
+
+.wardrobe-product-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wardrobe-product-card__badge {
+  position: absolute;
+  top: calc(var(--w-base-unit) * 2);
+  left: calc(var(--w-base-unit) * 2);
+  background-color: var(--w-charcoal);
+  color: var(--w-warm-white);
+  font-family: var(--w-sans);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: calc(var(--w-base-unit)) calc(var(--w-base-unit) * 2);
+  border-radius: 0;
+}
+
+.wardrobe-product-card__content {
+  padding: calc(var(--w-base-unit) * 3);
+}
+
+.wardrobe-product-card__brand {
+  font-family: var(--w-sans);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--w-gold);
+  margin-bottom: calc(var(--w-base-unit) * 2);
+}
+
+.wardrobe-product-card__title {
+  font-family: var(--w-sans);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--w-charcoal);
+  margin: 0 0 calc(var(--w-base-unit) * 2) 0;
+  line-height: 1.3;
+}
+
+.wardrobe-product-card__price {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--w-base-unit) * 2);
+}
+
+.wardrobe-product-card__current-price {
+  font-family: var(--w-sans);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--w-charcoal);
+}
+
+.wardrobe-product-card__compare-price {
+  font-family: var(--w-sans);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--w-muted);
+  text-decoration: line-through;
+}
+
+/* WhatsApp FAB */
+.wardrobe-whatsapp-fab {
+  position: fixed;
+  bottom: calc(var(--w-margin-desktop));
+  right: calc(var(--w-margin-desktop));
+  width: 56px;
+  height: 56px;
+  background-color: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 1000;
+}
+
+.wardrobe-whatsapp-fab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.wardrobe-whatsapp-fab__icon {
+  width: 28px;
+  height: 28px;
+  color: white;
+}
+
+/* Mobile Sticky Add to Cart */
+.wardrobe-product-hero__mobile-sticky {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--w-warm-white);
+  border-top: 1px solid var(--w-separator);
+  padding: calc(var(--w-margin-mobile));
+  z-index: 100;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.wardrobe-product-hero__mobile-sticky-content {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--w-margin-mobile));
+}
+
+.wardrobe-product-hero__mobile-sticky-info {
+  flex: 1;
+}
+
+.wardrobe-product-hero__mobile-sticky-title {
+  font-family: var(--w-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--w-charcoal);
+  margin: 0 0 calc(var(--w-base-unit)) 0;
+  line-height: 1.2;
+}
+
+.wardrobe-product-hero__mobile-sticky-price {
+  font-family: var(--w-sans);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--w-charcoal);
+  margin: 0;
+}
+
+.wardrobe-product-hero__mobile-sticky-form {
+  flex-shrink: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .wardrobe-product-hero {
+    padding: calc(var(--w-margin-mobile) * 2) 0;
+  }
+
+  .wardrobe-product-hero__container {
+    grid-template-columns: 1fr;
+    gap: calc(var(--w-margin-mobile) * 2);
+    padding: 0 var(--w-margin-mobile);
+  }
+
+  .wardrobe-product-gallery {
+    position: static;
+  }
+
+  .wardrobe-product-info {
+    padding-top: 0;
+  }
+
+  .wardrobe-product-info__title {
+    font-size: 28px;
+  }
+
+  .wardrobe-product-accordions {
+    padding: calc(var(--w-margin-mobile) * 2) 0;
+  }
+
+  .wardrobe-product-accordions__container {
+    padding: 0 var(--w-margin-mobile);
+  }
+
+  .wardrobe-whatsapp-fab {
+    bottom: calc(var(--w-margin-mobile) * 2);
+    right: var(--w-margin-mobile);
+  }
+
+  /* Mobile Sticky */
+  .wardrobe-product-hero__mobile-sticky {
+    display: block;
+  }
+
+  .wardrobe-product-hero__mobile-sticky-content {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .wardrobe-product-gallery__thumbnails {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+  }
+
+  .wardrobe-product-info__title {
+    font-size: 24px;
+  }
+
+  .wardrobe-variant-options {
+    gap: 8px;
+  }
+
+  .wardrobe-variant-option {
+    padding: 12px 16px;
+    font-size: 12px;
+    min-width: 50px;
+  }
+}

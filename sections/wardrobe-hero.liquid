@@ -1,0 +1,103 @@
+{{ 'wardrobe-base.css' | asset_url | stylesheet_tag }}
+
+<div class="wardrobe-hero" id="wardrobe-hero">
+  <div class="wardrobe-hero__container">
+    <!-- Logo -->
+    <div class="wardrobe-hero__logo">
+      <img src="{{ 'wardrobe-logo.png' | asset_url }}" alt="The Wardrobe Shillong" class="wardrobe-hero__logo-img">
+    </div>
+    
+    <!-- Eyebrow -->
+    <div class="wardrobe-hero__eyebrow">
+      POLICE BAZAR, SHILLONG · EST. 2023
+    </div>
+    
+    <!-- Main Headline -->
+    <div class="wardrobe-hero__headline">
+      <h1 class="wardrobe-hero__title">
+        <span class="wardrobe-hero__title-main">Selected</span>
+        <span class="wardrobe-hero__title-accent">Acquisitions.</span>
+      </h1>
+      <div class="wardrobe-hero__subtitle">
+        POLICE BAZAR, SHILLONG — CURATED RESELLER
+      </div>
+    </div>
+    
+    <!-- CTA Buttons -->
+    <div class="wardrobe-hero__ctas">
+      <a href="/collections/sneakers" class="wardrobe-button wardrobe-button--primary">
+        SHOP SNEAKERS
+      </a>
+      <a href="/collections/accessories" class="wardrobe-button wardrobe-button--ghost">
+        VIEW ACCESSORIES
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Thin divider -->
+<div class="wardrobe-hero__divider"></div>
+
+{% schema %}
+{
+  "name": "Wardrobe Hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow Text",
+      "default": "POLICE BAZAR, SHILLONG · EST. 2023"
+    },
+    {
+      "type": "text",
+      "id": "title_main",
+      "label": "Title Main Text",
+      "default": "Selected"
+    },
+    {
+      "type": "text",
+      "id": "title_accent",
+      "label": "Title Accent Text",
+      "default": "Acquisitions."
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "POLICE BAZAR, SHILLONG — CURATED RESELLER"
+    },
+    {
+      "type": "url",
+      "id": "primary_cta_link",
+      "label": "Primary CTA Link",
+      "default": "/collections/sneakers"
+    },
+    {
+      "type": "text",
+      "id": "primary_cta_text",
+      "label": "Primary CTA Text",
+      "default": "SHOP SNEAKERS"
+    },
+    {
+      "type": "url",
+      "id": "secondary_cta_link",
+      "label": "Secondary CTA Link",
+      "default": "/collections/accessories"
+    },
+    {
+      "type": "text",
+      "id": "secondary_cta_text",
+      "label": "Secondary CTA Text",
+      "default": "VIEW ACCESSORIES"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wardrobe Hero",
+      "category": "Wardrobe"
+    }
+  ]
+}
+{% endschema %}
