@@ -327,6 +327,8 @@
 @media (max-width: 1024px) {
   .wardrobe-hero {
     padding: calc(var(--w-margin-mobile) * 2) 0;
+    min-height: 70vh;
+    /* Optimized for mobile */
   }
 
   .wardrobe-hero__container {
@@ -334,7 +336,8 @@
   }
 
   .wardrobe-hero__title {
-    font-size: 60px;
+    font-size: 48px;
+    /* Optimized for mobile */
   }
 
   .wardrobe-hero__ctas {
@@ -362,6 +365,90 @@
 
   .wardrobe-filter-sidebar {
     padding: calc(var(--w-margin-mobile));
+  }
+
+  .wardrobe-contact-strip {
+    padding: calc(var(--w-margin-mobile) * 2) 0;
+  }
+
+  .wardrobe-contact-strip__container {
+    grid-template-columns: 1fr;
+    gap: calc(var(--w-margin-mobile));
+    padding: 0 var(--w-margin-mobile);
+  }
+
+  .wardrobe-contact-strip__left {
+    padding-right: 0;
+    margin-bottom: calc(var(--w-margin-mobile));
+  }
+
+  .wardrobe-contact-strip__right {
+    gap: calc(var(--w-margin-mobile));
+  }
+}
+
+/* Smartphone Optimizations */
+@media (max-width: 768px) {
+  .wardrobe-hero {
+    padding: calc(var(--w-margin-mobile)) 0;
+    /* Reduced padding for small phones */
+    min-height: 60vh;
+    /* Further optimized for small screens */
+  }
+
+  .wardrobe-hero__title {
+    font-size: 36px;
+    /* Smaller title for small phones */
+  }
+
+  .wardrobe-hero__ctas {
+    gap: calc(var(--w-base-unit));
+    /* Reduced gap for small phones */
+  }
+
+  .wardrobe-collection-header {
+    height: 150px;
+    /* Optimized for mobile */
+  }
+
+  .wardrobe-collection-header__overlay {
+    padding: calc(var(--w-margin-mobile));
+    /* Mobile padding */
+  }
+
+  .wardrobe-collection-header__title {
+    font-size: 28px;
+    /* Mobile title size */
+  }
+
+  .wardrobe-product-grid__container {
+    grid-template-columns: 1fr;
+    /* Single column on small phones */
+    gap: calc(var(--w-margin-mobile));
+    padding: 0 var(--w-margin-mobile);
+  }
+
+  .wardrobe-filter-sidebar {
+    padding: calc(var(--w-margin-mobile));
+  }
+
+  .wardrobe-contact-strip {
+    padding: calc(var(--w-margin-mobile)) 0;
+  }
+
+  .wardrobe-contact-strip__container {
+    grid-template-columns: 1fr;
+    gap: calc(var(--w-margin-mobile));
+    padding: 0 var(--w-margin-mobile);
+  }
+
+  .wardrobe-contact-strip__left {
+    padding-right: 0;
+    margin-bottom: calc(var(--w-margin-mobile));
+  }
+
+  .wardrobe-contact-strip__right {
+    gap: calc(var(--w-margin-mobile));
   }
 }
 
