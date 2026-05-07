@@ -288,7 +288,7 @@
 <div class="wh-header-wrapper">
   <header class="wh-header">
     <!-- Mobile Toggle -->
-    <button class="wh-mobile-toggle" onclick="document.getElementById('wh-mobile-menu').classList.add('is-open')">
+    <button class="wh-mobile-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="wh-mobile-menu" onclick="document.getElementById('wh-mobile-menu').classList.add('is-open'); this.setAttribute('aria-expanded','true')">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <line x1="3" y1="6" x2="21" y2="6"/>
         <line x1="3" y1="12" x2="21" y2="12"/>
@@ -322,7 +322,7 @@
     </a>
 
     <!-- Desktop Navigation -->
-    <nav>
+    <nav aria-label="Main navigation">
       <ul class="wh-nav">
         <li class="wh-nav__item">
           <a href="/" class="wh-nav__link{% if request.path == '/' %} wh-nav__link--active{% endif %}">Home</a>
@@ -379,8 +379,8 @@
 </div>
 
 <!-- Mobile Menu -->
-<div class="wh-mobile-menu" id="wh-mobile-menu">
-  <button class="wh-mobile-close" onclick="this.parentElement.classList.remove('is-open')">
+<div class="wh-mobile-menu" id="wh-mobile-menu" role="dialog" aria-label="Mobile navigation">
+  <button class="wh-mobile-close" aria-label="Close menu" onclick="this.parentElement.classList.remove('is-open'); document.querySelector('.wh-mobile-toggle').setAttribute('aria-expanded','false')">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
       <line x1="18" y1="6" x2="6" y2="18"/>
       <line x1="6" y1="6" x2="18" y2="18"/>
