@@ -33,6 +33,38 @@
 
     {% render 'meta-tags' %}
 
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": {{ shop.name | json }},
+        "url": {{ request.origin | json }},
+        "description": {{ shop.description | default: shop.name | json }},
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Police Bazar",
+          "addressLocality": "Shillong",
+          "addressRegion": "Meghalaya",
+          "postalCode": "793001",
+          "addressCountry": "IN"
+        },
+        "telephone": "+919700575273"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": {{ shop.name | json }},
+        "url": {{ request.origin | json }},
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {{ request.origin | append: '/search?q={search_term_string}' | json }},
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>

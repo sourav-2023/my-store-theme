@@ -8,7 +8,9 @@
       {% if product.featured_image %}
         <img 
           src="{{ product.featured_image | image_url: width: 400 }}" 
-          alt="{{ product.featured_image.alt | escape }}"
+          srcset="{{ product.featured_image | image_url: width: 200 }} 200w, {{ product.featured_image | image_url: width: 400 }} 400w, {{ product.featured_image | image_url: width: 600 }} 600w"
+          sizes="(max-width: 600px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          alt="{{ product.featured_image.alt | default: product.title | escape }}"
           loading="lazy"
           width="{{ product.featured_image.width }}"
           height="{{ product.featured_image.height }}"
