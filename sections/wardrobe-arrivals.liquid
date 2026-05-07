@@ -101,10 +101,7 @@
       <div class="wa-meta">
         <span class="wa-date">Week of {{ 'now' | date: '%b %d, %Y' | upcase }}</span>
         <a href="{{ section.settings.view_all_link | default: '/collections/all' }}" class="wa-view-all">
-          {{ section.settings.view_all_text }} →
-        </a>
-        <a href="/collections/all" class="wa-view-all">
-          View All Products
+          {{ section.settings.view_all_text | default: 'VIEW ALL' }} →
         </a>
       </div>
     </div>

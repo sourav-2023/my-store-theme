@@ -165,8 +165,8 @@
           <p>From Police Bazar to your door. Every piece in our collection is hand-selected for quality, fit, and longevity. We believe fashion should be an investment, not just a purchase.</p>
         {%- endif -%}
       </div>
-      <a href="/pages/about" class="wardrobe-button wardrobe-button--ghost">
-        DISCOVER MORE →
+      <a href="{{ section.settings.cta_link | default: '/pages/about' }}" class="wardrobe-button wardrobe-button--ghost">
+        {{ section.settings.cta_text | default: 'DISCOVER MORE' }} →
       </a>
     </div>
   </div>

@@ -1,0 +1,33 @@
+{
+  "sections": {
+    "wardrobe-collection-header": {
+      "type": "wardrobe-collection-header",
+      "settings": {
+        "subtitle": "Every piece. Every category."
+      }
+    },
+    "wardrobe-collection-body": {
+      "type": "wardrobe-collection-body",
+      "settings": {
+        "products_per_page": 24,
+        "show_brand_filter": true,
+        "show_availability_filter": true,
+        "show_price_filter": true,
+        "two_column_grid": false,
+        "show_subcategory_pills": false
+      }
+    },
+    "wardrobe-footer": {
+      "type": "wardrobe-footer",
+      "settings": {
+        "address": "Police Bazar, Shillong, Meghalaya 793001",
+        "whatsapp": "97005 752736"
+      }
+    }
+  },
+  "order": [
+    "wardrobe-collection-header",
+    "wardrobe-collection-body",
+    "wardrobe-footer"
+  ]
+}
