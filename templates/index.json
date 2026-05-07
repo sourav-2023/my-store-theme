@@ -1,16 +1,16 @@
 {
   "sections": {
-    "wardrobe-hero": {
-      "type": "wardrobe-hero",
+    "wardrobe-hero-v2": {
+      "type": "wardrobe-hero-v2",
       "settings": {
         "eyebrow_text": "POLICE BAZAR, SHILLONG · EST. 2023",
         "title_main": "Selected",
         "title_accent": "Acquisitions.",
         "subtitle": "POLICE BAZAR, SHILLONG — CURATED RESELLER",
-        "primary_cta_link": "/collections/sneakers",
-        "primary_cta_text": "SHOP SNEAKERS",
-        "secondary_cta_link": "/collections/accessories",
-        "secondary_cta_text": "VIEW ACCESSORIES"
+        "primary_link": "/collections/sneakers",
+        "primary_text": "SHOP SNEAKERS",
+        "secondary_link": "/collections/accessories",
+        "secondary_text": "VIEW ACCESSORIES"
       }
     },
     "wardrobe-arrivals": {
@@ -21,34 +21,10 @@
         "view_all_text": "VIEW ALL",
         "view_all_link": "/collections/all"
       }
-    },
-    "wardrobe-story": {
-      "type": "wardrobe-story",
-      "settings": {
-        "title": "Curating Shillong's Finest Since Day One",
-        "cta_text": "DISCOVER MORE",
-        "cta_link": "/pages/about"
-      }
-    },
-    "wardrobe-categories": {
-      "type": "wardrobe-categories",
-      "settings": {}
-    },
-    "wardrobe-contact-strip": {
-      "type": "wardrobe-contact-strip",
-      "settings": {
-        "address": "Umsohsun Rd, Umsohsun, Police Bazar, Shillong, Meghalaya 793001",
-        "hours": "Mon–Sun, 11:00–20:00",
-        "phone": "+91 98765 43210",
-        "whatsapp": "98765 43210"
-      }
     }
   },
   "order": [
-    "wardrobe-hero",
-    "wardrobe-arrivals",
-    "wardrobe-story",
-    "wardrobe-categories",
-    "wardrobe-contact-strip"
+    "wardrobe-hero-v2",
+    "wardrobe-arrivals"
   ]
 }
