@@ -304,6 +304,8 @@
           <img src="{{ section.settings.desktop_logo | image_url: width: 200 }}" alt="{{ shop.name }}">
         {%- elsif settings.logo != blank -%}
           <img src="{{ settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}">
+        {%- else -%}
+          <img src="{{ 'wardrobe-logo.png' | asset_url }}" alt="{{ shop.name }}">
         {%- endif -%}
         <span class="wh-logo__text">THE WARDROBE</span>
       </div>
@@ -316,7 +318,7 @@
         {%- elsif settings.logo != blank -%}
           <img src="{{ settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}">
         {%- else -%}
-          <span class="wh-logo__text">THE WARDROBE</span>
+          <img src="{{ 'wardrobe-logo.png' | asset_url }}" alt="{{ shop.name }}">
         {%- endif -%}
       </div>
     </a>
