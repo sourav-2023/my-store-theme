@@ -1,32 +1,127 @@
 {{ 'wardrobe-base.css' | asset_url | stylesheet_tag }}
+{{ 'wardrobe-collection.css' | asset_url | stylesheet_tag }}
 
-<div class="wardrobe-arrivals" id="wardrobe-arrivals">
-  <div class="wardrobe-arrivals__container">
-    <!-- Section Header -->
-    <div class="wardrobe-arrivals__header">
-      <div class="wardrobe-arrivals__header-left">
-        <h2 class="wardrobe-arrivals__title">This Week's <span class="wardrobe-arrivals__title-accent">Arrivals</span></h2>
-      </div>
-      <div class="wardrobe-arrivals__header-right">
-        <div class="wardrobe-arrivals__date">WEEK OF {{ 'now' | date: '%b %d, %Y' | upcase }}</div>
-        <a href="/collections/all" class="wardrobe-arrivals__view-all">VIEW ALL →</a>
+<style>
+  .wa-section {
+    background-color: #F5F0E8;
+    padding: 80px 40px;
+  }
+
+  .wa-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .wa-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #E8E3DA;
+  }
+
+  .wa-heading {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 300;
+    line-height: 1;
+    color: #1A1A1A;
+    margin: 0;
+  }
+
+  .wa-heading-accent {
+    font-style: italic;
+    color: #B8965A;
+  }
+
+  .wa-meta {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .wa-date {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6B6560;
+  }
+
+  .wa-view-all {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #B8965A;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.15s ease;
+  }
+
+  .wa-view-all:hover { gap: 10px; color: #1A1A1A; }
+
+  .wa-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .wa-divider {
+    height: 1px;
+    background-color: #E8E3DA;
+    margin: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .wa-section { padding: 56px 20px; }
+    .wa-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .wa-header { margin-bottom: 32px; }
+  }
+
+  @media (max-width: 600px) {
+    .wa-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .wa-heading { font-size: 32px; }
+  }
+</style>
+
+<div class="wa-section" id="wardrobe-arrivals">
+  <div class="wa-container">
+    <div class="wa-header">
+      <h2 class="wa-heading">
+        This Week's <span class="wa-heading-accent">Arrivals</span>
+      </h2>
+      <div class="wa-meta">
+        <span class="wa-date">Week of {{ 'now' | date: '%b %d, %Y' | upcase }}</span>
+        <a href="{{ section.settings.view_all_link | default: '/collections/all' }}" class="wa-view-all">
+          {{ section.settings.view_all_text }} →
+        </a>
       </div>
     </div>
-    
-    <!-- Product Grid -->
-    <div class="wardrobe-arrivals__grid">
-      {% assign arrivals = collections['all'].products | limit: 4 %}
-      {% for product in arrivals %}
-        <div class="wardrobe-arrivals__product">
+
+    <div class="wa-grid">
+      {%- assign arrivals_collection = collections[section.settings.featured_collection] -%}
+      {%- if arrivals_collection != blank -%}
+        {%- for product in arrivals_collection.products limit: section.settings.products_to_show -%}
           {% render 'wardrobe-product-card', product: product %}
-        </div>
-      {% endfor %}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for product in collections.all.products limit: section.settings.products_to_show -%}
+          {% render 'wardrobe-product-card', product: product %}
+        {%- endfor -%}
+      {%- endif -%}
     </div>
   </div>
 </div>
 
-<!-- Thin divider -->
-<div class="wardrobe-arrivals__divider"></div>
+<div class="wa-divider"></div>
 
 {% schema %}
 {
@@ -35,21 +130,14 @@
   "class": "section",
   "settings": [
     {
-      "type": "text",
-      "id": "title",
-      "label": "Section Title",
-      "default": "This Week's Arrivals"
-    },
-    {
       "type": "collection",
       "id": "featured_collection",
-      "label": "Featured Collection",
-      "info": "Select the collection to display products from"
+      "label": "Collection"
     },
     {
       "type": "range",
       "id": "products_to_show",
-      "label": "Products to Show",
+      "label": "Products to show",
       "min": 2,
       "max": 8,
       "step": 1,
@@ -64,8 +152,7 @@
     {
       "type": "url",
       "id": "view_all_link",
-      "label": "View All Link",
-      "default": "/collections/all"
+      "label": "View All Link"
     }
   ],
   "presets": [

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Wardrobe Shillong — Homepage</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    @page { size: A4 portrait; margin: 1cm 1.2cm; }
+
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+    /* Hide interactive/overlay elements */
+    .nav-menu-btn, .nav-search-btn, .nav-cart-btn,
+    .nav-drawer, .cart-drawer, .cart-overlay,
+    .search-overlay, .marquee-bar,
+    .hero-cta-row, .story-cta,
+    .visit-actions, .visit-map iframe,
+    .footer-wa, .btn, a.btn,
+    .section-link, #toast { display: none !important; }
+
+    /* Reset body for print */
+    body { background: #fff !important; }
+    main { padding-top: 0 !important; }
+
+    /* NAV — static print header */
+    .nav {
+      position: static !important;
+      box-shadow: none !important;
+      border-bottom: 1.5px solid #C5A059 !important;
+      padding: 12px 24px !important;
+      break-inside: avoid;
+    }
+    .nav-links-desktop { display: flex !important; }
+
+    /* HERO — compact */
+    .hero {
+      padding: 28px 24px 20px !important;
+      break-after: avoid;
+    }
+    .hero::before { display: none; }
+    .hero-title { font-size: 48px !important; }
+
+    /* SECTION */
+    .section { padding: 24px !important; break-inside: avoid; }
+
+    /* PRODUCT GRID — 4 columns, smaller */
+    .product-grid {
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 14px !important;
+    }
+    .product-card { break-inside: avoid; }
+    .product-card-image { aspect-ratio: 3/4 !important; }
+    .product-card-image img { object-fit: cover; }
+
+    /* STORY */
+    .story-section { padding: 32px 0 !important; break-before: page; }
+    .story-grid { gap: 32px !important; padding: 0 24px !important; }
+    .story-image { aspect-ratio: 4/3 !important; }
+
+    /* VISIT */
+    .visit-section { padding: 32px 24px !important; break-before: avoid; }
+    .visit-inner { gap: 32px !important; }
+    .visit-map {
+      aspect-ratio: 4/3 !important;
+      background: #1a1916 !important;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .visit-map::after {
+      content: 'Umsohsun Rd, Police Bazar, Shillong · maps.app.goo.gl/RWgkWH7RecMXHoVQ7';
+      color: #C5A059;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-align: center;
+      padding: 16px;
+    }
+
+    /* TRUST BAR */
+    .trust-bar {
+      flex-direction: row !important;
+      flex-wrap: wrap !important;
+      break-inside: avoid;
+      padding: 20px 24px !important;
+    }
+    .trust-item { min-width: 200px !important; }
+
+    /* CATEGORY TILES */
+    .section:last-child { break-inside: avoid; }
+
+    /* DIVIDERS */
+    .divider { margin: 0 24px !important; }
+
+    /* FOOTER */
+    .footer {
+      break-before: avoid;
+      padding: 24px !important;
+    }
+    .footer-top { grid-template-columns: 1.5fr 1fr 1fr !important; }
+
+    /* FADE-IN — show everything statically */
+    .fade-in { opacity: 1 !important; transform: none !important; }
+
+    /* ANIMATIONS — kill */
+    .marquee-track { animation: none !important; }
+    * { animation: none !important; transition: none !important; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-monogram"></div>
+    <div class="nav-wordmark">The Wardrobe</div>
+  </a>
+  <div class="nav-links-desktop">
+    <a href="sneakers.html" style="font-family:Inter">Sneakers</a>
+    <a href="clothing.html" style="font-family:Inter">Clothing</a>
+    <a href="accessories.html" style="font-family:Inter">Accessories</a>
+    <a href="archive.html" style="font-family:Inter">Archive</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">Police Bazar, Shillong · Est. 2023</p>
+    <h1 class="hero-title">Selected<br><em>Acquisitions.</em></h1>
+    <p class="hero-subtitle">Police Bazar, Shillong — Curated Reseller</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- NEW ARRIVALS — static cards -->
+  <section class="section">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">This Week's<br><em>Arrivals</em></h2>
+      </div>
+      <div style="text-align:right;">
+        <div class="section-date">Week of Apr 14, 2025</div>
+      </div>
+    </div>
+
+    <div class="product-grid">
+
+      <!-- AJ1 Chicago -->
+      <article class="product-card">
+        <div class="product-card-image">
+          <span class="product-card-badge badge-new">New</span>
+          <img src="uploads/EditsbyAhmar02_e01f5772-77f7-4827-af5c-d5fa5934ec51.webp" alt="Air Jordan 1 Chicago">
+        </div>
+        <div class="product-card-info">
+          <div class="product-card-brand">Jordan</div>
+          <div class="product-card-name">Air Jordan 1 Retro High OG 'Chicago' 2025</div>
+          <div class="product-card-price">₹28,500</div>
+        </div>
+      </article>
+
+      <!-- Chrome Hearts Tee -->
+      <article class="product-card">
+        <div class="product-card-image">
+          <span class="product-card-badge badge-new">New</span>
+          <img src="uploads/O1CN01BiJqeb1arvKkJY98p__2218394303384-0-cib.jpg" alt="Chrome Hearts Tee">
+        </div>
+        <div class="product-card-info">
+          <div class="product-card-brand">Chrome Hearts</div>
+          <div class="product-card-name">Chrome Hearts Cross Patch Tee</div>
+          <div class="product-card-price">₹32,000</div>
+        </div>
+      </article>
+
+      <!-- Cartier -->
+      <article class="product-card">
+        <div class="product-card-image">
+          <span class="product-card-badge badge-new">New</span>
+          <img src="uploads/62d0a61b54015ce0b0811c73a61a2e81.avif" alt="Cartier Santos-Dumont">
+        </div>
+        <div class="product-card-info">
+          <div class="product-card-brand">Cartier</div>
+          <div class="product-card-name">Cartier Santos-Dumont Eyeglasses</div>
+          <div class="product-card-price">₹65,000</div>
+        </div>
+      </article>
+
+      <!-- LV Belt -->
+      <article class="product-card">
+        <div class="product-card-image">
+          <span class="product-card-badge badge-new">New</span>
+          <img src="uploads/louis-vuitton-lv-initiales-40mm-reversible-belt--M0159T_PM2_Front view.avif" alt="LV Belt">
+        </div>
+        <div class="product-card-info">
+          <div class="product-card-brand">Louis Vuitton</div>
+          <div class="product-card-name">Louis Vuitton Initiales Belt 40mm</div>
+          <div class="product-card-price">₹42,000</div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- OUR STORY -->
+  <section class="story-section">
+    <div class="story-grid">
+      <div class="story-image">
+        <img src="images/storefront.jpg" alt="The Wardrobe storefront">
+      </div>
+      <div class="story-content">
+        <div class="story-eyebrow"><span>Our Story</span></div>
+        <h2 class="story-title">Curating Shillong's<br>Finest Since Day One</h2>
+        <div class="story-body">
+          <p>The Wardrobe was born from a simple belief — that the hills of Meghalaya deserve access to the same quality and curation found in India's fashion capitals.</p>
+          <p>From Police Bazar to your door. Every piece is hand-selected for quality, fit, and longevity. Fashion should be an investment, not just a purchase.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section class="visit-section">
+    <div class="visit-inner">
+      <div class="visit-content">
+        <p class="visit-eyebrow">Visit the Store</p>
+        <h2 class="visit-title">Find us in <em>Police Bazar</em></h2>
+        <p class="visit-address">The Wardrobe Shillong</p>
+        <p class="visit-address-sub">Umsohsun Rd, Umsohsun, Police Bazar,<br>Shillong, Meghalaya 793001</p>
+        <div class="visit-meta">
+          <div class="visit-meta-block">
+            <p class="label">Hours</p>
+            <p class="value">Mon–Sun<br>11:00 — 20:00</p>
+          </div>
+          <div class="visit-meta-block">
+            <p class="label">WhatsApp</p>
+            <p class="value">+91 98765 43210</p>
+          </div>
+          <div class="visit-meta-block">
+            <p class="label">Directions</p>
+            <p class="value" style="font-size:11px;word-break:break-all;">maps.app.goo.gl/RWgkWH7RecMXHoVQ7</p>
+          </div>
+        </div>
+      </div>
+      <div class="visit-map"></div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      <div class="trust-item-text"><strong>Verified Authentic</strong><span>Every piece personally inspected before listing.</span></div>
+    </div>
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      <div class="trust-item-text"><strong>Physical Store</strong><span>Police Bazar, Shillong. Try before you buy.</span></div>
+    </div>
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+      <div class="trust-item-text"><strong>WhatsApp Checkout</strong><span>Direct, personal checkout. No hidden fees.</span></div>
+    </div>
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <div class="trust-item-text"><strong>Reserve 24 Hours</strong><span>Not ready? We'll hold any item for you.</span></div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="nav-monogram"></div>
+      <p style="margin-top:12px;">Authenticated luxury &amp; streetwear. Every piece has a story.</p>
+      <p style="margin-top:8px;font-size:12px;color:rgba(249,247,244,0.5);">+91 98765 43210</p>
+    </div>
+    <div class="footer-nav">
+      <h4>Shop</h4>
+      <a href="#">Sneakers</a><a href="#">Clothing</a><a href="#">Accessories</a><a href="#">Archive</a>
+    </div>
+    <div class="footer-nav">
+      <h4>Info</h4>
+      <a href="#">About</a><a href="#">Authenticity</a><a href="#">How to Buy</a><a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 The Wardrobe Shillong</span>
+    <span>Police Bazar, Shillong, Meghalaya 793001</span>
+  </div>
+</footer>
+
+<script src="js/products.js?v=2"></script>
+<script>
+  // Auto-print once fonts + images loaded
+  document.fonts.ready.then(function() {
+    var imgs = Array.from(document.images);
+    var loaded = imgs.filter(function(i) { return i.complete; }).length;
+    if (loaded === imgs.length) {
+      setTimeout(function() { window.print(); }, 600);
+    } else {
+      var remaining = imgs.length - loaded;
+      imgs.forEach(function(img) {
+        if (!img.complete) {
+          img.addEventListener('load', function() {
+            remaining--;
+            if (remaining <= 0) setTimeout(function() { window.print(); }, 600);
+          });
+          img.addEventListener('error', function() {
+            remaining--;
+            if (remaining <= 0) setTimeout(function() { window.print(); }, 600);
+          });
+        }
+      });
+    }
+  });
+</script>
+</body>
+</html>

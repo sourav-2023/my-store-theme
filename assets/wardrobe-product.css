@@ -128,12 +128,13 @@
 }
 
 .wardrobe-product-info__title {
-  font-family: var(--w-serif);
-  font-size: 32px;
-  font-weight: 400;
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif !important;
+  font-size: 40px;
+  font-weight: 300;
   color: var(--w-charcoal);
-  margin: 0 0 calc(var(--w-base-unit) * 3) 0;
-  line-height: 1.2;
+  margin: 0 0 20px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
 }
 
 .wardrobe-product-info__price {
@@ -438,14 +439,10 @@
 
 /* Product Card */
 .wardrobe-product-card {
-  background-color: var(--w-off-white);
+  background: transparent;
+  border: none;
+  box-shadow: none;
   border-radius: 0;
-  overflow: hidden;
-  transition: transform 0.2s ease;
-}
-
-.wardrobe-product-card:hover {
-  transform: scale(1.02);
 }
 
 .wardrobe-product-card__link {

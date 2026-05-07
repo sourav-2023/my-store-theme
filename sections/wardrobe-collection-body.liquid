@@ -1,0 +1,327 @@
+{{ 'wardrobe-base.css' | asset_url | stylesheet_tag }}
+{{ 'wardrobe-collection.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .wcb-wrap {
+    background-color: #F5F0E8;
+    padding: 48px 40px 80px;
+  }
+
+  .wcb-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  /* ── Sidebar ── */
+  .wcb-sidebar {
+    position: sticky;
+    top: 80px;
+  }
+
+  .wcb-filter-group {
+    border-bottom: 1px solid #E8E3DA;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+  }
+
+  .wcb-filter-group:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .wcb-filter-title {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #1A1A1A;
+    margin: 0 0 14px;
+  }
+
+  .wcb-filter-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .wcb-filter-list a {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 13px;
+    color: #6B6560;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .wcb-filter-list a:hover,
+  .wcb-filter-list a.is-active {
+    color: #1A1A1A;
+  }
+
+  /* ── Grid header row ── */
+  .wcb-grid-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #E8E3DA;
+  }
+
+  .wcb-count {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 12px;
+    color: #6B6560;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .wcb-sort {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 12px;
+    color: #1A1A1A;
+    background: transparent;
+    border: 1px solid #E8E3DA;
+    padding: 8px 12px;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+  }
+
+  /* ── Product Grid ── */
+  .wcb-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  /* Accessories: 2-col wider cards */
+  .wcb-grid--2col {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  /* Subcategory pills (accessories) */
+  .wcb-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .wcb-pill {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 8px 16px;
+    border: 1px solid #E8E3DA;
+    background: transparent;
+    color: #1A1A1A;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .wcb-pill:hover,
+  .wcb-pill.is-active {
+    background: #1A1A1A;
+    color: #FFFFFF;
+    border-color: #1A1A1A;
+  }
+
+  /* Empty state */
+  .wcb-empty {
+    grid-column: 1 / -1;
+    padding: 80px 0;
+    text-align: center;
+  }
+
+  .wcb-empty p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: #6B6560;
+    margin: 0;
+  }
+
+  /* Mobile */
+  @media (max-width: 1024px) {
+    .wcb-wrap { padding: 24px 20px 60px; }
+
+    .wcb-inner {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .wcb-sidebar {
+      position: static;
+      display: none; /* hidden by default on mobile — toggle via JS or show always */
+    }
+
+    .wcb-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .wcb-grid--2col { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  }
+</style>
+
+<div class="wcb-wrap">
+  <div class="wcb-inner">
+
+    {%- comment -%} ── LEFT: Sidebar ── {%- endcomment -%}
+    <aside class="wcb-sidebar">
+
+      {%- if section.settings.show_brand_filter -%}
+        <div class="wcb-filter-group">
+          <p class="wcb-filter-title">Brand</p>
+          <ul class="wcb-filter-list">
+            {%- assign brands = collection.products | map: 'vendor' | uniq | sort -%}
+            {%- for brand in brands -%}
+              <li><a href="{{ collection.url }}?vendor={{ brand | url_encode }}">{{ brand }}</a></li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.show_availability_filter -%}
+        <div class="wcb-filter-group">
+          <p class="wcb-filter-title">Availability</p>
+          <ul class="wcb-filter-list">
+            <li><a href="{{ collection.url }}?filter.p.available=true">In Stock</a></li>
+          </ul>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.show_price_filter -%}
+        <div class="wcb-filter-group">
+          <p class="wcb-filter-title">Price</p>
+          <ul class="wcb-filter-list">
+            <li><a href="{{ collection.url }}?filter.v.price.lte=5000">Under ₹5,000</a></li>
+            <li><a href="{{ collection.url }}?filter.v.price.gte=5000&filter.v.price.lte=15000">₹5,000 – ₹15,000</a></li>
+            <li><a href="{{ collection.url }}?filter.v.price.gte=15000&filter.v.price.lte=30000">₹15,000 – ₹30,000</a></li>
+            <li><a href="{{ collection.url }}?filter.v.price.gte=30000">₹30,000+</a></li>
+          </ul>
+        </div>
+      {%- endif -%}
+
+    </aside>
+
+    {%- comment -%} ── RIGHT: Grid ── {%- endcomment -%}
+    <div class="wcb-right">
+
+      {%- if section.settings.show_subcategory_pills -%}
+        <div class="wcb-pills">
+          <button class="wcb-pill is-active" data-filter="all">All</button>
+          {%- for value in section.settings.subcategory_values -%}
+            <button class="wcb-pill" data-filter="{{ value | handleize }}">{{ value }}</button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      <div class="wcb-grid-header">
+        <span class="wcb-count">{{ collection.products_count }} {{ collection.products_count | pluralize: 'piece', 'pieces' }}</span>
+      </div>
+
+      <div class="wcb-grid{% if section.settings.two_column_grid %} wcb-grid--2col{% endif %}">
+        {%- if collection.products.size > 0 -%}
+          {%- paginate collection.products by section.settings.products_per_page -%}
+            {%- for product in collection.products -%}
+              <div data-type="{{ product.type | handleize }}">
+                {%- render 'wardrobe-product-card', product: product -%}
+              </div>
+            {%- endfor -%}
+          {%- endpaginate -%}
+        {%- else -%}
+          <div class="wcb-empty">
+            <p>No pieces here yet.</p>
+          </div>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var pills = document.querySelectorAll('.wcb-pill');
+    if (!pills.length) return;
+    pills.forEach(function(pill) {
+      pill.addEventListener('click', function() {
+        pills.forEach(function(p) { p.classList.remove('is-active'); });
+        pill.classList.add('is-active');
+        var filter = pill.dataset.filter;
+        document.querySelectorAll('.wcb-grid [data-type]').forEach(function(item) {
+          item.style.display = (filter === 'all' || item.dataset.type === filter) ? '' : 'none';
+        });
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Collection Body",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "default": 24
+    },
+    {
+      "type": "checkbox",
+      "id": "show_brand_filter",
+      "label": "Show brand filter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_availability_filter",
+      "label": "Show availability filter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price_filter",
+      "label": "Show price filter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "two_column_grid",
+      "label": "2-column grid (accessories)",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_subcategory_pills",
+      "label": "Show subcategory pills",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "subcategory_values",
+      "label": "Subcategory pill labels (comma-separated)",
+      "info": "e.g. Watches, Belts, Sunglasses, Bags"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Body",
+      "category": "Wardrobe"
+    }
+  ]
+}
+{% endschema %}

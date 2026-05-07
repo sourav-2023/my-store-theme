@@ -1,22 +1,133 @@
 {{ 'wardrobe-base.css' | asset_url | stylesheet_tag }}
 
+<style>
+  .wardrobe-story {
+    background-color: #F5F0E8;
+    padding: 0;
+  }
+  .wardrobe-story__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 600px;
+  }
+  .wardrobe-story__image-wrapper {
+    width: 100%;
+    height: 100%;
+    min-height: 560px;
+    overflow: hidden;
+  }
+  .wardrobe-story__store-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .wardrobe-story__image:hover .wardrobe-story__store-photo {
+    transform: scale(1.02);
+  }
+  .wardrobe-story__image-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 560px;
+    background-color: #1A1A1A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wardrobe-story__placeholder-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: #B8965A;
+    text-transform: uppercase;
+  }
+  .wardrobe-story__content {
+    padding: 80px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .wardrobe-story__label-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .wardrobe-story__line {
+    width: 32px;
+    height: 1px;
+    background-color: #B8965A;
+    flex-shrink: 0;
+  }
+  .wardrobe-story__label {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #B8965A;
+  }
+  .wardrobe-story__title {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-size: clamp(32px, 3.5vw, 48px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: #1A1A1A;
+    margin: 0 0 28px;
+  }
+  .wardrobe-story__text {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    color: #6B6560;
+    margin-bottom: 40px;
+  }
+  .wardrobe-story__text p { margin: 0 0 16px; }
+  .wardrobe-story__text p:last-child { margin-bottom: 0; }
+  @media (max-width: 1024px) {
+    .wardrobe-story__container { grid-template-columns: 1fr; }
+    .wardrobe-story__image-wrapper { min-height: 360px; }
+    .wardrobe-story__image-placeholder { min-height: 360px; }
+    .wardrobe-story__content { padding: 48px 24px; }
+  }
+</style>
+
 <div class="wardrobe-story" id="wardrobe-story">
   <div class="wardrobe-story__container">
     <div class="wardrobe-story__image">
       <div class="wardrobe-story__image-wrapper">
-        <img src="{{ 'wardrobe-store.jpg' | asset_url }}" alt="The Wardrobe Shillong Store" class="wardrobe-story__store-photo" onerror="this.style.display='none'">
+        {%- if section.settings.store_image != blank -%}
+          <img
+            src="{{ section.settings.store_image | image_url: width: 800 }}"
+            alt="{{ section.settings.store_image.alt | default: 'The Wardrobe Shillong Store' }}"
+            class="wardrobe-story__store-photo"
+            loading="lazy"
+            width="800"
+          >
+        {%- else -%}
+          <div class="wardrobe-story__image-placeholder">
+            <span class="wardrobe-story__placeholder-text">THE WARDROBE</span>
+          </div>
+        {%- endif -%}
       </div>
     </div>
     <div class="wardrobe-story__content">
       <div class="wardrobe-story__label-wrapper">
         <span class="wardrobe-story__line"></span>
         <span class="wardrobe-story__label">OUR STORY</span>
-        <span class="wardrobe-story__line"></span>
       </div>
       <h2 class="wardrobe-story__title">{{ section.settings.title }}</h2>
       <div class="wardrobe-story__text">
-        <p>The Wardrobe was born from a simple belief — that the hills of Meghalaya deserve access to the same quality and curation found in India's fashion capitals. We source from the best — global brands, independent labels, and timeless classics.</p>
-        <p>From Police Bazar to your door. Every piece in our collection is hand-selected for quality, fit, and longevity. We believe fashion should be an investment, not just a purchase.</p>
+        {%- if section.settings.body != blank -%}
+          {{ section.settings.body }}
+        {%- else -%}
+          <p>The Wardrobe was born from a simple belief — that the hills of Meghalaya deserve access to the same quality and curation found in India's fashion capitals. We source from the best — global brands, independent labels, and timeless classics.</p>
+          <p>From Police Bazar to your door. Every piece in our collection is hand-selected for quality, fit, and longevity. We believe fashion should be an investment, not just a purchase.</p>
+        {%- endif -%}
       </div>
       <a href="{{ section.settings.cta_link }}" class="wardrobe-button wardrobe-button--ghost">
         {{ section.settings.cta_text }} →
@@ -32,22 +143,31 @@
   "class": "section",
   "settings": [
     {
+      "type": "image_picker",
+      "id": "store_image",
+      "label": "Store Photo"
+    },
+    {
       "type": "text",
       "id": "title",
-      "label": "Story Title",
+      "label": "Heading",
       "default": "Curating Shillong's Finest Since Day One"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body Text"
     },
     {
       "type": "text",
       "id": "cta_text",
-      "label": "CTA Button Text",
+      "label": "Button Text",
       "default": "DISCOVER MORE"
     },
     {
       "type": "url",
       "id": "cta_link",
-      "label": "CTA Button Link",
-      "default": "/pages/about"
+      "label": "Button Link"
     }
   ],
   "presets": [

@@ -1,11 +1,81 @@
 {{ 'wardrobe-base.css' | asset_url | stylesheet_tag }}
 
-<div class="wardrobe-collection-header" id="wardrobe-collection-header">
-  <div class="wardrobe-collection-header__container">
-    <div class="wardrobe-collection-header__overlay">
-      <h1 class="wardrobe-collection-header__title">{{ collection.title }}</h1>
-      <div class="wardrobe-collection-header__subtitle">{{ section.settings.subtitle }}</div>
-    </div>
+<style>
+  .wch-section {
+    position: relative;
+    height: 340px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background-color: #1A1A1A;
+  }
+
+  .wch-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.6;
+  }
+
+  .wch-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,26,23,0.85) 0%, rgba(26,26,23,0.2) 60%, transparent 100%);
+  }
+
+  .wch-content {
+    position: relative;
+    z-index: 1;
+    padding: 0 40px 40px;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .wch-title {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 300;
+    color: #FFFFFF;
+    margin: 0 0 8px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+
+  .wch-subtitle {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    margin: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .wch-section { height: 240px; }
+    .wch-content { padding: 0 20px 28px; }
+  }
+</style>
+
+<div class="wch-section">
+  {%- if section.settings.bg_image != blank -%}
+    <img
+      src="{{ section.settings.bg_image | image_url: width: 1600 }}"
+      alt="{{ collection.title }}"
+      class="wch-bg"
+      loading="eager"
+    >
+  {%- endif -%}
+  <div class="wch-overlay"></div>
+  <div class="wch-content">
+    <h1 class="wch-title">{{ collection.title }}</h1>
+    {%- if section.settings.subtitle != blank -%}
+      <p class="wch-subtitle">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
   </div>
 </div>
 
@@ -16,16 +86,14 @@
   "class": "section",
   "settings": [
     {
-      "type": "text",
-      "id": "title",
-      "label": "Collection Title",
-      "info": "This will be overridden by the collection title"
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
     },
     {
       "type": "text",
       "id": "subtitle",
-      "label": "Subtitle",
-      "default": "Curated collection of premium sneakers"
+      "label": "Subtitle"
     }
   ],
   "presets": [

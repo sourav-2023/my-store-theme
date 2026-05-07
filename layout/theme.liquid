@@ -18,7 +18,7 @@
     <!-- Wardrobe Fonts: Cormorant Garamond + Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <title>
       {{ page_title }}
@@ -301,6 +301,36 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+    {{ 'wardrobe-header.css' | asset_url | stylesheet_tag }}
+    {{ 'wardrobe-collection.css' | asset_url | stylesheet_tag }}
+    {{ 'wardrobe-mobile.css' | asset_url | stylesheet_tag }}
+    <style>
+      /* Global Dawn overrides */
+      body {
+        background-color: #F5F0E8;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        color: #1A1A1A;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      a { color: inherit; }
+      *, *::before, *::after { box-sizing: border-box; }
+
+      /* Strip Dawn card shadows/borders/radii globally */
+      .card-wrapper { box-shadow: none !important; border-radius: 0 !important; }
+      .card { border-radius: 0 !important; box-shadow: none !important; }
+      .card__media { border-radius: 0 !important; }
+      .media { border-radius: 0 !important; }
+
+      /* Remove Dawn section top margins */
+      .shopify-section { margin-top: 0 !important; }
+
+      /* Ensure h1/h2/h3 don't inherit Dawn heading font */
+      h1, h2, h3, h4 {
+        font-family: inherit;
+        font-weight: inherit;
+      }
+    </style>
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">

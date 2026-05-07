@@ -3,30 +3,23 @@
     "wardrobe-collection-header": {
       "type": "wardrobe-collection-header",
       "settings": {
-        "title": "CLOTHING",
-        "subtitle": "Premium fashion essentials"
+        "subtitle": "Hand-selected. Every piece."
       }
     },
-    "wardrobe-filter-sidebar": {
-      "type": "wardrobe-filter-sidebar",
+    "wardrobe-collection-body": {
+      "type": "wardrobe-collection-body",
       "settings": {
+        "products_per_page": 24,
         "show_brand_filter": true,
-        "show_size_filter": true,
+        "show_availability_filter": true,
         "show_price_filter": true,
-        "show_availability_filter": true
-      }
-    },
-    "wardrobe-product-grid": {
-      "type": "wardrobe-product-grid",
-      "settings": {
-        "products_per_page": 12,
-        "show_vendor": true
+        "two_column_grid": false,
+        "show_subcategory_pills": false
       }
     }
   },
   "order": [
     "wardrobe-collection-header",
-    "wardrobe-filter-sidebar",
-    "wardrobe-product-grid"
+    "wardrobe-collection-body"
   ]
 }

@@ -3,20 +3,24 @@
     "wardrobe-collection-header": {
       "type": "wardrobe-collection-header",
       "settings": {
-        "title": "ACCESSORIES",
-        "subtitle": "Curated luxury accessories"
+        "subtitle": "Watches. Belts. Sunglasses. Bags."
       }
     },
-    "wardrobe-product-grid": {
-      "type": "wardrobe-product-grid",
+    "wardrobe-collection-body": {
+      "type": "wardrobe-collection-body",
       "settings": {
-        "products_per_page": 12,
-        "show_vendor": true
+        "products_per_page": 24,
+        "show_brand_filter": true,
+        "show_availability_filter": true,
+        "show_price_filter": true,
+        "two_column_grid": true,
+        "show_subcategory_pills": true,
+        "subcategory_values": "Watches, Belts, Sunglasses, Bags, Wallets"
       }
     }
   },
   "order": [
     "wardrobe-collection-header",
-    "wardrobe-product-grid"
+    "wardrobe-collection-body"
   ]
 }

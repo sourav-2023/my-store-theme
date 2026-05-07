@@ -1,0 +1,184 @@
+/* Wardrobe Header — overrides Dawn header to match design reference */
+
+/* Fixed top nav — cream bg, border bottom */
+.header-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #F5F0E8;
+  border-bottom: 1px solid #E8E3DA;
+}
+
+.header {
+  background-color: #F5F0E8;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* Logo */
+.header__heading-link,
+.header__heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #1A1A1A;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header__heading-logo {
+  height: 36px;
+  width: auto;
+}
+
+/* Nav links */
+.header__menu-item,
+.header__menu-item .link {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #1A1A1A;
+  text-decoration: none;
+  padding: 0;
+  transition: color 0.15s ease;
+}
+
+.header__menu-item:hover .link,
+.header__menu-item .link:hover {
+  color: #B8965A;
+}
+
+.header__menu-item--active .link {
+  color: #B8965A;
+}
+
+/* Nav list spacing */
+.list-menu--inline {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Search + Cart icons */
+.header__icons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header__icon,
+.header__icon--cart {
+  color: #1A1A1A;
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+}
+
+.header__icon:hover,
+.header__icon--cart:hover {
+  color: #B8965A;
+}
+
+.header__icon svg,
+.header__icon--cart svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Cart bubble count */
+.cart-count-bubble {
+  background-color: #1A1A1A;
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -6px;
+  right: -6px;
+}
+
+/* Mobile hamburger */
+.header__menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: #1A1A1A;
+}
+
+/* Mobile nav drawer */
+.menu-drawer {
+  background-color: #1A1A1A;
+}
+
+.menu-drawer__navigation .link {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 300;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  display: block;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  transition: color 0.15s ease;
+}
+
+.menu-drawer__navigation .link:hover {
+  color: #B8965A;
+}
+
+.menu-drawer__close-button {
+  color: #FFFFFF;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+@media (max-width: 1024px) {
+  .header {
+    padding: 0 20px;
+  }
+
+  .header__menu-toggle {
+    display: flex;
+  }
+
+  .header__inline-menu {
+    display: none;
+  }
+}
+
+/* ── Mobile-first nav refinements ── */
+@media (max-width: 1024px) {
+  .header { padding: 0 16px; height: 56px; }
+}

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — The Wardrobe Shillong</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar">
+    <div class="logo">
+      <a href="index.html" class="nav-logo" style="text-decoration:none;">
+        <div class="nav-monogram">W</div>
+        <div class="nav-wordmark" style="color:var(--cream);">
+          The Wardrobe
+          <span style="color:rgba(249,247,244,0.5);">Admin</span>
+        </div>
+      </a>
+    </div>
+    <nav>
+      <a href="#" class="active" id="nav-products" onclick="showSection('products',this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        All Products
+      </a>
+      <a href="#" id="nav-add" onclick="showSection('add',this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        Add Product
+      </a>
+      <a href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        View Storefront
+      </a>
+    </nav>
+    <div style="position:absolute;bottom:24px;left:20px;right:20px;">
+      <div style="font-size:10px;letter-spacing:0.12em;color:rgba(249,247,244,0.3);text-transform:uppercase;">
+        Changes saved to localStorage.<br>
+        Export JSON to make permanent.
+      </div>
+      <button onclick="exportJSON()" style="margin-top:12px;width:100%;padding:10px;background:rgba(197,160,89,0.15);color:var(--gold);border:1px solid rgba(197,160,89,0.3);border-radius:4px;font-size:11px;letter-spacing:0.1em;cursor:pointer;font-family:var(--sans);">Export products.json</button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="admin-main">
+
+    <!-- PRODUCTS SECTION -->
+    <div id="section-products">
+      <div class="admin-header">
+        <h1>Products</h1>
+        <button class="btn btn-primary" onclick="showSection('add', document.getElementById('nav-add'))" style="padding:10px 20px;font-size:11px;">+ Add Product</button>
+      </div>
+
+      <!-- Stats -->
+      <div class="admin-stats" id="admin-stats">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Table -->
+      <div class="admin-table-wrap">
+        <div class="admin-table-header">
+          <h2>Inventory</h2>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <select id="filter-category" onchange="renderTable()" style="padding:6px 10px;border:1px solid var(--border);border-radius:4px;font-size:12px;background:var(--cream);cursor:pointer;">
+              <option value="">All Categories</option>
+              <option value="sneakers">Sneakers</option>
+              <option value="clothing">Clothing</option>
+              <option value="accessories">Accessories</option>
+            </select>
+            <select id="filter-status" onchange="renderTable()" style="padding:6px 10px;border:1px solid var(--border);border-radius:4px;font-size:12px;background:var(--cream);cursor:pointer;">
+              <option value="">All Status</option>
+              <option value="in-stock">In Stock</option>
+              <option value="sold-out">Sold Out</option>
+            </select>
+          </div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table" id="admin-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Brand</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Featured</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-tbody">
+              <tr><td colspan="7" style="text-align:center;padding:40px;color:var(--charcoal-mid);">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADD/EDIT SECTION -->
+    <div id="section-add" style="display:none;">
+      <div class="admin-header">
+        <h1 id="form-title">Add Product</h1>
+        <button onclick="showSection('products', document.getElementById('nav-products'))" class="btn btn-outline" style="padding:10px 20px;font-size:11px;">← Back</button>
+      </div>
+
+      <div style="background:var(--white);border-radius:6px;border:1px solid rgba(44,44,44,0.08);padding:28px 24px;max-width:700px;">
+        <form id="product-form" onsubmit="saveProduct(event)">
+          <input type="hidden" id="form-id">
+
+          <div class="form-row-2">
+            <div class="form-row">
+              <label>Brand *</label>
+              <select id="f-brand" required>
+                <option value="">Select brand</option>
+                <option>Jordan</option>
+                <option>Nike</option>
+                <option>Chrome Hearts</option>
+                <option>Louis Vuitton</option>
+                <option>Cartier</option>
+                <option>Palace</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label>Category *</label>
+              <select id="f-category" required>
+                <option value="">Select category</option>
+                <option value="sneakers">Sneakers</option>
+                <option value="clothing">Clothing</option>
+                <option value="accessories">Accessories</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label>Product Name *</label>
+            <input type="text" id="f-name" placeholder="e.g. Air Jordan 1 Retro High OG 'Chicago'" required>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-row">
+              <label>Price (₹) *</label>
+              <input type="number" id="f-price" placeholder="28500" min="0" required>
+            </div>
+            <div class="form-row">
+              <label>Status</label>
+              <select id="f-status">
+                <option value="in-stock">In Stock</option>
+                <option value="sold-out">Sold Out</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label>Sizes (comma-separated, leave blank if N/A)</label>
+            <input type="text" id="f-sizes" placeholder="UK 7, UK 8, UK 9, UK 10">
+          </div>
+
+          <div class="form-row">
+            <label>Provenance / Source</label>
+            <input type="text" id="f-provenance" placeholder="Sourced from Nike SNKRS, USA">
+          </div>
+
+          <div class="form-row">
+            <label>Description</label>
+            <textarea id="f-description" rows="4" placeholder="Describe the piece — condition, inclusions, story…"></textarea>
+          </div>
+
+          <div class="form-row">
+            <label style="display:flex;align-items:center;gap:8px;text-transform:none;letter-spacing:0;font-size:13px;cursor:pointer;">
+              <input type="checkbox" id="f-featured" style="width:auto;">
+              Show on homepage (Featured / New Arrival)
+            </label>
+          </div>
+
+          <div style="display:flex;gap:10px;margin-top:8px;">
+            <button type="submit" class="btn btn-primary" style="padding:14px 28px;font-size:11px;">Save Product</button>
+            <button type="button" onclick="resetForm()" class="btn btn-outline" style="padding:14px 20px;font-size:11px;">Reset</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div><!-- /admin-main -->
+</div>
+
+<!-- CONFIRM MODAL -->
+<div class="modal-overlay" id="confirm-modal">
+  <div class="modal" style="max-width:400px;">
+    <div class="modal-header">
+      <h3 id="confirm-title">Confirm</h3>
+      <button class="cart-close-btn" onclick="closeConfirm()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p id="confirm-msg" style="font-size:14px;color:var(--charcoal-mid);line-height:1.6;"></p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeConfirm()" style="padding:10px 20px;font-size:11px;">Cancel</button>
+      <button class="btn btn-primary" id="confirm-ok" style="padding:10px 20px;font-size:11px;">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/products.js"></script>
+<script>
+  let editingId = null;
+
+  // ── INIT ──
+  document.addEventListener('DOMContentLoaded', async () => {
+    await loadProducts();
+    loadProductsWithOverride();
+    renderStats();
+    renderTable();
+  });
+
+  // ── SECTION TOGGLE ──
+  function showSection(name, linkEl) {
+    document.getElementById('section-products').style.display = name === 'products' ? '' : 'none';
+    document.getElementById('section-add').style.display     = name === 'add'      ? '' : 'none';
+    document.querySelectorAll('.admin-sidebar nav a').forEach(a => a.classList.remove('active'));
+    if (linkEl) linkEl.classList.add('active');
+    if (name === 'products') { editingId = null; renderTable(); }
+    return false;
+  }
+
+  // ── STATS ──
+  function renderStats() {
+    const all    = PRODUCTS.length;
+    const stock  = PRODUCTS.filter(p => p.status === 'in-stock').length;
+    const sold   = PRODUCTS.filter(p => p.status === 'sold-out').length;
+    const total  = PRODUCTS.filter(p => p.status === 'in-stock').reduce((s, p) => s + p.price, 0);
+    document.getElementById('admin-stats').innerHTML = `
+      <div class="admin-stat-card"><div class="label">Total Listings</div><div class="value">${all}</div></div>
+      <div class="admin-stat-card"><div class="label">In Stock</div><div class="value gold">${stock}</div></div>
+      <div class="admin-stat-card"><div class="label">Sold Out</div><div class="value">${sold}</div></div>
+      <div class="admin-stat-card"><div class="label">Inventory Value</div><div class="value" style="font-size:20px;">₹${(total/1000).toFixed(0)}k</div></div>
+    `;
+  }
+
+  // ── TABLE ──
+  function renderTable() {
+    const catFilter    = document.getElementById('filter-category')?.value || '';
+    const statusFilter = document.getElementById('filter-status')?.value   || '';
+    let products = [...PRODUCTS];
+    if (catFilter)    products = products.filter(p => p.category === catFilter);
+    if (statusFilter) products = products.filter(p => p.status   === statusFilter);
+
+    const tbody = document.getElementById('admin-tbody');
+    if (!products.length) {
+      tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--charcoal-mid);font-size:13px;">No products found.</td></tr>`;
+      return;
+    }
+    tbody.innerHTML = products.map(p => `
+      <tr>
+        <td>
+          <div style="font-weight:500;font-size:13px;max-width:220px;line-height:1.3;">${p.name}</div>
+          <div style="font-size:11px;color:var(--charcoal-mid);margin-top:2px;">${p.id}</div>
+        </td>
+        <td style="font-size:13px;color:var(--gold);font-weight:500;">${p.brand}</td>
+        <td style="font-size:12px;text-transform:capitalize;">${p.category}</td>
+        <td style="font-family:var(--serif);font-size:15px;font-weight:500;">₹${p.price.toLocaleString('en-IN')}</td>
+        <td><span class="status-pill ${p.status}">${p.status === 'in-stock' ? 'In Stock' : 'Sold Out'}</span></td>
+        <td style="text-align:center;font-size:13px;">${p.featured ? '★' : '—'}</td>
+        <td>
+          <div class="admin-actions">
+            <button class="admin-action-btn btn-edit" onclick="editProduct('${p.id}')">Edit</button>
+            <button class="admin-action-btn btn-toggle-stock ${p.status === 'sold-out' ? 'is-sold' : ''}" onclick="toggleStock('${p.id}')">
+              ${p.status === 'in-stock' ? 'Mark Sold' : 'Restore'}
+            </button>
+            <button class="admin-action-btn btn-delete" onclick="confirmDelete('${p.id}')">Delete</button>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  // ── EDIT ──
+  function editProduct(id) {
+    const p = PRODUCTS.find(x => x.id === id);
+    if (!p) return;
+    editingId = id;
+    document.getElementById('form-title').textContent = 'Edit Product';
+    document.getElementById('form-id').value          = p.id;
+    document.getElementById('f-brand').value          = p.brand;
+    document.getElementById('f-category').value       = p.category;
+    document.getElementById('f-name').value           = p.name;
+    document.getElementById('f-price').value          = p.price;
+    document.getElementById('f-status').value         = p.status;
+    document.getElementById('f-sizes').value          = (p.sizes || []).join(', ');
+    document.getElementById('f-provenance').value     = p.provenance || '';
+    document.getElementById('f-description').value    = p.description || '';
+    document.getElementById('f-featured').checked     = !!p.featured;
+    showSection('add', document.getElementById('nav-add'));
+  }
+
+  // ── SAVE ──
+  function saveProduct(e) {
+    e.preventDefault();
+    const sizesRaw = document.getElementById('f-sizes').value.trim();
+    const sizes    = sizesRaw ? sizesRaw.split(',').map(s => s.trim()).filter(Boolean) : [];
+    const name     = document.getElementById('f-name').value.trim();
+    const brand    = document.getElementById('f-brand').value;
+    const id       = editingId || slugify(brand + '-' + name);
+
+    const product = {
+      id,
+      name,
+      brand,
+      category:    document.getElementById('f-category').value,
+      price:       parseInt(document.getElementById('f-price').value, 10),
+      sizes,
+      status:      document.getElementById('f-status').value,
+      provenance:  document.getElementById('f-provenance').value.trim(),
+      description: document.getElementById('f-description').value.trim(),
+      images:      [],
+      featured:    document.getElementById('f-featured').checked,
+      dateAdded:   new Date().toISOString().split('T')[0],
+      tags:        []
+    };
+
+    if (editingId) {
+      const idx = PRODUCTS.findIndex(p => p.id === editingId);
+      if (idx >= 0) PRODUCTS[idx] = { ...PRODUCTS[idx], ...product };
+    } else {
+      PRODUCTS.unshift(product);
+    }
+
+    saveProducts();
+    renderStats();
+    showToast(editingId ? 'Product updated.' : 'Product added.', 'gold');
+    editingId = null;
+    resetForm();
+    showSection('products', document.getElementById('nav-products'));
+  }
+
+  function resetForm() {
+    document.getElementById('product-form').reset();
+    document.getElementById('form-id').value = '';
+    editingId = null;
+    document.getElementById('form-title').textContent = 'Add Product';
+  }
+
+  // ── TOGGLE STOCK ──
+  function toggleStock(id) {
+    const p = PRODUCTS.find(x => x.id === id);
+    if (!p) return;
+    p.status = p.status === 'in-stock' ? 'sold-out' : 'in-stock';
+    saveProducts();
+    renderStats();
+    renderTable();
+    showToast(p.status === 'sold-out' ? 'Marked as sold out → moved to Archive.' : 'Restored to stock.', 'gold');
+  }
+
+  // ── DELETE ──
+  let pendingDeleteId = null;
+  function confirmDelete(id) {
+    const p = PRODUCTS.find(x => x.id === id);
+    if (!p) return;
+    pendingDeleteId = id;
+    document.getElementById('confirm-title').textContent = 'Delete Product';
+    document.getElementById('confirm-msg').textContent   = `Are you sure you want to delete "${p.name}"? This cannot be undone.`;
+    document.getElementById('confirm-ok').onclick = () => {
+      PRODUCTS = PRODUCTS.filter(x => x.id !== pendingDeleteId);
+      saveProducts();
+      renderStats();
+      renderTable();
+      closeConfirm();
+      showToast('Product deleted.');
+    };
+    document.getElementById('confirm-modal').classList.add('open');
+  }
+  function closeConfirm() {
+    document.getElementById('confirm-modal').classList.remove('open');
+    pendingDeleteId = null;
+  }
+
+  // ── EXPORT ──
+  function exportJSON() {
+    const blob = new Blob([JSON.stringify(PRODUCTS, null, 2)], { type: 'application/json' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = 'products.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('products.json downloaded. Replace js/products.json to make permanent.', 'gold');
+  }
+
+  // ── UTILS ──
+  function slugify(str) {
+    return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') + '-' + Date.now().toString(36);
+  }
+
+  function showToast(msg, type = '') {
+    let toast = document.getElementById('toast');
+    if (!toast) { toast = document.createElement('div'); toast.id = 'toast'; toast.className = 'toast'; document.body.appendChild(toast); }
+    toast.textContent = msg;
+    toast.className   = 'toast' + (type ? ' ' + type : '');
+    setTimeout(() => toast.classList.add('show'), 10);
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => toast.classList.remove('show'), 3200);
+  }
+
+  function saveProducts() {
+    localStorage.setItem('tw_products_override', JSON.stringify(PRODUCTS));
+  }
+</script>
+
+</body>
+</html>
