@@ -2,22 +2,25 @@
 
 <div class="wardrobe-story" id="wardrobe-story">
   <div class="wardrobe-story__container">
+    <div class="wardrobe-story__image">
+      <div class="wardrobe-story__image-wrapper">
+        <img src="{{ 'wardrobe-store.jpg' | asset_url }}" alt="The Wardrobe Shillong Store" class="wardrobe-story__store-photo" onerror="this.style.display='none'">
+      </div>
+    </div>
     <div class="wardrobe-story__content">
-      <div class="wardrobe-story__label">OUR STORY</div>
+      <div class="wardrobe-story__label-wrapper">
+        <span class="wardrobe-story__line"></span>
+        <span class="wardrobe-story__label">OUR STORY</span>
+        <span class="wardrobe-story__line"></span>
+      </div>
       <h2 class="wardrobe-story__title">{{ section.settings.title }}</h2>
       <div class="wardrobe-story__text">
-        <p>From Police Bazar to your door. We curate the finest pieces from around the world, bringing premium fashion to Shillong.</p>
-        <p>Every item is hand-selected, authenticated, and cared for. We don't restock. When it's gone, it's gone.</p>
+        <p>The Wardrobe was born from a simple belief — that the hills of Meghalaya deserve access to the same quality and curation found in India's fashion capitals. We source from the best — global brands, independent labels, and timeless classics.</p>
+        <p>From Police Bazar to your door. Every piece in our collection is hand-selected for quality, fit, and longevity. We believe fashion should be an investment, not just a purchase.</p>
       </div>
       <a href="{{ section.settings.cta_link }}" class="wardrobe-button wardrobe-button--ghost">
         {{ section.settings.cta_text }} →
       </a>
-    </div>
-    <div class="wardrobe-story__image">
-      <div class="wardrobe-story__image-placeholder">
-        <!-- Store photo placeholder -->
-        <img src="{{ 'wardrobe-store.jpg' | asset_url }}" alt="The Wardrobe Shillong Store" class="wardrobe-story__store-photo" onerror="this.style.display='none'">
-      </div>
     </div>
   </div>
 </div>

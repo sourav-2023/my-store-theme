@@ -4,48 +4,47 @@
   <div class="wardrobe-contact-strip__container">
     <!-- Left Content -->
     <div class="wardrobe-contact-strip__left">
+      <div class="wardrobe-contact-strip__label">VISIT THE STORE</div>
+      <h2 class="wardrobe-contact-strip__headline">Find us in <span class="wardrobe-contact-strip__accent">Police Bazar</span></h2>
+      
       <div class="wardrobe-contact-strip__info">
-        <h3 class="wardrobe-contact-strip__title">Visit Our Store</h3>
-        <div class="wardrobe-contact-strip__details">
-          <div class="wardrobe-contact-strip__detail">
-            <div class="wardrobe-contact-strip__label">ADDRESS</div>
-            <div class="wardrobe-contact-strip__value">{{ section.settings.address }}</div>
-          </div>
-          <div class="wardrobe-contact-strip__detail">
-            <div class="wardrobe-contact-strip__label">HOURS</div>
-            <div class="wardrobe-contact-strip__value">{{ section.settings.hours }}</div>
-          </div>
-          <div class="wardrobe-contact-strip__detail">
-            <div class="wardrobe-contact-strip__label">PHONE</div>
-            <div class="wardrobe-contact-strip__value">{{ section.settings.phone }}</div>
-          </div>
+        <div class="wardrobe-contact-strip__business-name">The Wardrobe Shillong</div>
+        <div class="wardrobe-contact-strip__address">{{ section.settings.address }}</div>
+      </div>
+      
+      <div class="wardrobe-contact-strip__details-grid">
+        <div class="wardrobe-contact-strip__detail">
+          <div class="wardrobe-contact-strip__detail-label">HOURS</div>
+          <div class="wardrobe-contact-strip__detail-value">{{ section.settings.hours }}</div>
         </div>
+        <div class="wardrobe-contact-strip__detail">
+          <div class="wardrobe-contact-strip__detail-label">WHATSAPP</div>
+          <div class="wardrobe-contact-strip__detail-value">+91 {{ section.settings.whatsapp }}</div>
+        </div>
+      </div>
+      
+      <!-- CTAs -->
+      <div class="wardrobe-contact-strip__ctas">
+        <a href="https://maps.google.com/?q={{ section.settings.address | url_encode }}" target="_blank" class="wardrobe-button wardrobe-button--gold">
+          GET DIRECTIONS
+        </a>
+        <a href="https://wa.me/91{{ section.settings.whatsapp | replace: ' ', '' }}" target="_blank" class="wardrobe-button wardrobe-button--ghost-gold">
+          MESSAGE US
+        </a>
       </div>
     </div>
     
     <!-- Right Content -->
     <div class="wardrobe-contact-strip__right">
       <div class="wardrobe-contact-strip__map">
-        <!-- Map iframe placeholder -->
-        <div class="wardrobe-contact-strip__map-placeholder">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1d26.793001!4d26.793001!2m3!3d0.793001!6m1!1s1&z=14&iwloc=A"
-            width="100%" 
-            height="300" 
-            style="border:0; margin:0; padding:0;"
-            allowfullscreen>
-          </iframe>
-        </div>
-      </div>
-      
-      <!-- CTAs -->
-      <div class="wardrobe-contact-strip__ctas">
-        <a href="mailto:{{ section.settings.whatsapp | replace: ' ', '' | append: '@c.us' }}" class="wardrobe-button wardrobe-button--primary">
-          MESSAGE ON WHATSAPP
-        </a>
-        <a href="/collections/all" class="wardrobe-button wardrobe-button--ghost">
-          VIEW ALL PRODUCTS
-        </a>
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1434.1234567890123!2d91.883333!3d25.566667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37507e8f34c00001%3A0x1234567890abcdef!2sPolice%20Bazar%2C%20Shillong!5e0!3m2!1sen!2sin!4v1234567890"
+          width="100%" 
+          height="400" 
+          style="border:0; filter: grayscale(20%) contrast(1.1);"
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
       </div>
     </div>
   </div>

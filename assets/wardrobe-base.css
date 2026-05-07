@@ -145,6 +145,30 @@
   color: var(--w-warm-white);
 }
 
+.wardrobe-button--gold {
+  background-color: var(--w-gold);
+  color: var(--w-charcoal);
+  border-color: var(--w-gold);
+}
+
+.wardrobe-button--gold:hover {
+  background-color: transparent;
+  color: var(--w-gold);
+  border-color: var(--w-gold);
+}
+
+.wardrobe-button--ghost-gold {
+  background-color: transparent;
+  color: var(--w-gold);
+  border-color: var(--w-gold);
+}
+
+.wardrobe-button--ghost-gold:hover {
+  background-color: var(--w-gold);
+  color: var(--w-charcoal);
+  border-color: var(--w-gold);
+}
+
 /* Divider */
 .wardrobe-hero__divider {
   height: 1px;
@@ -168,8 +192,19 @@
 .wardrobe-arrivals__header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   margin-bottom: calc(var(--w-margin-desktop));
+}
+
+.wardrobe-arrivals__header-left {
+  flex: 1;
+}
+
+.wardrobe-arrivals__header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: calc(var(--w-base-unit));
 }
 
 .wardrobe-arrivals__title {
@@ -178,6 +213,7 @@
   font-weight: 300;
   color: var(--w-charcoal);
   margin: 0;
+  line-height: 1.1;
 }
 
 .wardrobe-arrivals__title-accent {
@@ -187,11 +223,12 @@
 
 .wardrobe-arrivals__date {
   font-family: var(--w-sans);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--w-gold);
+  letter-spacing: 0.1em;
+  color: var(--w-muted);
+  margin-bottom: calc(var(--w-base-unit));
 }
 
 .wardrobe-arrivals__view-all {
@@ -214,10 +251,6 @@
   gap: calc(var(--w-margin-desktop));
 }
 
-.wardrobe-arrivals__product {
-  /* Product card styling handled by wardrobe-product-card */
-}
-
 /* Story Section */
 .wardrobe-story {
   background-color: var(--w-cream);
@@ -235,7 +268,20 @@
 }
 
 .wardrobe-story__content {
-  padding-right: calc(var(--w-margin-desktop));
+  padding-left: calc(var(--w-margin-desktop));
+}
+
+.wardrobe-story__label-wrapper {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--w-base-unit) * 2);
+  margin-bottom: calc(var(--w-base-unit) * 2);
+}
+
+.wardrobe-story__line {
+  width: 40px;
+  height: 1px;
+  background-color: var(--w-gold);
 }
 
 .wardrobe-story__label {
@@ -245,7 +291,6 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--w-gold);
-  margin-bottom: calc(var(--w-base-unit));
 }
 
 .wardrobe-story__title {
@@ -254,6 +299,7 @@
   font-weight: 300;
   color: var(--w-charcoal);
   margin: 0 0 calc(var(--w-margin-desktop)) 0;
+  line-height: 1.2;
 }
 
 .wardrobe-story__text {
@@ -276,18 +322,17 @@
   position: relative;
 }
 
-.wardrobe-story__image-placeholder {
-  background-color: var(--w-off-white);
-  aspect-ratio: 16 / 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.wardrobe-story__image-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .wardrobe-story__store-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  aspect-ratio: 4 / 5;
 }
 
 /* Categories Section */
@@ -367,7 +412,7 @@
 .wardrobe-collection-header {
   position: relative;
   height: 300px;
-  background-image: url('wardrobe-collection-bg.jpg' | asset_url);
+  background-color: var(--w-charcoal);
   background-size: cover;
   background-position: center;
   display: flex;
@@ -467,10 +512,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: calc(var(--w-margin-desktop));
-}
-
-.wardrobe-product-grid__item {
-  /* Product card styling handled by wardrobe-product-card */
 }
 
 /* Responsive Design */
@@ -622,31 +663,67 @@
   padding-right: calc(var(--w-margin-desktop));
 }
 
-.wardrobe-contact-strip__info {
-  color: var(--w-warm-white);
+.wardrobe-contact-strip__label {
+  font-family: var(--w-sans);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--w-gold);
+  margin-bottom: calc(var(--w-base-unit) * 2);
 }
 
-.wardrobe-contact-strip__title {
+.wardrobe-contact-strip__headline {
   font-family: var(--w-serif);
-  font-size: 24px;
+  font-size: 40px;
   font-weight: 300;
+  color: var(--w-warm-white);
+  margin: 0 0 calc(var(--w-margin-desktop)) 0;
+  line-height: 1.2;
+}
+
+.wardrobe-contact-strip__accent {
+  font-style: italic;
+  color: var(--w-gold);
+}
+
+.wardrobe-contact-strip__info {
   color: var(--w-warm-white);
   margin-bottom: calc(var(--w-margin-desktop));
 }
 
-.wardrobe-contact-strip__details {
-  display: flex;
-  flex-direction: column;
-  gap: calc(var(--w-base-unit) * 2);
+.wardrobe-contact-strip__business-name {
+  font-family: var(--w-sans);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--w-warm-white);
+  margin-bottom: calc(var(--w-base-unit));
+}
+
+.wardrobe-contact-strip__address {
+  font-family: var(--w-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--w-warm-white);
+  opacity: 0.8;
+}
+
+.wardrobe-contact-strip__details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--w-margin-desktop));
+  margin-bottom: calc(var(--w-margin-desktop));
+  padding-top: calc(var(--w-margin-desktop));
+  border-top: 1px solid rgba(184, 150, 90, 0.3);
 }
 
 .wardrobe-contact-strip__detail {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: calc(var(--w-base-unit));
 }
 
-.wardrobe-contact-strip__label {
+.wardrobe-contact-strip__detail-label {
   font-family: var(--w-sans);
   font-size: 11px;
   font-weight: 700;
@@ -655,7 +732,7 @@
   color: var(--w-gold);
 }
 
-.wardrobe-contact-strip__value {
+.wardrobe-contact-strip__detail-value {
   font-family: var(--w-sans);
   font-size: 14px;
   color: var(--w-warm-white);
@@ -664,25 +741,27 @@
 .wardrobe-contact-strip__right {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--w-margin-desktop));
+  height: 100%;
 }
 
 .wardrobe-contact-strip__map {
   background-color: var(--w-cream);
   border-radius: 0;
   overflow: hidden;
+  height: 100%;
+  min-height: 400px;
 }
 
-.wardrobe-contact-strip__map-placeholder {
-  position: relative;
-  padding-bottom: 56.25%;
-  /* 16:9 aspect ratio */
+.wardrobe-contact-strip__map iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
 }
 
 .wardrobe-contact-strip__ctas {
   display: flex;
-  flex-direction: column;
   gap: calc(var(--w-base-unit) * 2);
+  margin-top: calc(var(--w-margin-desktop));
 }
 
 @media (max-width: 1024px) {
