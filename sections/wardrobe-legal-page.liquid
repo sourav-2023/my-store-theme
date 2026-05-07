@@ -1,0 +1,117 @@
+{{ 'wardrobe-base.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .wardrobe-legal-page {
+    background-color: #F5F0E8;
+    padding: 80px 40px;
+    min-height: 100vh;
+  }
+
+  .wardrobe-legal-page__container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .wardrobe-legal-page__content {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #1A1A1A;
+  }
+
+  .wardrobe-legal-page__content h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-size: 42px;
+    font-weight: 300;
+    color: #1A1A1A;
+    margin: 0 0 32px 0;
+    line-height: 1.2;
+  }
+
+  .wardrobe-legal-page__content h2 {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-size: 28px;
+    font-weight: 300;
+    color: #1A1A1A;
+    margin: 48px 0 20px 0;
+  }
+
+  .wardrobe-legal-page__content h3 {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1A1A1A;
+    margin: 32px 0 12px 0;
+  }
+
+  .wardrobe-legal-page__content p,
+  .wardrobe-legal-page__content ul,
+  .wardrobe-legal-page__content ol {
+    margin: 0 0 20px 0;
+  }
+
+  .wardrobe-legal-page__content ul,
+  .wardrobe-legal-page__content ol {
+    padding-left: 24px;
+  }
+
+  .wardrobe-legal-page__content li {
+    margin-bottom: 12px;
+  }
+
+  .wardrobe-legal-page__content strong {
+    font-weight: 600;
+  }
+
+  .wardrobe-legal-page__content a {
+    color: #B8965A;
+    text-decoration: underline;
+  }
+
+  .wardrobe-legal-page__content a:hover {
+    color: #1A1A1A;
+  }
+
+  @media (max-width: 1024px) {
+    .wardrobe-legal-page {
+      padding: 40px 20px;
+    }
+
+    .wardrobe-legal-page__content h1 {
+      font-size: 32px;
+    }
+
+    .wardrobe-legal-page__content h2 {
+      font-size: 24px;
+      margin-top: 36px;
+    }
+
+    .wardrobe-legal-page__content {
+      font-size: 15px;
+      line-height: 1.7;
+    }
+  }
+</style>
+
+<div class="wardrobe-legal-page">
+  <div class="wardrobe-legal-page__container">
+    <div class="wardrobe-legal-page__content">
+      {{ page.content }}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Legal Page",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Legal Page",
+      "category": "Wardrobe"
+    }
+  ]
+}
+{% endschema %}

@@ -523,34 +523,6 @@
   text-decoration: line-through;
 }
 
-/* WhatsApp FAB */
-.wardrobe-whatsapp-fab {
-  position: fixed;
-  bottom: calc(var(--w-margin-desktop));
-  right: calc(var(--w-margin-desktop));
-  width: 56px;
-  height: 56px;
-  background-color: #25D366;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  z-index: 1000;
-}
-
-.wardrobe-whatsapp-fab:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-}
-
-.wardrobe-whatsapp-fab__icon {
-  width: 28px;
-  height: 28px;
-  color: white;
-}
-
 /* Mobile Sticky Add to Cart */
 .wardrobe-product-hero__mobile-sticky {
   display: none;
@@ -627,11 +599,6 @@
 
   .wardrobe-product-accordions__container {
     padding: 0 var(--w-margin-mobile);
-  }
-
-  .wardrobe-whatsapp-fab {
-    bottom: calc(var(--w-margin-mobile) * 2);
-    right: var(--w-margin-mobile);
   }
 
   /* Mobile Sticky */

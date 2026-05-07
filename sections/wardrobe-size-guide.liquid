@@ -1,0 +1,246 @@
+{{ 'wardrobe-base.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .wardrobe-size-guide {
+    background-color: #F5F0E8;
+    padding: 80px 40px;
+    min-height: 100vh;
+  }
+
+  .wardrobe-size-guide__container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .wardrobe-size-guide__title {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-size: 48px;
+    font-weight: 300;
+    color: #1A1A1A;
+    margin: 0 0 16px 0;
+    text-align: center;
+  }
+
+  .wardrobe-size-guide__intro {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #6B6560;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 60px auto;
+  }
+
+  .wardrobe-size-guide__tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #E8E3DA;
+  }
+
+  .wardrobe-size-guide__tab {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6B6560;
+    background: none;
+    border: none;
+    padding: 16px 24px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s ease;
+  }
+
+  .wardrobe-size-guide__tab:hover {
+    color: #1A1A1A;
+  }
+
+  .wardrobe-size-guide__tab.active {
+    color: #1A1A1A;
+    border-bottom-color: #B8965A;
+  }
+
+  .wardrobe-size-guide__panel {
+    display: none;
+  }
+
+  .wardrobe-size-guide__panel.active {
+    display: block;
+  }
+
+  .wardrobe-size-guide__heading {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-size: 28px;
+    font-weight: 300;
+    color: #1A1A1A;
+    margin: 0 0 24px 0;
+  }
+
+  .wardrobe-size-guide__text {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #1A1A1A;
+    margin: 0 0 32px 0;
+  }
+
+  .wardrobe-size-guide__table-wrap {
+    overflow-x: auto;
+    margin-bottom: 40px;
+  }
+
+  .wardrobe-size-guide__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 14px;
+  }
+
+  .wardrobe-size-guide__table th {
+    background-color: #1A1A1A;
+    color: #FFFFFF;
+    padding: 16px;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+
+  .wardrobe-size-guide__table td {
+    padding: 16px;
+    border-bottom: 1px solid #E8E3DA;
+    color: #1A1A1A;
+  }
+
+  .wardrobe-size-guide__table tr:hover td {
+    background-color: rgba(184, 150, 90, 0.05);
+  }
+
+  .wardrobe-size-guide__note {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #6B6560;
+    padding: 24px;
+    background-color: rgba(184, 150, 90, 0.08);
+    border-left: 3px solid #B8965A;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 1024px) {
+    .wardrobe-size-guide { padding: 60px 20px; }
+    .wardrobe-size-guide__title { font-size: 36px; }
+    .wardrobe-size-guide__tabs { overflow-x: auto; }
+    .wardrobe-size-guide__table th,
+    .wardrobe-size-guide__table td { padding: 12px; font-size: 13px; }
+  }
+</style>
+
+<div class="wardrobe-size-guide">
+  <div class="wardrobe-size-guide__container">
+    <h1 class="wardrobe-size-guide__title">Size Guide</h1>
+    <p class="wardrobe-size-guide__intro">Find your perfect fit. Use the measurements below to determine your size. When in doubt, we recommend sizing up for comfort.</p>
+
+    <div class="wardrobe-size-guide__tabs">
+      <button class="wardrobe-size-guide__tab active" onclick="switchTab('sneakers')">Sneakers</button>
+      <button class="wardrobe-size-guide__tab" onclick="switchTab('clothing')">Clothing</button>
+    </div>
+
+    <!-- Sneakers Panel -->
+    <div id="tab-sneakers" class="wardrobe-size-guide__panel active">
+      <h2 class="wardrobe-size-guide__heading">Sneaker Sizing</h2>
+      <p class="wardrobe-size-guide__text">Our sneakers follow standard US sizing. Jordan and Nike models typically fit true to size. If you're between sizes, we recommend sizing up for comfort.</p>
+
+      <div class="wardrobe-size-guide__table-wrap">
+        <table class="wardrobe-size-guide__table">
+          <thead>
+            <tr>
+              <th>US Size</th>
+              <th>UK Size</th>
+              <th>EU Size</th>
+              <th>CM (Foot Length)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>6</td><td>5.5</td><td>38.5</td><td>24</td></tr>
+            <tr><td>7</td><td>6</td><td>40</td><td>25</td></tr>
+            <tr><td>8</td><td>7</td><td>41</td><td>26</td></tr>
+            <tr><td>9</td><td>8</td><td>42.5</td><td>27</td></tr>
+            <tr><td>10</td><td>9</td><td>44</td><td>28</td></tr>
+            <tr><td>11</td><td>10</td><td>45</td><td>29</td></tr>
+            <tr><td>12</td><td>11</td><td>46</td><td>30</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="wardrobe-size-guide__note">
+        <strong>Note:</strong> For specific sizing questions about a particular model, feel free to message us on WhatsApp at +91 97005 752736 with the product name and your usual size.
+      </div>
+    </div>
+
+    <!-- Clothing Panel -->
+    <div id="tab-clothing" class="wardrobe-size-guide__panel">
+      <h2 class="wardrobe-size-guide__heading">Clothing Sizing</h2>
+      <p class="wardrobe-size-guide__text">Our clothing follows standard sizing. For oversized or relaxed fit styles, consider sizing up for the intended look. Refer to individual product measurements for the most accurate fit.</p>
+
+      <div class="wardrobe-size-guide__table-wrap">
+        <table class="wardrobe-size-guide__table">
+          <thead>
+            <tr>
+              <th>Size</th>
+              <th>Chest (inches)</th>
+              <th>Waist (inches)</th>
+              <th>Length (inches)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>S</td><td>36-38</td><td>30-32</td><td>27</td></tr>
+            <tr><td>M</td><td>38-40</td><td>32-34</td><td>28</td></tr>
+            <tr><td>L</td><td>40-42</td><td>34-36</td><td>29</td></tr>
+            <tr><td>XL</td><td>42-44</td><td>36-38</td><td>30</td></tr>
+            <tr><td>XXL</td><td>44-46</td><td>38-40</td><td>31</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="wardrobe-size-guide__note">
+        <strong>How to measure:</strong> Chest - Measure around the fullest part. Waist - Measure around your natural waistline. For the best fit, compare these measurements to a similar item you already own.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function switchTab(tabName) {
+    // Hide all panels
+    document.querySelectorAll('.wardrobe-size-guide__panel').forEach(panel => {
+      panel.classList.remove('active');
+    });
+    // Remove active from all tabs
+    document.querySelectorAll('.wardrobe-size-guide__tab').forEach(tab => {
+      tab.classList.remove('active');
+    });
+    // Show selected panel
+    document.getElementById('tab-' + tabName).classList.add('active');
+    // Activate selected tab
+    event.target.classList.add('active');
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Size Guide",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Size Guide",
+      "category": "Wardrobe"
+    }
+  ]
+}
+{% endschema %}

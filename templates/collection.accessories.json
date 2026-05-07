@@ -15,12 +15,20 @@
         "show_price_filter": true,
         "two_column_grid": true,
         "show_subcategory_pills": true,
-        "subcategory_values": "Watches, Belts, Sunglasses, Bags, Wallets"
+        "subcategory_values": "Watches, Bags, Perfumes, Jewelry, Belts, Sunglasses"
+      }
+    },
+    "wardrobe-footer": {
+      "type": "wardrobe-footer",
+      "settings": {
+        "address": "Police Bazar, Shillong, Meghalaya 793001",
+        "whatsapp": "97005 752736"
       }
     }
   },
   "order": [
     "wardrobe-collection-header",
-    "wardrobe-collection-body"
+    "wardrobe-collection-body",
+    "wardrobe-footer"
   ]
 }

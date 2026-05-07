@@ -89,10 +89,46 @@
   .wardrobe-story__text p { margin: 0 0 16px; }
   .wardrobe-story__text p:last-child { margin-bottom: 0; }
   @media (max-width: 1024px) {
-    .wardrobe-story__container { grid-template-columns: 1fr; }
-    .wardrobe-story__image-wrapper { min-height: 360px; }
-    .wardrobe-story__image-placeholder { min-height: 360px; }
-    .wardrobe-story__content { padding: 48px 24px; }
+    .wardrobe-story { display: block !important; visibility: visible !important; }
+    .wardrobe-story__container { 
+      display: grid !important;
+      grid-template-columns: 1fr; 
+      min-height: auto; 
+      visibility: visible !important;
+    }
+    .wardrobe-story__image { display: block !important; }
+    .wardrobe-story__content { display: flex !important; }
+    .wardrobe-story__image-wrapper { min-height: 240px; }
+    .wardrobe-story__image-placeholder { min-height: 240px; }
+    .wardrobe-story__placeholder-text { 
+      font-size: 18px; 
+      letter-spacing: 0.12em;
+      padding: 0 16px;
+      text-align: center;
+      word-break: break-word;
+    }
+    .wardrobe-story__content { padding: 32px 20px 40px; }
+    .wardrobe-story__label-wrapper { margin-bottom: 20px; }
+    .wardrobe-story__line { width: 24px; }
+    .wardrobe-story__label { font-size: 10px; letter-spacing: 0.14em; }
+    .wardrobe-story__title { 
+      font-size: 26px; 
+      line-height: 1.2;
+      margin-bottom: 20px;
+      word-break: break-word;
+    }
+    .wardrobe-story__text { 
+      font-size: 14px; 
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .wardrobe-story__text p { margin-bottom: 12px; }
+    .wardrobe-story .wardrobe-button { 
+      width: 100%; 
+      justify-content: center;
+      padding: 14px 20px;
+      font-size: 11px;
+    }
   }
 </style>
 
@@ -129,8 +165,8 @@
           <p>From Police Bazar to your door. Every piece in our collection is hand-selected for quality, fit, and longevity. We believe fashion should be an investment, not just a purchase.</p>
         {%- endif -%}
       </div>
-      <a href="{{ section.settings.cta_link }}" class="wardrobe-button wardrobe-button--ghost">
-        {{ section.settings.cta_text }} →
+      <a href="/pages/about" class="wardrobe-button wardrobe-button--ghost">
+        DISCOVER MORE →
       </a>
     </div>
   </div>

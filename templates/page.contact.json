@@ -5,12 +5,20 @@
       "settings": {
         "address": "Police Bazar, Police Bazar Road, Shillong, Meghalaya 793001",
         "hours": "Monday-Saturday 11:00 AM - 8:00 PM",
-        "phone": "+91 94361 12345",
-        "whatsapp": "94361 12345"
+        "phone": "+91 97005 752736",
+        "whatsapp": "97005 752736"
+      }
+    },
+    "wardrobe-footer": {
+      "type": "wardrobe-footer",
+      "settings": {
+        "address": "Police Bazar, Shillong, Meghalaya 793001",
+        "whatsapp": "97005 752736"
       }
     }
   },
   "order": [
-    "wardrobe-contact-strip"
+    "wardrobe-contact-strip",
+    "wardrobe-footer"
   ]
 }

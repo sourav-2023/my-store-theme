@@ -75,6 +75,12 @@
     border-bottom: 1px solid #E8E3DA;
   }
 
+  @media (max-width: 1024px) {
+    .wcb-grid-header {
+      gap: 16px;
+    }
+  }
+
   .wcb-count {
     font-family: 'Inter', -apple-system, sans-serif;
     font-size: 12px;
@@ -215,27 +221,50 @@
     {%- comment -%} ── RIGHT: Grid ── {%- endcomment -%}
     <div class="wcb-right">
 
-      {%- if section.settings.show_subcategory_pills -%}
+      {%- comment -%} Mobile filter toggle {%- endcomment -%}
+      {%- render 'wardrobe-mobile-filters', show_brand_filter: section.settings.show_brand_filter, show_availability_filter: section.settings.show_availability_filter, show_price_filter: section.settings.show_price_filter -%}
+
+      {%- if section.settings.show_subcategory_pills and section.settings.subcategory_values != blank -%}
         <div class="wcb-pills">
           <button class="wcb-pill is-active" data-filter="all">All</button>
-          {%- for value in section.settings.subcategory_values -%}
-            <button class="wcb-pill" data-filter="{{ value | handleize }}">{{ value }}</button>
+          {%- assign subcategories = section.settings.subcategory_values | split: ',' -%}
+          {%- for value in subcategories -%}
+            {%- assign trimmed = value | strip -%}
+            <button class="wcb-pill" data-filter="{{ trimmed | handleize }}">{{ trimmed }}</button>
           {%- endfor -%}
         </div>
       {%- endif -%}
 
       <div class="wcb-grid-header">
         <span class="wcb-count">{{ collection.products_count }} {{ collection.products_count | pluralize: 'piece', 'pieces' }}</span>
+        
+        {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+        <select class="wcb-sort" onchange="window.location.href = '{{ collection.url }}?sort_by=' + this.value">
+          <option value="manual"{% if sort_by == 'manual' %} selected{% endif %}>Featured</option>
+          <option value="price-ascending"{% if sort_by == 'price-ascending' %} selected{% endif %}>Price: Low to High</option>
+          <option value="price-descending"{% if sort_by == 'price-descending' %} selected{% endif %}>Price: High to Low</option>
+          <option value="title-ascending"{% if sort_by == 'title-ascending' %} selected{% endif %}>Alphabetically, A-Z</option>
+          <option value="title-descending"{% if sort_by == 'title-descending' %} selected{% endif %}>Alphabetically, Z-A</option>
+          <option value="created-descending"{% if sort_by == 'created-descending' %} selected{% endif %}>Date: New to Old</option>
+          <option value="created-ascending"{% if sort_by == 'created-ascending' %} selected{% endif %}>Date: Old to New</option>
+          <option value="best-selling"{% if sort_by == 'best-selling' %} selected{% endif %}>Best Selling</option>
+        </select>
       </div>
 
       <div class="wcb-grid{% if section.settings.two_column_grid %} wcb-grid--2col{% endif %}">
         {%- if collection.products.size > 0 -%}
           {%- paginate collection.products by section.settings.products_per_page -%}
             {%- for product in collection.products -%}
-              <div data-type="{{ product.type | handleize }}">
+              <div data-tag="{{ product.tags | join: ',' }}">
                 {%- render 'wardrobe-product-card', product: product -%}
               </div>
             {%- endfor -%}
+            
+            {%- if paginate.pages > 1 -%}
+              <div class="wcb-pagination" style="grid-column: 1 / -1; margin-top: 40px;">
+                {%- render 'pagination', paginate: paginate -%}
+              </div>
+            {%- endif -%}
           {%- endpaginate -%}
         {%- else -%}
           <div class="wcb-empty">
@@ -251,17 +280,71 @@
 <script>
   (function() {
     var pills = document.querySelectorAll('.wcb-pill');
-    if (!pills.length) return;
-    pills.forEach(function(pill) {
-      pill.addEventListener('click', function() {
-        pills.forEach(function(p) { p.classList.remove('is-active'); });
-        pill.classList.add('is-active');
-        var filter = pill.dataset.filter;
-        document.querySelectorAll('.wcb-grid [data-type]').forEach(function(item) {
-          item.style.display = (filter === 'all' || item.dataset.type === filter) ? '' : 'none';
+    var productItems = document.querySelectorAll('.wcb-grid > div[data-tag]');
+    
+    // Function to filter products by tag
+    function filterProducts(filter) {
+      productItems.forEach(function(item) {
+        var tags = item.dataset.tag || '';
+        if (filter === 'all' || tags.toLowerCase().includes(filter.toLowerCase())) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+    
+    // Function to set active pill
+    function setActivePill(filter) {
+      pills.forEach(function(pill) {
+        if (pill.dataset.filter === filter) {
+          pill.classList.add('is-active');
+        } else {
+          pill.classList.remove('is-active');
+        }
+      });
+    }
+    
+    // Check for sessionStorage filter (from header dropdown)
+    var savedFilter = sessionStorage.getItem('accessoryFilter');
+    if (savedFilter) {
+      sessionStorage.removeItem('accessoryFilter');
+      // Clear URL hash
+      if (window.location.hash) {
+        history.replaceState(null, null, window.location.pathname);
+      }
+      // Apply filter after a short delay to ensure DOM is ready
+      setTimeout(function() {
+        setActivePill(savedFilter);
+        filterProducts(savedFilter);
+      }, 100);
+    }
+    
+    // Check for URL hash filter
+    if (window.location.hash) {
+      var hashFilter = window.location.hash.replace('#', '');
+      setTimeout(function() {
+        setActivePill(hashFilter);
+        filterProducts(hashFilter);
+      }, 100);
+    }
+    
+    // Pill click handlers
+    if (pills.length) {
+      pills.forEach(function(pill) {
+        pill.addEventListener('click', function() {
+          var filter = pill.dataset.filter;
+          
+          setActivePill(filter);
+          
+          if (filter === 'all') {
+            filterProducts('all');
+          } else {
+            filterProducts(filter);
+          }
         });
       });
-    });
+    }
   })();
 </script>
 

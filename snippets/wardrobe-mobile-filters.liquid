@@ -1,0 +1,221 @@
+{%- comment -%}
+  Mobile Filter Drawer - Slide-up filter panel for collection pages
+{%- endcomment -%}
+
+<style>
+  .wmf-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 999;
+  }
+
+  .wmf-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .wmf-drawer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #F5F0E8;
+    max-height: 80vh;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wmf-drawer.is-open {
+    transform: translateY(0);
+  }
+
+  .wmf-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #E8E3DA;
+  }
+
+  .wmf-title {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #1A1A1A;
+    margin: 0;
+  }
+
+  .wmf-close {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wmf-content {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  .wmf-group {
+    margin-bottom: 24px;
+  }
+
+  .wmf-group-title {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #1A1A1A;
+    margin: 0 0 14px;
+  }
+
+  .wmf-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .wmf-list a {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 14px;
+    color: #6B6560;
+    text-decoration: none;
+  }
+
+  .wmf-list a.is-active {
+    color: #1A1A1A;
+    font-weight: 500;
+  }
+
+  .wmf-footer {
+    padding: 20px;
+    border-top: 1px solid #E8E3DA;
+    display: flex;
+    gap: 12px;
+  }
+
+  .wmf-btn {
+    flex: 1;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 14px;
+    border: 1px solid #1A1A1A;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .wmf-btn--primary {
+    background: #1A1A1A;
+    color: #FFFFFF;
+  }
+
+  .wmf-btn--secondary {
+    background: transparent;
+    color: #1A1A1A;
+  }
+
+  /* Filter toggle button */
+  .wmf-toggle {
+    display: none;
+  }
+
+  @media (max-width: 1024px) {
+    .wmf-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 10px 16px;
+      border: 1px solid #E8E3DA;
+      background: transparent;
+      color: #1A1A1A;
+      cursor: pointer;
+    }
+  }
+</style>
+
+<!-- Filter Toggle Button (mobile only) -->
+<button class="wmf-toggle" onclick="document.getElementById('wmf-drawer').classList.add('is-open'); document.getElementById('wmf-overlay').classList.add('is-open');">
+  {% render 'icon-filter' %}
+  Filter
+</button>
+
+<!-- Mobile Filter Drawer -->
+<div class="wmf-overlay" id="wmf-overlay" onclick="document.getElementById('wmf-drawer').classList.remove('is-open'); this.classList.remove('is-open');"></div>
+
+<div class="wmf-drawer" id="wmf-drawer">
+  <div class="wmf-header">
+    <h3 class="wmf-title">Filter</h3>
+    <button class="wmf-close" onclick="document.getElementById('wmf-drawer').classList.remove('is-open'); document.getElementById('wmf-overlay').classList.remove('is-open');">
+      {% render 'icon-close' %}
+    </button>
+  </div>
+
+  <div class="wmf-content">
+    {%- if show_brand_filter -%}
+      <div class="wmf-group">
+        <p class="wmf-group-title">Brand</p>
+        <ul class="wmf-list">
+          {%- assign brands = collection.products | map: 'vendor' | uniq | sort -%}
+          {%- for brand in brands -%}
+            <li><a href="{{ collection.url }}?vendor={{ brand | url_encode }}">{{ brand }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+
+    {%- if show_availability_filter -%}
+      <div class="wmf-group">
+        <p class="wmf-group-title">Availability</p>
+        <ul class="wmf-list">
+          <li><a href="{{ collection.url }}?filter.p.available=true">In Stock</a></li>
+        </ul>
+      </div>
+    {%- endif -%}
+
+    {%- if show_price_filter -%}
+      <div class="wmf-group">
+        <p class="wmf-group-title">Price</p>
+        <ul class="wmf-list">
+          <li><a href="{{ collection.url }}?filter.v.price.lte=5000">Under ₹5,000</a></li>
+          <li><a href="{{ collection.url }}?filter.v.price.gte=5000&filter.v.price.lte=15000">₹5,000 – ₹15,000</a></li>
+          <li><a href="{{ collection.url }}?filter.v.price.gte=15000&filter.v.price.lte=30000">₹15,000 – ₹30,000</a></li>
+          <li><a href="{{ collection.url }}?filter.v.price.gte=30000">₹30,000+</a></li>
+        </ul>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="wmf-footer">
+    <a href="{{ collection.url }}" class="wmf-btn wmf-btn--secondary">Clear</a>
+    <button class="wmf-btn wmf-btn--primary" onclick="document.getElementById('wmf-drawer').classList.remove('is-open'); document.getElementById('wmf-overlay').classList.remove('is-open');">Done</button>
+  </div>
+</div>

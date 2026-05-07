@@ -1,0 +1,219 @@
+{{ 'wardrobe-base.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .wf-footer {
+    background-color: #1C1A17;
+    color: #FFFFFF;
+    padding: 64px 40px 32px;
+  }
+
+  .wf-footer__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+  }
+
+  .wf-footer__brand {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-size: 24px;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin: 0 0 16px;
+  }
+
+  .wf-footer__tagline {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+    margin: 0 0 24px;
+    max-width: 280px;
+  }
+
+  .wf-footer__contact {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .wf-footer__contact p {
+    margin: 0 0 8px;
+  }
+
+  .wf-footer__heading {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #B8965A;
+    margin: 0 0 20px;
+  }
+
+  .wf-footer__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .wf-footer__links a {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .wf-footer__links a:hover {
+    color: #FFFFFF;
+  }
+
+  .wf-footer__bottom {
+    max-width: 1400px;
+    margin: 48px auto 0;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .wf-footer__copyright {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .wf-footer__payment {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .wf-footer__payment-icon {
+    width: 40px;
+    height: 26px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  @media (max-width: 1024px) {
+    .wf-footer {
+      padding: 48px 20px 24px;
+    }
+
+    .wf-footer__inner {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .wf-footer__brand-block {
+      grid-column: 1 / -1;
+    }
+
+    .wf-footer__bottom {
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .wf-footer__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<footer class="wf-footer">
+  <div class="wf-footer__inner">
+    <!-- Brand Column -->
+    <div class="wf-footer__brand-block">
+      <h3 class="wf-footer__brand">The Wardrobe Shillong</h3>
+      <p class="wf-footer__tagline">Premium curated fashion from Police Bazar. Hand-selected. Every piece.</p>
+      <div class="wf-footer__contact">
+        <p>{{ section.settings.address }}</p>
+        <p>WhatsApp: +91 {{ section.settings.whatsapp }}</p>
+      </div>
+    </div>
+
+    <!-- Shop Column -->
+    <div class="wf-footer__column">
+      <h4 class="wf-footer__heading">Shop</h4>
+      <ul class="wf-footer__links">
+        <li><a href="/collections/sneakers">Sneakers</a></li>
+        <li><a href="/collections/clothing">Clothing</a></li>
+        <li><a href="/collections/accessories">Accessories</a></li>
+        <li><a href="/collections/new-arrivals">New Arrivals</a></li>
+      </ul>
+    </div>
+
+    <!-- Help Column -->
+    <div class="wf-footer__column">
+      <h4 class="wf-footer__heading">Help</h4>
+      <ul class="wf-footer__links">
+        <li><a href="/pages/contact">Contact Us</a></li>
+        <li><a href="/pages/size-guide">Size Guide</a></li>
+        <li><a href="/pages/refund-policy">Shipping & Returns</a></li>
+        <li><a href="https://wa.me/9197005752736" target="_blank" rel="noopener">WhatsApp Support</a></li>
+      </ul>
+    </div>
+
+    <!-- Legal Column -->
+    <div class="wf-footer__column">
+      <h4 class="wf-footer__heading">Legal</h4>
+      <ul class="wf-footer__links">
+        <li><a href="/pages/terms-and-conditions">Terms & Conditions</a></li>
+        <li><a href="/pages/privacy-policy">Privacy Policy</a></li>
+        <li><a href="/pages/refund-policy">Refund Policy</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="wf-footer__bottom">
+    <p class="wf-footer__copyright">© {{ 'now' | date: '%Y' }} The Wardrobe Shillong. All rights reserved.</p>
+    <div class="wf-footer__payment">
+      <span class="wf-footer__payment-icon">UPI</span>
+      <span class="wf-footer__payment-icon">CARD</span>
+      <span class="wf-footer__payment-icon">COD</span>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Wardrobe Footer",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "address",
+      "label": "Store Address",
+      "default": "Police Bazar, Shillong, Meghalaya 793001"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp",
+      "label": "WhatsApp Number",
+      "default": "97005 752736"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wardrobe Footer",
+      "category": "Wardrobe"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "shopify": {
+      "command": "npx",
+      "args": ["-y", "@shopify/dev-mcp@latest"],
+      "env": {
+        "SHOPIFY_ACCESS_TOKEN": "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",
+        "MYSHOPIFY_DOMAIN": "the-wardrobe-6jaajzyl.myshopify.com"
+      }
+    }
+  }
+}

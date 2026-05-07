@@ -69,6 +69,15 @@
       class="wch-bg"
       loading="eager"
     >
+  {%- else -%}
+    {%- assign fallback_image = 'collection-' | append: collection.handle | append: '.jpg' -%}
+    <img
+      src="{{ fallback_image | asset_url }}"
+      alt="{{ collection.title }}"
+      class="wch-bg"
+      loading="eager"
+      onerror="this.style.display='none'"
+    >
   {%- endif -%}
   <div class="wch-overlay"></div>
   <div class="wch-content">

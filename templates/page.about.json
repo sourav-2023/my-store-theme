@@ -1,8 +1,12 @@
 {
   "sections": {
-    "wardrobe-legal-page": {
-      "type": "wardrobe-legal-page",
-      "settings": {}
+    "wardrobe-about": {
+      "type": "wardrobe-about",
+      "settings": {
+        "hero_title": "Our Story",
+        "story_heading": "The Beginning",
+        "mission_heading": "Our Mission"
+      }
     },
     "wardrobe-footer": {
       "type": "wardrobe-footer",
@@ -13,7 +17,7 @@
     }
   },
   "order": [
-    "wardrobe-legal-page",
+    "wardrobe-about",
     "wardrobe-footer"
   ]
 }

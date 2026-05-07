@@ -1,7 +1,7 @@
 {
   "sections": {
-    "wardrobe-legal-page": {
-      "type": "wardrobe-legal-page",
+    "wardrobe-size-guide": {
+      "type": "wardrobe-size-guide",
       "settings": {}
     },
     "wardrobe-footer": {
@@ -13,7 +13,7 @@
     }
   },
   "order": [
-    "wardrobe-legal-page",
+    "wardrobe-size-guide",
     "wardrobe-footer"
   ]
 }

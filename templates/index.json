@@ -41,6 +41,13 @@
         "hours": "Mon–Sun, 11:00–20:00",
         "phone": "+91 98765 43210"
       }
+    },
+    "wardrobe-footer": {
+      "type": "wardrobe-footer",
+      "settings": {
+        "address": "Police Bazar, Shillong, Meghalaya 793001",
+        "whatsapp": "97005 752736"
+      }
     }
   },
   "order": [
@@ -48,6 +55,7 @@
     "wardrobe-arrivals",
     "wardrobe-story",
     "wardrobe-categories",
-    "wardrobe-contact-strip"
+    "wardrobe-contact-strip",
+    "wardrobe-footer"
   ]
 }

@@ -1,0 +1,203 @@
+{{ 'wardrobe-base.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .wardrobe-about {
+    background-color: #F5F0E8;
+  }
+
+  .wardrobe-about__hero {
+    position: relative;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #1A1A1A;
+  }
+
+  .wardrobe-about__hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+  }
+
+  .wardrobe-about__hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #FFFFFF;
+  }
+
+  .wardrobe-about__hero-title {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-size: 56px;
+    font-weight: 300;
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  .wardrobe-about__content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 80px 40px;
+  }
+
+  .wardrobe-about__section {
+    margin-bottom: 60px;
+  }
+
+  .wardrobe-about__section:last-child {
+    margin-bottom: 0;
+  }
+
+  .wardrobe-about__heading {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-size: 32px;
+    font-weight: 300;
+    color: #1A1A1A;
+    margin: 0 0 24px 0;
+  }
+
+  .wardrobe-about__text {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #1A1A1A;
+    margin: 0 0 20px 0;
+  }
+
+  .wardrobe-about__values {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 40px;
+  }
+
+  .wardrobe-about__value {
+    text-align: center;
+  }
+
+  .wardrobe-about__value-number {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-size: 48px;
+    font-weight: 300;
+    color: #B8965A;
+    margin: 0 0 8px 0;
+  }
+
+  .wardrobe-about__value-label {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6B6560;
+  }
+
+  @media (max-width: 1024px) {
+    .wardrobe-about__hero { height: 300px; }
+    .wardrobe-about__hero-title { font-size: 40px; }
+    .wardrobe-about__content { padding: 60px 20px; }
+    .wardrobe-about__heading { font-size: 28px; }
+    .wardrobe-about__values { grid-template-columns: 1fr; gap: 30px; }
+  }
+</style>
+
+<div class="wardrobe-about">
+  <div class="wardrobe-about__hero">
+    {%- if section.settings.hero_image != blank -%}
+      <img src="{{ section.settings.hero_image | image_url: width: 1600 }}" alt="" class="wardrobe-about__hero-bg">
+    {%- endif -%}
+    <div class="wardrobe-about__hero-content">
+      <h1 class="wardrobe-about__hero-title">{{ section.settings.hero_title | default: 'Our Story' }}</h1>
+    </div>
+  </div>
+
+  <div class="wardrobe-about__content">
+    <div class="wardrobe-about__section">
+      <h2 class="wardrobe-about__heading">{{ section.settings.story_heading | default: 'The Beginning' }}</h2>
+      <p class="wardrobe-about__text">{{ section.settings.story_text | default: 'Founded in 2023, The Wardrobe Shillong began with a simple mission: to bring authentic, premium fashion to the heart of Meghalaya. What started as a small curation of sneakers has grown into a trusted destination for style-conscious individuals across Northeast India.' }}</p>
+    </div>
+
+    <div class="wardrobe-about__section">
+      <h2 class="wardrobe-about__heading">{{ section.settings.mission_heading | default: 'Our Mission' }}</h2>
+      <p class="wardrobe-about__text">{{ section.settings.mission_text | default: 'We believe everyone deserves access to authentic, high-quality fashion. Every piece in our collection is hand-selected and verified for authenticity. We work directly with authorized retailers and verified suppliers to ensure you receive only genuine products.' }}</p>
+    </div>
+
+    <div class="wardrobe-about__values">
+      <div class="wardrobe-about__value">
+        <p class="wardrobe-about__value-number">100%</p>
+        <p class="wardrobe-about__value-label">Authentic</p>
+      </div>
+      <div class="wardrobe-about__value">
+        <p class="wardrobe-about__value-number">500+</p>
+        <p class="wardrobe-about__value-label">Products</p>
+      </div>
+      <div class="wardrobe-about__value">
+        <p class="wardrobe-about__value-number">2023</p>
+        <p class="wardrobe-about__value-label">Established</p>
+      </div>
+    </div>
+
+    <div class="wardrobe-about__section" style="margin-top: 60px;">
+      <h2 class="wardrobe-about__heading">Visit Us</h2>
+      <p class="wardrobe-about__text">{{ section.settings.visit_text | default: 'Find us at Police Bazar, Shillong. Come experience our curation in person and meet our team of fashion enthusiasts.' }}</p>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "About Page",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Background Image"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero Title",
+      "default": "Our Story"
+    },
+    {
+      "type": "text",
+      "id": "story_heading",
+      "label": "Story Heading",
+      "default": "The Beginning"
+    },
+    {
+      "type": "textarea",
+      "id": "story_text",
+      "label": "Story Text"
+    },
+    {
+      "type": "text",
+      "id": "mission_heading",
+      "label": "Mission Heading",
+      "default": "Our Mission"
+    },
+    {
+      "type": "textarea",
+      "id": "mission_text",
+      "label": "Mission Text"
+    },
+    {
+      "type": "textarea",
+      "id": "visit_text",
+      "label": "Visit Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Page",
+      "category": "Wardrobe"
+    }
+  ]
+}
+{% endschema %}
