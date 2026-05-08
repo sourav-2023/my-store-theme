@@ -37,6 +37,7 @@
 
   .wh-logo__mobile {
     display: none;
+    gap: 8px;
   }
 
   .wh-logo__text {
@@ -67,7 +68,15 @@
       align-items: center;
     }
     .wh-logo img {
-      height: 40px;
+      height: 36px;
+    }
+    .wh-logo__text--mobile {
+      font-family: 'Cormorant Garamond', Georgia, serif !important;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: #1A1A1A;
     }
   }
 
@@ -309,7 +318,7 @@
         {%- endif -%}
         <span class="wh-logo__text">THE WARDROBE</span>
       </div>
-      <!-- Mobile Logo: Logo Only (with text fallback) -->
+      <!-- Mobile Logo: Logo + Text -->
       <div class="wh-logo__mobile">
         {%- if section.settings.mobile_logo != blank -%}
           <img src="{{ section.settings.mobile_logo | image_url: width: 200 }}" alt="{{ shop.name }}">
@@ -320,6 +329,7 @@
         {%- else -%}
           <img src="{{ 'wardrobe-logo.png' | asset_url }}" alt="{{ shop.name }}">
         {%- endif -%}
+        <span class="wh-logo__text wh-logo__text--mobile">THE WARDROBE</span>
       </div>
     </a>
 
