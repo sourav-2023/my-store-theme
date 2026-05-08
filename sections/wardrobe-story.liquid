@@ -145,9 +145,13 @@
             width="800"
           >
         {%- else -%}
-          <div class="wardrobe-story__image-placeholder">
-            <span class="wardrobe-story__placeholder-text">THE WARDROBE</span>
-          </div>
+          <img
+            src="{{ 'wardrobe-store-photo.jpg' | asset_url }}"
+            alt="The Wardrobe Shillong Store"
+            class="wardrobe-story__store-photo"
+            loading="lazy"
+            width="800"
+          >
         {%- endif -%}
       </div>
     </div>
