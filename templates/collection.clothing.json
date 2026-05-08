@@ -16,18 +16,10 @@
         "two_column_grid": false,
         "show_subcategory_pills": false
       }
-    },
-    "wardrobe-footer": {
-      "type": "wardrobe-footer",
-      "settings": {
-        "address": "Police Bazar, Shillong, Meghalaya 793001",
-        "whatsapp": "97005 752736"
-      }
     }
   },
   "order": [
     "wardrobe-collection-header",
-    "wardrobe-collection-body",
-    "wardrobe-footer"
+    "wardrobe-collection-body"
   ]
 }
