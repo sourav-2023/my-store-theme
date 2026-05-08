@@ -7,17 +7,9 @@
         "story_heading": "The Beginning",
         "mission_heading": "Our Mission"
       }
-    },
-    "wardrobe-footer": {
-      "type": "wardrobe-footer",
-      "settings": {
-        "address": "Police Bazar, Shillong, Meghalaya 793001",
-        "whatsapp": "97005 752736"
-      }
     }
   },
   "order": [
-    "wardrobe-about",
-    "wardrobe-footer"
+    "wardrobe-about"
   ]
 }

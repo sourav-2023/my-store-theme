@@ -23,18 +23,10 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
-    },
-    "wardrobe-footer": {
-      "type": "wardrobe-footer",
-      "settings": {
-        "address": "Police Bazar, Shillong, Meghalaya 793001",
-        "whatsapp": "97005 752736"
-      }
     }
   },
   "order": [
     "banner",
-    "product-grid",
-    "wardrobe-footer"
+    "product-grid"
   ]
 }
