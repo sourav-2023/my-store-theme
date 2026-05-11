@@ -26,11 +26,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 12px;
   }
 
-  .wh-logo img {
-    height: 90px;
+  .wh-logo__monogram {
+    height: 60px;
     width: auto;
+    display: block;
+  }
+
+  .wh-logo__text {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #1A1A1A;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
     display: block;
   }
 
@@ -39,8 +50,12 @@
   }
 
   @media (max-width: 1024px) {
-    .wh-logo img {
-      height: 65px;
+    .wh-logo__monogram {
+      height: 50px;
+    }
+
+    .wh-logo__text {
+      display: none;
     }
   }
 
@@ -308,13 +323,8 @@
 
     <!-- Center: Logo -->
     <a href="/" class="wh-logo">
-      {%- if section.settings.desktop_logo != blank -%}
-        <img src="{{ section.settings.desktop_logo | image_url: width: 400 }}" alt="{{ shop.name }}">
-      {%- elsif settings.logo != blank -%}
-        <img src="{{ settings.logo | image_url: width: 400 }}" alt="{{ shop.name }}">
-      {%- else -%}
-        <img src="{{ 'wardrobe-logo.png' | asset_url }}" alt="{{ shop.name }}">
-      {%- endif -%}
+      <img src="{{ 'wardrobe-w-monogram.png' | asset_url }}" alt="{{ shop.name }}" class="wh-logo__monogram">
+      <span class="wh-logo__text">The Wardrobe Shillong</span>
     </a>
 
     <!-- Right: Icons -->
