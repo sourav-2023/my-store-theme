@@ -9,12 +9,26 @@
  */
 {
   "sections": {
+    "wardrobe-about": {
+      "type": "wardrobe-about",
+      "settings": {
+        "hero_title": "Our Story",
+        "story_heading": "The Beginning",
+        "mission_heading": "Our Mission"
+      }
+    },
+    "wardrobe-size-guide": {
+      "type": "wardrobe-size-guide",
+      "settings": {}
+    },
     "wardrobe-legal-page": {
       "type": "wardrobe-legal-page",
       "settings": {}
     }
   },
   "order": [
+    "wardrobe-about",
+    "wardrobe-size-guide",
     "wardrobe-legal-page"
   ]
 }
