@@ -2,7 +2,7 @@
 
 <style>
   .wardrobe-about {
-    background-color: #F5F0E8;
+    background-color: #FFFFFF;
   }
 
   .wardrobe-about__hero {
@@ -105,6 +105,7 @@
   }
 </style>
 
+{%- if page.handle == 'about' or template == 'page.about' -%}
 <div class="wardrobe-about">
   <div class="wardrobe-about__hero">
     {%- if section.settings.hero_image != blank -%}
@@ -147,6 +148,7 @@
     </div>
   </div>
 </div>
+{%- endif -%}
 
 {% schema %}
 {

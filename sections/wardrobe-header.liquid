@@ -6,51 +6,30 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: #F5F0E8;
-    border-bottom: 1px solid #E8E3DA;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #E0E0E0;
   }
 
   .wh-header {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 40px;
-    height: 64px;
-    display: flex;
+    height: 80px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
-    gap: 24px;
   }
 
-  /* Logo */
+  /* Logo — centered in header */
   .wh-logo {
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 12px;
-  }
-
-  .wh-logo__desktop {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .wh-logo__mobile {
-    display: none;
-    gap: 8px;
-  }
-
-  .wh-logo__text {
-    font-family: 'Cormorant Garamond', Georgia, serif !important;
-    font-size: 18px;
-    font-weight: 400;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #1A1A1A;
+    justify-content: center;
   }
 
   .wh-logo img {
-    height: 40px;
+    height: 70px;
     width: auto;
     display: block;
   }
@@ -60,24 +39,15 @@
   }
 
   @media (max-width: 1024px) {
-    .wh-logo__desktop {
-      display: none;
-    }
-    .wh-logo__mobile {
-      display: flex;
-      align-items: center;
-    }
     .wh-logo img {
-      height: 36px;
+      height: 50px;
     }
-    .wh-logo__text--mobile {
-      font-family: 'Cormorant Garamond', Georgia, serif !important;
-      font-size: 14px;
-      font-weight: 400;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: #1A1A1A;
-    }
+  }
+
+  /* Left column */
+  .wh-header__left {
+    display: flex;
+    align-items: center;
   }
 
   /* Navigation */
@@ -118,7 +88,7 @@
     top: 100%;
     left: 0;
     background: #FFFFFF;
-    border: 1px solid #E8E3DA;
+    border: 1px solid #E0E0E0;
     min-width: 200px;
     padding: 16px 0;
     opacity: 0;
@@ -146,13 +116,14 @@
 
   .wh-dropdown__link:hover {
     color: #B8965A;
-    background: #F5F0E8;
+    background: #FFFFFF;
   }
 
-  /* Icons */
+  /* Icons — right-aligned */
   .wh-icons {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 16px;
   }
 
@@ -296,73 +267,57 @@
 
 <div class="wh-header-wrapper">
   <header class="wh-header">
-    <!-- Mobile Toggle -->
-    <button class="wh-mobile-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="wh-mobile-menu" onclick="document.getElementById('wh-mobile-menu').classList.add('is-open'); this.setAttribute('aria-expanded','true')">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <line x1="3" y1="6" x2="21" y2="6"/>
-        <line x1="3" y1="12" x2="21" y2="12"/>
-        <line x1="3" y1="18" x2="21" y2="18"/>
-      </svg>
-    </button>
+    <!-- Left: Navigation (desktop) / Mobile Toggle (mobile) -->
+    <div class="wh-header__left">
+      <button class="wh-mobile-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="wh-mobile-menu" onclick="document.getElementById('wh-mobile-menu').classList.add('is-open'); this.setAttribute('aria-expanded','true')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
 
-    <!-- Logo -->
+      <nav aria-label="Main navigation" class="wh-nav-wrapper">
+        <ul class="wh-nav">
+          <li class="wh-nav__item">
+            <a href="/" class="wh-nav__link{% if request.path == '/' %} wh-nav__link--active{% endif %}">Home</a>
+          </li>
+          <li class="wh-nav__item">
+            <a href="/collections/sneakers" class="wh-nav__link{% if request.path contains '/collections/sneakers' %} wh-nav__link--active{% endif %}">Sneakers</a>
+          </li>
+          <li class="wh-nav__item">
+            <a href="/collections/clothing" class="wh-nav__link{% if request.path contains '/collections/clothing' %} wh-nav__link--active{% endif %}">Clothing</a>
+          </li>
+          <li class="wh-nav__item">
+            <a href="/collections/accessories" class="wh-nav__link{% if request.path contains '/collections/accessories' %} wh-nav__link--active{% endif %}">Accessories</a>
+            <div class="wh-dropdown">
+              <a href="/collections/accessories#watches" class="wh-dropdown__link" onclick="sessionStorage.setItem('accessoryFilter', 'watches')">Watches</a>
+              <a href="/collections/accessories#bags" class="wh-dropdown__link" onclick="sessionStorage.setItem('accessoryFilter', 'bags')">Purses & Bags</a>
+              <a href="/collections/accessories#perfumes" class="wh-dropdown__link" onclick="sessionStorage.setItem('accessoryFilter', 'perfumes')">Perfumes</a>
+              <a href="/collections/accessories#jewelry" class="wh-dropdown__link" onclick="sessionStorage.setItem('accessoryFilter', 'jewelry')">Earrings & Jewelry</a>
+              <a href="/collections/accessories#belts" class="wh-dropdown__link" onclick="sessionStorage.setItem('accessoryFilter', 'belts')">Belts</a>
+              <a href="/collections/accessories#sunglasses" class="wh-dropdown__link" onclick="sessionStorage.setItem('accessoryFilter', 'sunglasses')">Sunglasses</a>
+            </div>
+          </li>
+          <li class="wh-nav__item">
+            <a href="/pages/about" class="wh-nav__link{% if request.path contains '/pages/about' %} wh-nav__link--active{% endif %}">About</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Center: Logo -->
     <a href="/" class="wh-logo">
-      <!-- Desktop Logo: Logo + Text -->
-      <div class="wh-logo__desktop">
-        {%- if section.settings.desktop_logo != blank -%}
-          <img src="{{ section.settings.desktop_logo | image_url: width: 200 }}" alt="{{ shop.name }}">
-        {%- elsif settings.logo != blank -%}
-          <img src="{{ settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}">
-        {%- else -%}
-          <img src="{{ 'wardrobe-logo.png' | asset_url }}" alt="{{ shop.name }}">
-        {%- endif -%}
-        <span class="wh-logo__text">THE WARDROBE</span>
-      </div>
-      <!-- Mobile Logo: Logo + Text -->
-      <div class="wh-logo__mobile">
-        {%- if section.settings.mobile_logo != blank -%}
-          <img src="{{ section.settings.mobile_logo | image_url: width: 200 }}" alt="{{ shop.name }}">
-        {%- elsif section.settings.desktop_logo != blank -%}
-          <img src="{{ section.settings.desktop_logo | image_url: width: 200 }}" alt="{{ shop.name }}">
-        {%- elsif settings.logo != blank -%}
-          <img src="{{ settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}">
-        {%- else -%}
-          <img src="{{ 'wardrobe-logo.png' | asset_url }}" alt="{{ shop.name }}">
-        {%- endif -%}
-        <span class="wh-logo__text wh-logo__text--mobile">THE WARDROBE</span>
-      </div>
+      {%- if section.settings.desktop_logo != blank -%}
+        <img src="{{ section.settings.desktop_logo | image_url: width: 400 }}" alt="{{ shop.name }}">
+      {%- elsif settings.logo != blank -%}
+        <img src="{{ settings.logo | image_url: width: 400 }}" alt="{{ shop.name }}">
+      {%- else -%}
+        <img src="{{ 'wardrobe-logo.png' | asset_url }}" alt="{{ shop.name }}">
+      {%- endif -%}
     </a>
 
-    <!-- Desktop Navigation -->
-    <nav aria-label="Main navigation">
-      <ul class="wh-nav">
-        <li class="wh-nav__item">
-          <a href="/" class="wh-nav__link{% if request.path == '/' %} wh-nav__link--active{% endif %}">Home</a>
-        </li>
-        <li class="wh-nav__item">
-          <a href="/collections/sneakers" class="wh-nav__link{% if request.path contains '/collections/sneakers' %} wh-nav__link--active{% endif %}">Sneakers</a>
-        </li>
-        <li class="wh-nav__item">
-          <a href="/collections/clothing" class="wh-nav__link{% if request.path contains '/collections/clothing' %} wh-nav__link--active{% endif %}">Clothing</a>
-        </li>
-        <li class="wh-nav__item">
-          <a href="/collections/accessories" class="wh-nav__link{% if request.path contains '/collections/accessories' %} wh-nav__link--active{% endif %}">Accessories</a>
-          <div class="wh-dropdown">
-            <a href="/collections/accessories#watches" class="wh-dropdown__link" onclick="sessionStorage.setItem('accessoryFilter', 'watches')">Watches</a>
-            <a href="/collections/accessories#bags" class="wh-dropdown__link" onclick="sessionStorage.setItem('accessoryFilter', 'bags')">Purses & Bags</a>
-            <a href="/collections/accessories#perfumes" class="wh-dropdown__link" onclick="sessionStorage.setItem('accessoryFilter', 'perfumes')">Perfumes</a>
-            <a href="/collections/accessories#jewelry" class="wh-dropdown__link" onclick="sessionStorage.setItem('accessoryFilter', 'jewelry')">Earrings & Jewelry</a>
-            <a href="/collections/accessories#belts" class="wh-dropdown__link" onclick="sessionStorage.setItem('accessoryFilter', 'belts')">Belts</a>
-            <a href="/collections/accessories#sunglasses" class="wh-dropdown__link" onclick="sessionStorage.setItem('accessoryFilter', 'sunglasses')">Sunglasses</a>
-          </div>
-        </li>
-        <li class="wh-nav__item">
-          <a href="/pages/about" class="wh-nav__link{% if request.path contains '/pages/about' %} wh-nav__link--active{% endif %}">About</a>
-        </li>
-      </ul>
-    </nav>
-
-    <!-- Icons -->
+    <!-- Right: Icons -->
     <div class="wh-icons">
       <a href="/search" class="wh-icon" aria-label="Search">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">

@@ -2,7 +2,7 @@
 
 <style>
   .wardrobe-size-guide {
-    background-color: #F5F0E8;
+    background-color: #FFFFFF;
     padding: 80px 40px;
     min-height: 100vh;
   }
@@ -35,7 +35,7 @@
     display: flex;
     gap: 8px;
     margin-bottom: 40px;
-    border-bottom: 1px solid #E8E3DA;
+    border-bottom: 1px solid #E0E0E0;
   }
 
   .wardrobe-size-guide__tab {
@@ -111,7 +111,7 @@
 
   .wardrobe-size-guide__table td {
     padding: 16px;
-    border-bottom: 1px solid #E8E3DA;
+    border-bottom: 1px solid #E0E0E0;
     color: #1A1A1A;
   }
 
@@ -139,6 +139,7 @@
   }
 </style>
 
+{%- if page.handle == 'size-guide' or template == 'page.size-guide' -%}
 <div class="wardrobe-size-guide">
   <div class="wardrobe-size-guide__container">
     <h1 class="wardrobe-size-guide__title">Size Guide</h1>
@@ -212,6 +213,7 @@
     </div>
   </div>
 </div>
+{%- endif -%}
 
 <script>
   function switchTab(tabName) {
