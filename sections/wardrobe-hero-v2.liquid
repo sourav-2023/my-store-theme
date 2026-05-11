@@ -14,6 +14,33 @@
     overflow: hidden;
   }
 
+  /* Hero logo */
+  .wh-hero-logo {
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: wh-fade-up 0.8s ease forwards;
+    animation-delay: 0ms;
+  }
+
+  .wh-hero-logo img {
+    height: 160px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 1024px) {
+    .wh-hero-logo img {
+      height: 120px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .wh-hero-logo img {
+      height: 100px;
+    }
+  }
+
   /* Decorative vertical rule — matches design reference */
   .wh-rule {
     width: 1px;
@@ -164,6 +191,10 @@
 </style>
 
 <div class="wh-section" id="wardrobe-hero">
+  <div class="wh-hero-logo">
+    <img src="{{ 'wardrobe-logo.png' | asset_url }}" alt="{{ shop.name }}">
+  </div>
+
   <div class="wh-rule"></div>
 
   <div class="wh-eyebrow">{{ section.settings.eyebrow_text }}</div>
