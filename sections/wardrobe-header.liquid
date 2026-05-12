@@ -20,12 +20,12 @@
     align-items: center;
   }
 
-  /* Logo — centered in header */
+  /* Logo — left-aligned on desktop */
   .wh-logo {
     text-decoration: none;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 12px;
   }
 
@@ -59,10 +59,11 @@
     }
   }
 
-  /* Left column */
-  .wh-header__left {
+  /* Center column — nav centered */
+  .wh-header__center {
     display: flex;
     align-items: center;
+    justify-content: center;
   }
 
   /* Navigation */
@@ -270,7 +271,7 @@
       height: 80px;
     }
 
-    .wh-nav {
+    .wh-header__center {
       display: none;
     }
 
@@ -282,7 +283,7 @@
 
 <div class="wh-header-wrapper">
   <header class="wh-header">
-    <!-- Left: Navigation (desktop) / Mobile Toggle (mobile) -->
+    <!-- Left: Logo (desktop) / Mobile Toggle (mobile) -->
     <div class="wh-header__left">
       <button class="wh-mobile-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="wh-mobile-menu" onclick="document.getElementById('wh-mobile-menu').classList.add('is-open'); this.setAttribute('aria-expanded','true')">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -292,6 +293,14 @@
         </svg>
       </button>
 
+      <a href="/" class="wh-logo">
+        <img src="{{ 'wardrobe-w-monogram.png' | asset_url }}" alt="{{ shop.name }}" class="wh-logo__monogram">
+        <span class="wh-logo__text">The Wardrobe Shillong</span>
+      </a>
+    </div>
+
+    <!-- Center: Navigation (desktop) -->
+    <div class="wh-header__center">
       <nav aria-label="Main navigation" class="wh-nav-wrapper">
         <ul class="wh-nav">
           <li class="wh-nav__item">
@@ -320,12 +329,6 @@
         </ul>
       </nav>
     </div>
-
-    <!-- Center: Logo -->
-    <a href="/" class="wh-logo">
-      <img src="{{ 'wardrobe-w-monogram.png' | asset_url }}" alt="{{ shop.name }}" class="wh-logo__monogram">
-      <span class="wh-logo__text">The Wardrobe Shillong</span>
-    </a>
 
     <!-- Right: Icons -->
     <div class="wh-icons">
