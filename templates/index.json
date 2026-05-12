@@ -13,6 +13,15 @@
         "secondary_text": "VIEW ACCESSORIES"
       }
     },
+    "wardrobe-marquee": {
+      "type": "wardrobe-marquee",
+      "settings": {
+        "text_1": "Premium Curated Fashion",
+        "text_2": "Authentic Brands Only",
+        "text_3": "Police Bazar, Shillong",
+        "text_4": "Free Shipping Above \u20b92,999"
+      }
+    },
     "wardrobe-arrivals": {
       "type": "wardrobe-arrivals",
       "settings": {
@@ -34,6 +43,16 @@
       "type": "wardrobe-categories",
       "settings": {}
     },
+    "wardrobe-newsletter": {
+      "type": "wardrobe-newsletter",
+      "settings": {
+        "label": "Stay Updated",
+        "heading": "Join the Inner Circle",
+        "subtext": "Be the first to know about new arrivals, exclusive drops, and special offers.",
+        "placeholder": "Enter your email",
+        "button_text": "SUBSCRIBE"
+      }
+    },
     "wardrobe-contact-strip": {
       "type": "wardrobe-contact-strip",
       "settings": {
@@ -45,9 +64,11 @@
   },
   "order": [
     "wardrobe-hero-v2",
+    "wardrobe-marquee",
     "wardrobe-arrivals",
     "wardrobe-story",
     "wardrobe-categories",
+    "wardrobe-newsletter",
     "wardrobe-contact-strip"
   ]
 }

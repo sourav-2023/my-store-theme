@@ -1,0 +1,110 @@
+{{ 'wardrobe-base.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .wm-marquee {
+    background-color: #1A1A1A;
+    overflow: hidden;
+    padding: 14px 0;
+    position: relative;
+  }
+
+  .wm-marquee__track {
+    display: flex;
+    width: max-content;
+    animation: wm-scroll 30s linear infinite;
+  }
+
+  .wm-marquee__content {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-shrink: 0;
+    padding-right: 0;
+  }
+
+  .wm-marquee__item {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+    white-space: nowrap;
+    padding: 0 24px;
+  }
+
+  .wm-marquee__dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #B8965A;
+    flex-shrink: 0;
+  }
+
+  @keyframes wm-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 1024px) {
+    .wm-marquee { padding: 12px 0; }
+    .wm-marquee__item { font-size: 11px; letter-spacing: 0.12em; padding: 0 20px; }
+  }
+</style>
+
+<div class="wm-marquee">
+  <div class="wm-marquee__track">
+    {%- for i in (1..2) -%}
+      <div class="wm-marquee__content">
+        <span class="wm-marquee__dot"></span>
+        <span class="wm-marquee__item">{{ section.settings.text_1 }}</span>
+        <span class="wm-marquee__dot"></span>
+        <span class="wm-marquee__item">{{ section.settings.text_2 }}</span>
+        <span class="wm-marquee__dot"></span>
+        <span class="wm-marquee__item">{{ section.settings.text_3 }}</span>
+        <span class="wm-marquee__dot"></span>
+        <span class="wm-marquee__item">{{ section.settings.text_4 }}</span>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Marquee Ticker",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text_1",
+      "label": "Text 1",
+      "default": "Premium Curated Fashion"
+    },
+    {
+      "type": "text",
+      "id": "text_2",
+      "label": "Text 2",
+      "default": "Authentic Brands Only"
+    },
+    {
+      "type": "text",
+      "id": "text_3",
+      "label": "Text 3",
+      "default": "Police Bazar, Shillong"
+    },
+    {
+      "type": "text",
+      "id": "text_4",
+      "label": "Text 4",
+      "default": "Free Shipping Above \u20b92,999"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee Ticker",
+      "category": "Wardrobe"
+    }
+  ]
+}
+{% endschema %}
