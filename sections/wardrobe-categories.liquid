@@ -3,7 +3,7 @@
 <style>
   .wardrobe-categories {
     background-color: #FFFFFF;
-    padding: 60px 0;
+    padding: 100px 0;
   }
   .wardrobe-categories__container {
     max-width: 1400px;
@@ -13,7 +13,7 @@
   .wardrobe-categories__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 20px;
   }
   .wardrobe-categories__card {
     position: relative;
@@ -39,27 +39,39 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .wardrobe-categories__card:hover .wardrobe-categories__category-img {
+    transform: scale(1.06);
   }
   .wardrobe-categories__overlay {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 40px 24px;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+    padding: 48px 28px;
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 12px;
+    transition: padding 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .wardrobe-categories__card:hover .wardrobe-categories__overlay {
+    padding-bottom: 56px;
   }
   .wardrobe-categories__title {
     font-family: 'Cormorant Garamond', Georgia, serif !important;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 300;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: #FFFFFF;
     margin: 0;
+    transition: letter-spacing 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .wardrobe-categories__card:hover .wardrobe-categories__title {
+    letter-spacing: 0.24em;
   }
   .wardrobe-categories__cta {
     font-family: 'Inter', -apple-system, sans-serif;
@@ -68,23 +80,51 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #B8965A;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .wardrobe-categories__card:hover .wardrobe-categories__cta {
+    opacity: 1;
+    transform: translateY(0);
   }
   .wardrobe-categories__header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 52px;
+  }
+  .wardrobe-categories__label {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #B8965A;
+    margin-bottom: 12px;
+    display: block;
   }
   .wardrobe-categories__heading {
     font-family: 'Cormorant Garamond', Georgia, serif !important;
-    font-size: 36px;
+    font-size: 42px;
     font-weight: 300;
     color: #1A1A1A;
     margin: 0;
   }
-  
+
+  /* Scroll-reveal */
+  .wc-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .wc-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   @media (max-width: 1024px) {
-    .wardrobe-categories__header { margin-bottom: 24px; }
-    .wardrobe-categories__heading { font-size: 28px; }
-    .wardrobe-categories { padding: 40px 0; }
+    .wardrobe-categories__header { margin-bottom: 28px; }
+    .wardrobe-categories__heading { font-size: 32px; }
+    .wardrobe-categories { padding: 64px 0; }
     .wardrobe-categories__container { padding: 0 16px; }
     .wardrobe-categories__grid { 
       grid-template-columns: 1fr; 
@@ -93,15 +133,17 @@
     .wardrobe-categories__image { aspect-ratio: 16/10; }
     .wardrobe-categories__overlay { padding: 24px 16px; }
     .wardrobe-categories__title { font-size: 20px; letter-spacing: 0.1em; }
+    .wardrobe-categories__cta { opacity: 1; transform: translateY(0); }
   }
 </style>
 
 <div class="wardrobe-categories" id="wardrobe-categories">
   <div class="wardrobe-categories__container">
-    <div class="wardrobe-categories__header">
+    <div class="wardrobe-categories__header wc-reveal">
+      <span class="wardrobe-categories__label">Collections</span>
       <h2 class="wardrobe-categories__heading">Shop by Category</h2>
     </div>
-    <div class="wardrobe-categories__grid">
+    <div class="wardrobe-categories__grid wc-reveal">
       <a href="/collections/sneakers" class="wardrobe-categories__card">
         <div class="wardrobe-categories__image">
           <div class="wardrobe-categories__image-placeholder">

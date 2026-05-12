@@ -1,0 +1,208 @@
+{{ 'wardrobe-base.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .wn-section {
+    background-color: #1A1A1A;
+    padding: 80px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wn-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(184, 150, 90, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .wn-container {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .wn-label {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #B8965A;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .wn-heading {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 300;
+    color: #FFFFFF;
+    margin: 0 0 12px;
+    line-height: 1.2;
+  }
+
+  .wn-subtext {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 32px;
+  }
+
+  .wn-form {
+    display: flex;
+    gap: 0;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .wn-input {
+    flex: 1;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 13px;
+    padding: 14px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-right: none;
+    background: transparent;
+    color: #FFFFFF;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+
+  .wn-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.04em;
+  }
+
+  .wn-input:focus {
+    border-color: #B8965A;
+  }
+
+  .wn-submit {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    background-color: #B8965A;
+    color: #1A1A1A;
+    border: 1px solid #B8965A;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    white-space: nowrap;
+  }
+
+  .wn-submit:hover {
+    background-color: transparent;
+    color: #B8965A;
+  }
+
+  .wn-privacy {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.35);
+    margin-top: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  .wn-privacy a {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* Scroll-reveal */
+  .wn-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .wn-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 1024px) {
+    .wn-section { padding: 64px 20px; }
+    .wn-form { flex-direction: column; gap: 12px; }
+    .wn-input { border-right: 1px solid rgba(255, 255, 255, 0.2); }
+    .wn-submit { width: 100%; }
+  }
+</style>
+
+<div class="wn-section">
+  <div class="wn-container wn-reveal">
+    <span class="wn-label">{{ section.settings.label }}</span>
+    <h2 class="wn-heading">{{ section.settings.heading }}</h2>
+    <p class="wn-subtext">{{ section.settings.subtext }}</p>
+    {%- form 'customer', id: 'newsletter-form' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <div class="wn-form">
+        <input
+          type="email"
+          name="contact[email]"
+          class="wn-input"
+          placeholder="{{ section.settings.placeholder }}"
+          required
+          autocomplete="email"
+          aria-label="Email address"
+        >
+        <button type="submit" class="wn-submit">{{ section.settings.button_text }}</button>
+      </div>
+    {%- endform -%}
+    <p class="wn-privacy">No spam. Unsubscribe anytime. <a href="/policies/privacy-policy">Privacy Policy</a></p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "Stay Updated"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Join the Inner Circle"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Be the first to know about new arrivals, exclusive drops, and special offers."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Input Placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "SUBSCRIBE"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter",
+      "category": "Wardrobe"
+    }
+  ]
+}
+{% endschema %}

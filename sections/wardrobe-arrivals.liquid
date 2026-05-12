@@ -3,8 +3,8 @@
 
 <style>
   .wa-section {
-    background-color: #FFFFFF;
-    padding: 80px 40px;
+    background-color: #FAFAFA;
+    padding: 100px 40px;
   }
 
   .wa-container {
@@ -16,8 +16,8 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 48px;
-    padding-bottom: 24px;
+    margin-bottom: 56px;
+    padding-bottom: 28px;
     border-bottom: 1px solid #E0E0E0;
   }
 
@@ -49,7 +49,7 @@
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #6B6560;
+    color: #999;
   }
 
   .wa-view-all {
@@ -63,7 +63,7 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    transition: gap 0.15s ease;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .wa-view-all:hover { gap: 10px; color: #1A1A1A; }
@@ -71,7 +71,18 @@
   .wa-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+    gap: 28px;
+  }
+
+  /* Scroll-reveal */
+  .wa-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .wa-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .wa-divider {
@@ -81,9 +92,9 @@
   }
 
   @media (max-width: 1024px) {
-    .wa-section { padding: 56px 20px; }
+    .wa-section { padding: 64px 20px; }
     .wa-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .wa-header { margin-bottom: 32px; }
+    .wa-header { margin-bottom: 36px; }
   }
 
   @media (max-width: 600px) {
@@ -94,7 +105,7 @@
 
 <div class="wa-section" id="wardrobe-arrivals">
   <div class="wa-container">
-    <div class="wa-header">
+    <div class="wa-header wa-reveal">
       <h2 class="wa-heading">
         This Week's <span class="wa-heading-accent">Arrivals</span>
       </h2>
@@ -106,7 +117,7 @@
       </div>
     </div>
 
-    <div class="wa-grid">
+    <div class="wa-grid wa-reveal">
       {%- assign arrivals_collection = collections[section.settings.featured_collection] -%}
       {%- if arrivals_collection != blank -%}
         {%- for product in arrivals_collection.products limit: section.settings.products_to_show -%}

@@ -14,11 +14,34 @@
     overflow: hidden;
   }
 
+  /* Subtle decorative corner accents */
+  .wh-section::before,
+  .wh-section::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border: 1px solid rgba(184, 150, 90, 0.15);
+    pointer-events: none;
+  }
+  .wh-section::before {
+    top: 40px;
+    left: 40px;
+    border-right: none;
+    border-bottom: none;
+  }
+  .wh-section::after {
+    bottom: 40px;
+    right: 40px;
+    border-left: none;
+    border-top: none;
+  }
+
   /* Hero logo */
   .wh-hero-logo {
-    margin-bottom: 32px;
+    margin-bottom: 36px;
     opacity: 0;
-    animation: wh-fade-up 0.8s ease forwards;
+    animation: wh-fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     animation-delay: 0ms;
   }
 
@@ -41,28 +64,28 @@
     }
   }
 
-  /* Decorative vertical rule — matches design reference */
+  /* Decorative vertical rule */
   .wh-rule {
     width: 1px;
     height: 64px;
-    background-color: #B8965A;
-    margin: 0 auto 32px;
+    background: linear-gradient(to bottom, transparent, #B8965A, transparent);
+    margin: 0 auto 36px;
     opacity: 0;
-    animation: wh-fade-down 0.8s ease forwards;
-    animation-delay: 0ms;
+    animation: wh-fade-down 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 100ms;
   }
 
   .wh-eyebrow {
     font-family: 'Inter', -apple-system, sans-serif;
     font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: #B8965A;
-    margin-bottom: 32px;
+    margin-bottom: 36px;
     opacity: 0;
-    animation: wh-fade-up 0.7s ease forwards;
-    animation-delay: 120ms;
+    animation: wh-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 200ms;
   }
 
   .wh-headline {
@@ -72,42 +95,42 @@
   .wh-title-main {
     display: block;
     font-family: 'Cormorant Garamond', Georgia, serif !important;
-    font-size: clamp(72px, 9vw, 112px);
+    font-size: clamp(72px, 9vw, 120px);
     font-weight: 300;
-    line-height: 0.95;
+    line-height: 0.92;
     color: #1A1A1A;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
     opacity: 0;
-    animation: wh-fade-up 0.8s ease forwards;
-    animation-delay: 220ms;
+    animation: wh-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 300ms;
   }
 
   .wh-title-accent {
     display: block;
     font-family: 'Cormorant Garamond', Georgia, serif !important;
-    font-size: clamp(72px, 9vw, 112px);
+    font-size: clamp(72px, 9vw, 120px);
     font-weight: 300;
     font-style: italic;
     line-height: 1.05;
     color: #B8965A;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
     opacity: 0;
-    animation: wh-fade-up 0.8s ease forwards;
-    animation-delay: 340ms;
+    animation: wh-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 420ms;
   }
 
   .wh-subtitle {
     font-family: 'Inter', -apple-system, sans-serif;
     font-size: 12px;
     font-weight: 400;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: #6B6560;
-    margin-top: 28px;
-    margin-bottom: 48px;
+    color: #999;
+    margin-top: 32px;
+    margin-bottom: 52px;
     opacity: 0;
-    animation: wh-fade-up 0.7s ease forwards;
-    animation-delay: 460ms;
+    animation: wh-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 540ms;
   }
 
   .wh-ctas {
@@ -117,23 +140,25 @@
     align-items: center;
     flex-wrap: wrap;
     opacity: 0;
-    animation: wh-fade-up 0.7s ease forwards;
-    animation-delay: 560ms;
+    animation: wh-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 650ms;
   }
 
   .wh-btn {
     font-family: 'Inter', -apple-system, sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 14px 32px;
+    padding: 16px 36px;
     display: inline-flex;
     align-items: center;
     border-radius: 0;
-    transition: background-color 0.15s ease, color 0.15s ease;
-    min-height: 48px;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    min-height: 50px;
+    position: relative;
+    overflow: hidden;
   }
 
   .wh-btn--primary {
@@ -143,8 +168,9 @@
   }
 
   .wh-btn--primary:hover {
-    background-color: #FFFFFF;
-    color: #1A1A1A;
+    background-color: #333;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   }
 
   .wh-btn--ghost {
@@ -156,16 +182,43 @@
   .wh-btn--ghost:hover {
     background-color: #1A1A1A;
     color: #FFFFFF;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   }
 
-  .wh-divider {
-    height: 1px;
-    background-color: #E0E0E0;
-    margin: 0;
+  /* Scroll indicator */
+  .wh-scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: wh-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 900ms;
+  }
+
+  .wh-scroll-hint__text {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #B8965A;
+  }
+
+  .wh-scroll-hint__line {
+    width: 1px;
+    height: 28px;
+    background: #B8965A;
+    animation: wh-pulse-line 2s ease-in-out infinite;
   }
 
   @keyframes wh-fade-up {
-    from { opacity: 0; transform: translateY(16px); }
+    from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
@@ -174,13 +227,20 @@
     to   { opacity: 0.7; transform: translateY(0); }
   }
 
+  @keyframes wh-pulse-line {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
+
   @media (max-width: 1024px) {
     .wh-section {
       min-height: 80vh;
       padding: 60px 24px 48px;
     }
+    .wh-section::before, .wh-section::after { display: none; }
     .wh-ctas { flex-direction: column; gap: 12px; }
     .wh-btn { width: 100%; max-width: 280px; justify-content: center; }
+    .wh-scroll-hint { display: none; }
   }
 
   @media (max-width: 600px) {
@@ -216,9 +276,12 @@
       {{ section.settings.secondary_text }}
     </a>
   </div>
-</div>
 
-<div class="wh-divider"></div>
+  <div class="wh-scroll-hint">
+    <span class="wh-scroll-hint__text">Scroll</span>
+    <span class="wh-scroll-hint__line"></span>
+  </div>
+</div>
 
 {% schema %}
 {
