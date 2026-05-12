@@ -2,7 +2,7 @@
 
 <style>
   .wh-section {
-    background-color: #FFFFFF;
+    background-color: #FAF8F5;
     min-height: 92vh;
     display: flex;
     flex-direction: column;
@@ -14,131 +14,76 @@
     overflow: hidden;
   }
 
-  /* Subtle decorative corner accents */
-  .wh-section::before,
-  .wh-section::after {
-    content: '';
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    border: 1px solid rgba(184, 150, 90, 0.15);
-    pointer-events: none;
-  }
-  .wh-section::before {
-    top: 40px;
-    left: 40px;
-    border-right: none;
-    border-bottom: none;
-  }
-  .wh-section::after {
-    bottom: 40px;
-    right: 40px;
-    border-left: none;
-    border-top: none;
-  }
-
-  /* Hero logo */
-  .wh-hero-logo {
-    margin-bottom: 36px;
-    opacity: 0;
-    animation: wh-fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 0ms;
-  }
-
-  .wh-hero-logo img {
-    height: 200px;
-    width: auto;
-    display: block;
-    margin: 0 auto;
-  }
-
-  @media (max-width: 1024px) {
-    .wh-hero-logo img {
-      height: 160px;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .wh-hero-logo img {
-      height: 130px;
-    }
-  }
-
-  /* Decorative vertical rule */
-  .wh-rule {
+  /* Top gold accent line */
+  .wh-accent-line {
     width: 1px;
-    height: 64px;
-    background: linear-gradient(to bottom, transparent, #B8965A, transparent);
-    margin: 0 auto 36px;
+    height: 48px;
+    background-color: #B8965A;
+    margin: 0 auto 48px;
     opacity: 0;
     animation: wh-fade-down 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 100ms;
+    animation-delay: 0ms;
   }
 
   .wh-eyebrow {
     font-family: 'Inter', -apple-system, sans-serif;
     font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.22em;
+    font-weight: 500;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
     color: #B8965A;
-    margin-bottom: 36px;
+    margin-bottom: 40px;
     opacity: 0;
     animation: wh-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 200ms;
+    animation-delay: 150ms;
+  }
+
+  /* Hero logo */
+  .wh-hero-logo {
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: wh-fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 250ms;
+  }
+
+  .wh-hero-logo img {
+    height: 100px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
   }
 
   .wh-headline {
-    margin-bottom: 20px;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: wh-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 350ms;
   }
 
-  .wh-title-main {
-    display: block;
+  .wh-headline h1 {
     font-family: 'Cormorant Garamond', Georgia, serif !important;
-    font-size: clamp(72px, 9vw, 120px);
+    font-size: clamp(64px, 10vw, 140px);
     font-weight: 300;
-    line-height: 0.92;
+    line-height: 0.95;
     color: #1A1A1A;
     letter-spacing: -0.02em;
-    opacity: 0;
-    animation: wh-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 300ms;
-  }
-
-  .wh-title-accent {
-    display: block;
-    font-family: 'Cormorant Garamond', Georgia, serif !important;
-    font-size: clamp(72px, 9vw, 120px);
-    font-weight: 300;
-    font-style: italic;
-    line-height: 1.05;
-    color: #B8965A;
-    letter-spacing: -0.02em;
-    opacity: 0;
-    animation: wh-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 420ms;
+    margin: 0;
   }
 
   .wh-subtitle {
-    font-family: 'Inter', -apple-system, sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-weight: 300;
+    font-style: italic;
     color: #999;
-    margin-top: 32px;
-    margin-bottom: 52px;
+    margin-bottom: 56px;
+    letter-spacing: 0.02em;
     opacity: 0;
     animation: wh-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 540ms;
+    animation-delay: 500ms;
   }
 
   .wh-ctas {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
     opacity: 0;
     animation: wh-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     animation-delay: 650ms;
@@ -146,44 +91,27 @@
 
   .wh-btn {
     font-family: 'Inter', -apple-system, sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 16px 36px;
+    padding: 18px 48px;
     display: inline-flex;
     align-items: center;
-    border-radius: 0;
-    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-    min-height: 50px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .wh-btn--primary {
+    justify-content: center;
     background-color: #1A1A1A;
     color: #FFFFFF;
     border: 1px solid #1A1A1A;
+    border-radius: 0;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    min-height: 54px;
   }
 
-  .wh-btn--primary:hover {
+  .wh-btn:hover {
     background-color: #333;
     transform: translateY(-1px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  }
-
-  .wh-btn--ghost {
-    background-color: transparent;
-    color: #1A1A1A;
-    border: 1px solid #1A1A1A;
-  }
-
-  .wh-btn--ghost:hover {
-    background-color: #1A1A1A;
-    color: #FFFFFF;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   }
 
   /* Scroll indicator */
@@ -237,43 +165,38 @@
       min-height: 80vh;
       padding: 60px 24px 48px;
     }
-    .wh-section::before, .wh-section::after { display: none; }
-    .wh-ctas { flex-direction: column; gap: 12px; }
-    .wh-btn { width: 100%; max-width: 280px; justify-content: center; }
+    .wh-hero-logo img { height: 80px; }
+    .wh-btn { width: 100%; max-width: 300px; }
     .wh-scroll-hint { display: none; }
   }
 
   @media (max-width: 600px) {
     .wh-section { min-height: 75vh; padding: 48px 20px 40px; }
-    .wh-rule { height: 48px; margin-bottom: 24px; }
-    .wh-subtitle { margin-top: 20px; margin-bottom: 36px; }
+    .wh-accent-line { height: 36px; margin-bottom: 32px; }
+    .wh-hero-logo img { height: 70px; }
+    .wh-eyebrow { margin-bottom: 28px; }
+    .wh-subtitle { margin-bottom: 40px; }
   }
 </style>
 
 <div class="wh-section" id="wardrobe-hero">
+  <div class="wh-accent-line"></div>
+
+  <div class="wh-eyebrow">{{ section.settings.eyebrow_text }}</div>
+
   <div class="wh-hero-logo">
     <img src="{{ 'wardrobe-logo.png' | asset_url }}" alt="{{ shop.name }}">
   </div>
 
-  <div class="wh-rule"></div>
-
-  <div class="wh-eyebrow">{{ section.settings.eyebrow_text }}</div>
-
   <div class="wh-headline">
-    <h1>
-      <span class="wh-title-main">{{ section.settings.title_main }}</span>
-      <span class="wh-title-accent">{{ section.settings.title_accent }}</span>
-    </h1>
+    <h1>{{ section.settings.title_main }}</h1>
   </div>
 
   <div class="wh-subtitle">{{ section.settings.subtitle }}</div>
 
   <div class="wh-ctas">
-    <a href="{{ section.settings.primary_link }}" class="wh-btn wh-btn--primary">
+    <a href="{{ section.settings.primary_link }}" class="wh-btn">
       {{ section.settings.primary_text }}
-    </a>
-    <a href="{{ section.settings.secondary_link }}" class="wh-btn wh-btn--ghost">
-      {{ section.settings.secondary_text }}
     </a>
   </div>
 
@@ -293,49 +216,31 @@
       "type": "text",
       "id": "eyebrow_text",
       "label": "Eyebrow Text",
-      "default": "POLICE BAZAR, SHILLONG · EST. 2023"
+      "default": "EST. SHILLONG, MEGHALAYA"
     },
     {
       "type": "text",
       "id": "title_main",
-      "label": "Title — Line 1",
-      "default": "Selected"
-    },
-    {
-      "type": "text",
-      "id": "title_accent",
-      "label": "Title — Line 2 (italic gold)",
-      "default": "Acquisitions."
+      "label": "Title",
+      "default": "The Wardrobe"
     },
     {
       "type": "text",
       "id": "subtitle",
       "label": "Subtitle",
-      "default": "POLICE BAZAR, SHILLONG — CURATED RESELLER"
+      "default": "Shillong's Premium Fashion Destination"
     },
     {
       "type": "text",
       "id": "primary_link",
-      "label": "Primary Button Link",
-      "default": "/collections/sneakers"
+      "label": "Button Link",
+      "default": "/collections/all"
     },
     {
       "type": "text",
       "id": "primary_text",
-      "label": "Primary Button Text",
-      "default": "SHOP SNEAKERS"
-    },
-    {
-      "type": "text",
-      "id": "secondary_link",
-      "label": "Secondary Button Link",
-      "default": "/collections/accessories"
-    },
-    {
-      "type": "text",
-      "id": "secondary_text",
-      "label": "Secondary Button Text",
-      "default": "VIEW ACCESSORIES"
+      "label": "Button Text",
+      "default": "EXPLORE COLLECTION"
     }
   ],
   "presets": [

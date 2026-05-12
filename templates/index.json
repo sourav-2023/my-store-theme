@@ -3,14 +3,11 @@
     "wardrobe-hero-v2": {
       "type": "wardrobe-hero-v2",
       "settings": {
-        "eyebrow_text": "POLICE BAZAR, SHILLONG · EST. 2023",
-        "title_main": "Selected",
-        "title_accent": "Acquisitions.",
-        "subtitle": "POLICE BAZAR, SHILLONG — CURATED RESELLER",
-        "primary_link": "/collections/sneakers",
-        "primary_text": "SHOP SNEAKERS",
-        "secondary_link": "/collections/accessories",
-        "secondary_text": "VIEW ACCESSORIES"
+        "eyebrow_text": "EST. SHILLONG, MEGHALAYA",
+        "title_main": "The Wardrobe",
+        "subtitle": "Shillong's Premium Fashion Destination",
+        "primary_link": "/collections/all",
+        "primary_text": "EXPLORE COLLECTION"
       }
     },
     "wardrobe-marquee": {
