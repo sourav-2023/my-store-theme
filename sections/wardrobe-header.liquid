@@ -20,7 +20,7 @@
     align-items: center;
   }
 
-  /* Logo — left-aligned on desktop */
+  /* Logo — shared styles */
   .wh-logo {
     text-decoration: none;
     display: flex;
@@ -49,13 +49,23 @@
     opacity: 0.8;
   }
 
+  /* Desktop logo in left column, mobile logo centered */
+  .wh-logo--mobile {
+    display: none;
+    justify-content: center;
+  }
+
+  .wh-logo--mobile .wh-logo__monogram {
+    height: 70px;
+  }
+
   @media (max-width: 1024px) {
-    .wh-logo__monogram {
-      height: 70px;
+    .wh-logo--desktop {
+      display: none;
     }
 
-    .wh-logo__text {
-      display: none;
+    .wh-logo--mobile {
+      display: flex;
     }
   }
 
@@ -279,6 +289,11 @@
     }
 
     .wh-header__center {
+      display: flex;
+      justify-content: center;
+    }
+
+    .wh-header__center .wh-nav-wrapper {
       display: none;
     }
 
@@ -300,14 +315,17 @@
         </svg>
       </button>
 
-      <a href="/" class="wh-logo">
+      <a href="/" class="wh-logo wh-logo--desktop">
         <img src="{{ 'wardrobe-w-monogram.png' | asset_url }}" alt="{{ shop.name }}" class="wh-logo__monogram">
         <span class="wh-logo__text">The Wardrobe Shillong</span>
       </a>
     </div>
 
-    <!-- Center: Navigation (desktop) -->
+    <!-- Center: Navigation (desktop) / Logo (mobile) -->
     <div class="wh-header__center">
+      <a href="/" class="wh-logo wh-logo--mobile">
+        <img src="{{ 'wardrobe-w-monogram.png' | asset_url }}" alt="{{ shop.name }}" class="wh-logo__monogram">
+      </a>
       <nav aria-label="Main navigation" class="wh-nav-wrapper">
         <ul class="wh-nav">
           <li class="wh-nav__item">
