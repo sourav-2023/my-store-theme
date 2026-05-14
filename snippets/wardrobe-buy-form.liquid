@@ -75,15 +75,10 @@
     <button 
       type="submit" 
       name="add" 
-      class="wardrobe-button wardrobe-button--primary wardrobe-button--full wardrobe-button--add-to-cart{% if product.selected_or_first_available_variant.available == false %} disabled{% endif %}"
-      {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+      class="wardrobe-button wardrobe-button--primary wardrobe-button--full wardrobe-button--add-to-cart"
     >
       <span class="wardrobe-button-text">
-        {%- if product.selected_or_first_available_variant.available -%}
-          {{ 'products.product.add_to_cart' | t }}
-        {%- else -%}
-          {{ 'products.product.sold_out' | t }}
-        {%- endif -%}
+        {{ 'products.product.add_to_cart' | t }}
       </span>
       <span class="wardrobe-loading-spinner" hidden>
         {% render 'loading-spinner' %}

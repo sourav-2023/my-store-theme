@@ -182,15 +182,10 @@ class WardrobeProduct {
       const buttonText = addToCartButton.querySelector('.wardrobe-button-text');
       const loadingSpinner = addToCartButton.querySelector('.wardrobe-loading-spinner');
 
-      if (selectedVariant.available) {
-        addToCartButton.disabled = false;
-        if (buttonText) buttonText.textContent = 'Add to Cart';
-        if (loadingSpinner) loadingSpinner.setAttribute('hidden', '');
-      } else {
-        addToCartButton.disabled = true;
-        if (buttonText) buttonText.textContent = 'Sold Out';
-        if (loadingSpinner) loadingSpinner.setAttribute('hidden', '');
-      }
+      // Always allow add to cart regardless of Shopify inventory
+      addToCartButton.disabled = false;
+      if (buttonText) buttonText.textContent = 'Add to Cart';
+      if (loadingSpinner) loadingSpinner.setAttribute('hidden', '');
 
       // Update stock status
       this.updateStockStatus(selectedVariant);
