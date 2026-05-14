@@ -236,13 +236,12 @@ class WardrobeProduct {
         // Sync with main form and submit
         const mainForm = document.querySelector('#wardrobe-product-form');
         if (mainForm) {
-          const mainFormId = mainForm.querySelector('input[name="id"]');
-          const mobileFormId = mobileForm.querySelector('input[name="id"]');
-          
-          if (mainFormId && mobileFormId) {
-            mainFormId.value = mobileFormId.value;
-            mainForm.dispatchEvent(new Event('submit', { bubbles: true }));
+          const mainInput = mainForm.querySelector('input[name="id"]');
+          const mobileInput = mobileForm.querySelector('input[name="id"]');
+          if (mainInput && mobileInput) {
+            mainInput.value = mobileInput.value;
           }
+          mainForm.requestSubmit();
         }
       });
     }
