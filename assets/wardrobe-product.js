@@ -239,7 +239,9 @@ class WardrobeProduct {
   }
 
   initProductForm() {
-    const productForm = document.querySelector('#wardrobe-product-form');
+    const productForm =
+      document.querySelector('#wardrobe-product-form') ||
+      document.querySelector('form[action="/cart/add"]');
     if (!productForm) return;
 
     productForm.addEventListener('submit', (e) => {
