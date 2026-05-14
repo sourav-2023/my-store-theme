@@ -3,7 +3,7 @@
 {%- endcomment -%}
 
 {%- form 'product', product, id: "wardrobe-product-form", novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
-  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
+  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
   
   <!-- Variant Selector -->
   {%- unless product.has_only_default_variant -%}
@@ -20,9 +20,10 @@
                 id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
                 name="{{ option.name }}"
                 value="{{ value | escape }}"
-                form="{{ product_form_id }}"
+                form="wardrobe-product-form"
                 {% if option.selected_value == value %}checked{% endif %}
                 class="wardrobe-variant-input"
+                data-option-position="{{ option.position }}"
               >
               <label 
                 for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
@@ -59,7 +60,7 @@
           id="Quantity-{{ section.id }}" 
           min="1" 
           value="1" 
-          form="{{ product_form_id }}"
+          form="wardrobe-product-form"
         >
         <button class="wardrobe-quantity-button" name="plus" type="button">
           <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: product.title | escape }}</span>

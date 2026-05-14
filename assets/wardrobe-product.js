@@ -123,17 +123,47 @@ class WardrobeProduct {
   }
 
   handleVariantChange(variantSelect) {
-    const formData = new FormData(variantSelect.closest('form'));
-    const variantId = formData.get('id');
+    // Get all checked radio inputs
+    const checkedInputs = variantSelect.querySelectorAll('.wardrobe-variant-input:checked');
+    const selectedOptions = Array.from(checkedInputs).map(input => input.value);
     
-    // Update hidden input
-    const hiddenInput = variantSelect.querySelector('input[name="id"][type="hidden"]');
-    if (hiddenInput) {
-      hiddenInput.value = variantId;
-    }
+    // Find matching variant from the JSON data
+    const variantsData = variantSelect.querySelector('[data-product-variants]');
+    if (!variantsData) return;
+    
+    try {
+      const variants = JSON.parse(variantsData.textContent);
+      
+      // Find variant matching all selected options
+      const selectedVariant = variants.find(variant => {
+        return variant.options.every((option, index) => {
+          return option === selectedOptions[index];
+        });
+      });
+      
+      if (!selectedVariant) return;
+      
+      // Update hidden input with correct variant ID
+      const form = variantSelect.closest('form');
+      const hiddenInput = form.querySelector('input[name="id"][type="hidden"]');
+      if (hiddenInput) {
+        hiddenInput.value = selectedVariant.id;
+      }
+      
+      // Also update mobile sticky form
+      const mobileForm = document.querySelector('.wardrobe-product-hero__mobile-sticky-form');
+      if (mobileForm) {
+        const mobileInput = mobileForm.querySelector('input[name="id"]');
+        if (mobileInput) {
+          mobileInput.value = selectedVariant.id;
+        }
+      }
 
-    // Update button states
-    this.updateButtonStates(variantId);
+      // Update button states
+      this.updateButtonStates(selectedVariant.id.toString());
+    } catch (error) {
+      console.error('Error finding selected variant:', error);
+    }
   }
 
   updateButtonStates(variantId) {
