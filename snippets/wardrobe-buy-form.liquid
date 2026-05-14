@@ -90,19 +90,6 @@
     {%- endif -%}
   </div>
 
-  <!-- Stock Status -->
-  {%- if product.selected_or_first_available_variant.inventory_management == 'shopify' -%}
-    {%- if product.selected_or_first_available_variant.inventory_quantity <= 1 and product.selected_or_first_available_variant.inventory_quantity > 0 -%}
-      <div class="wardrobe-stock-status wardrobe-stock-status--low">
-        Only {{ product.selected_or_first_available_variant.inventory_quantity }} left.
-      </div>
-    {%- elsif product.selected_or_first_available_variant.inventory_quantity <= 0 -%}
-      <div class="wardrobe-stock-status wardrobe-stock-status--out">
-        {{ 'products.product.inventory.out_of_stock' | t }}
-      </div>
-    {%- endif -%}
-  {%- endif -%}
-
   <!-- Pickup Availability -->
   {%- assign pick_up_availabilities = product.selected_or_first_available_variant.store_availabilities | where: 'pick_up_enabled', true -%}
   {%- if pick_up_availabilities.size > 0 -%}

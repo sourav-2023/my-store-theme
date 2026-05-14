@@ -186,32 +186,8 @@ class WardrobeProduct {
       addToCartButton.disabled = false;
       if (buttonText) buttonText.textContent = 'Add to Cart';
       if (loadingSpinner) loadingSpinner.setAttribute('hidden', '');
-
-      // Update stock status
-      this.updateStockStatus(selectedVariant);
     } catch (error) {
       console.error('Error parsing variants data:', error);
-    }
-  }
-
-  updateStockStatus(variant) {
-    const stockStatus = document.querySelector('.wardrobe-stock-status');
-    if (!stockStatus) return;
-
-    if (variant.inventory_management === 'shopify') {
-      if (variant.inventory_quantity <= 1 && variant.inventory_quantity > 0) {
-        stockStatus.textContent = `Only ${variant.inventory_quantity} left.`;
-        stockStatus.className = 'wardrobe-stock-status wardrobe-stock-status--low';
-        stockStatus.style.display = 'block';
-      } else if (variant.inventory_quantity <= 0) {
-        stockStatus.textContent = 'Out of stock';
-        stockStatus.className = 'wardrobe-stock-status wardrobe-stock-status--out';
-        stockStatus.style.display = 'block';
-      } else {
-        stockStatus.style.display = 'none';
-      }
-    } else {
-      stockStatus.style.display = 'none';
     }
   }
 
