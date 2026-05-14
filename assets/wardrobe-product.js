@@ -13,6 +13,7 @@ class WardrobeProduct {
     this.initAccordions();
     this.initVariantSelectors();
     this.initMobileSticky();
+    this.initProductForm();
   }
 
   // Gallery functionality
@@ -227,24 +228,75 @@ class WardrobeProduct {
 
     window.addEventListener('scroll', requestTick);
 
-    // Handle mobile sticky form submission
     const mobileForm = mobileSticky.querySelector('form');
     if (mobileForm) {
       mobileForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        
-        // Sync with main form and submit
-        const mainForm = document.querySelector('#wardrobe-product-form');
-        if (mainForm) {
-          const mainInput = mainForm.querySelector('input[name="id"]');
-          const mobileInput = mobileForm.querySelector('input[name="id"]');
-          if (mainInput && mobileInput) {
-            mainInput.value = mobileInput.value;
-          }
-          mainForm.requestSubmit();
-        }
+        const mobileInput = mobileForm.querySelector('input[name="id"]');
+        this.addToCart(mobileInput?.value);
       });
     }
+  }
+
+  initProductForm() {
+    const productForm = document.querySelector('#wardrobe-product-form');
+    if (!productForm) return;
+
+    productForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const variantInput = productForm.querySelector('input[name="id"]');
+      this.addToCart(variantInput?.value);
+    });
+  }
+
+  addToCart(variantId) {
+    if (!variantId) {
+      const variantsData = document.querySelector('[data-product-variants]');
+      if (variantsData) {
+        try {
+          const variants = JSON.parse(variantsData.textContent);
+          if (variants.length > 0) variantId = String(variants[0].id);
+        } catch (e) {}
+      }
+    }
+    if (!variantId) return;
+
+    const btn = document.querySelector('.wardrobe-button--add-to-cart');
+    const btnText = btn?.querySelector('.wardrobe-button-text');
+    const spinner = btn?.querySelector('.wardrobe-loading-spinner');
+
+    if (btn) btn.disabled = true;
+    if (btnText) btnText.textContent = 'Adding...';
+    if (spinner) spinner.removeAttribute('hidden');
+
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+      body: JSON.stringify({ id: Number(variantId), quantity: 1 })
+    })
+      .then(res => {
+        if (!res.ok) return res.json().then(err => Promise.reject(err));
+        return res.json();
+      })
+      .then(() => {
+        window.location.href = '/cart';
+      })
+      .catch(err => {
+        if (btn) btn.disabled = false;
+        if (btnText) btnText.textContent = 'Add to Cart';
+        if (spinner) spinner.setAttribute('hidden', '');
+
+        const msg = err?.description || err?.message || 'Could not add to cart. Please try again.';
+        let errorEl = document.querySelector('.wardrobe-cart-error');
+        if (!errorEl) {
+          errorEl = document.createElement('p');
+          errorEl.className = 'wardrobe-cart-error';
+          errorEl.style.cssText = 'color:#b00;margin-top:8px;font-size:14px;';
+          const buyButtons = document.querySelector('.wardrobe-buy-buttons');
+          if (buyButtons) buyButtons.insertAdjacentElement('afterend', errorEl);
+        }
+        errorEl.textContent = msg;
+      });
   }
 }
 
@@ -253,46 +305,6 @@ document.addEventListener('DOMContentLoaded', () => {
   new WardrobeProduct();
 });
 
-// Handle Shopify cart events
-document.addEventListener('DOMContentLoaded', () => {
-  // Listen for cart updates
-  document.addEventListener('cart:updated', () => {
-    // Update cart count badge
-    const cartCount = document.querySelector('.cart-count-bubble');
-    if (cartCount) {
-      fetch('/cart.js')
-        .then(response => response.json())
-        .then(cart => {
-          cartCount.textContent = cart.item_count;
-          cartCount.style.display = cart.item_count > 0 ? 'flex' : 'none';
-        })
-        .catch(error => console.error('Error fetching cart:', error));
-    }
-  });
-
-  // Handle add to cart loading states
-  const addToCartForms = document.querySelectorAll('form[action="/cart/add"]');
-  addToCartForms.forEach(form => {
-    form.addEventListener('submit', (e) => {
-      const submitButton = form.querySelector('button[type="submit"]');
-      if (!submitButton) return;
-
-      const buttonText = submitButton.querySelector('.wardrobe-button-text');
-      const loadingSpinner = submitButton.querySelector('.wardrobe-loading-spinner');
-
-      if (buttonText) buttonText.textContent = 'Adding...';
-      if (loadingSpinner) loadingSpinner.removeAttribute('hidden');
-      submitButton.disabled = true;
-
-      // Reset after a timeout (in case of errors)
-      setTimeout(() => {
-        if (buttonText) buttonText.textContent = 'Add to Cart';
-        if (loadingSpinner) loadingSpinner.setAttribute('hidden', '');
-        submitButton.disabled = false;
-      }, 3000);
-    });
-  });
-});
 
 // Handle resize events for accordion behavior
 let resizeTimer;
