@@ -1,0 +1,242 @@
+{{ 'wardrobe-base.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .wcf {
+    background-color: #F5F0E8;
+    padding: 80px 40px;
+  }
+
+  .wcf__container {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .wcf__eyebrow {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #B8965A;
+    margin: 0 0 16px;
+  }
+
+  .wcf__heading {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-size: 42px;
+    font-weight: 300;
+    color: #1A1A1A;
+    margin: 0 0 8px;
+    line-height: 1.2;
+  }
+
+  .wcf__subhead {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 15px;
+    color: #6B6560;
+    margin: 0 0 48px;
+    line-height: 1.6;
+  }
+
+  .wcf__form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .wcf__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .wcf__field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .wcf__label {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #1A1A1A;
+  }
+
+  .wcf__input,
+  .wcf__textarea {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 15px;
+    color: #1A1A1A;
+    background: #FFFFFF;
+    border: 1px solid #E8E3DA;
+    padding: 14px 16px;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.15s ease;
+    -webkit-appearance: none;
+    border-radius: 0;
+    box-sizing: border-box;
+  }
+
+  .wcf__input:focus,
+  .wcf__textarea:focus {
+    border-color: #B8965A;
+  }
+
+  .wcf__textarea {
+    min-height: 140px;
+    resize: vertical;
+  }
+
+  .wcf__submit {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: #1A1A1A;
+    border: none;
+    padding: 16px 40px;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background 0.15s ease;
+  }
+
+  .wcf__submit:hover {
+    background: #B8965A;
+  }
+
+  .wcf__success {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 15px;
+    color: #1A1A1A;
+    background: #EBF5EB;
+    border: 1px solid #C3DEC3;
+    padding: 16px 20px;
+    display: none;
+  }
+
+  .wcf__error {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 13px;
+    color: #C0392B;
+  }
+
+  @media (max-width: 1024px) {
+    .wcf {
+      padding: 48px 20px;
+    }
+
+    .wcf__heading {
+      font-size: 32px;
+    }
+
+    .wcf__row {
+      grid-template-columns: 1fr;
+    }
+
+    .wcf__submit {
+      align-self: stretch;
+      text-align: center;
+    }
+  }
+</style>
+
+<section class="wcf">
+  <div class="wcf__container">
+    <p class="wcf__eyebrow">Get In Touch</p>
+    <h2 class="wcf__heading">Send Us a Message</h2>
+    <p class="wcf__subhead">We respond within one business day. For faster replies, reach us on WhatsApp.</p>
+
+    {%- form 'contact', id: 'wardrobe-contact-form' -%}
+      {%- if form.posted_successfully? -%}
+        <div class="wcf__success" style="display:block;">
+          Your message has been received. We will be in touch shortly.
+        </div>
+      {%- endif -%}
+
+      {%- if form.errors -%}
+        <div class="wcf__error">
+          {%- for error in form.errors -%}
+            <p>{{ form.errors.messages[error] }}</p>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      <div class="wcf__form">
+        <div class="wcf__row">
+          <div class="wcf__field">
+            <label class="wcf__label" for="ContactFormName">Name</label>
+            <input
+              class="wcf__input"
+              type="text"
+              id="ContactFormName"
+              name="contact[name]"
+              value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+              autocomplete="name"
+              required
+            >
+          </div>
+          <div class="wcf__field">
+            <label class="wcf__label" for="ContactFormEmail">Email</label>
+            <input
+              class="wcf__input"
+              type="email"
+              id="ContactFormEmail"
+              name="contact[email]"
+              value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+              autocomplete="email"
+              autocorrect="off"
+              autocapitalize="off"
+              required
+            >
+          </div>
+        </div>
+
+        <div class="wcf__field">
+          <label class="wcf__label" for="ContactFormPhone">Phone (optional)</label>
+          <input
+            class="wcf__input"
+            type="tel"
+            id="ContactFormPhone"
+            name="contact[phone]"
+            value="{{ form.phone }}"
+            autocomplete="tel"
+            placeholder="+91 XXXXX XXXXX"
+          >
+        </div>
+
+        <div class="wcf__field">
+          <label class="wcf__label" for="ContactFormBody">Message</label>
+          <textarea
+            class="wcf__textarea"
+            id="ContactFormBody"
+            name="contact[body]"
+            required
+          >{{ form.body }}</textarea>
+        </div>
+
+        <button type="submit" class="wcf__submit">Send Message</button>
+      </div>
+    {%- endform -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact Form",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Contact Form",
+      "category": "Wardrobe"
+    }
+  ]
+}
+{% endschema %}
