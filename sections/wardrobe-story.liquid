@@ -145,9 +145,12 @@
             width="800"
           >
         {%- else -%}
-          <div class="wardrobe-story__image-placeholder">
-            <span class="wardrobe-story__placeholder-text">THE WARDROBE</span>
-          </div>
+          <img
+            src="{{ 'wardrobe-store.webp' | asset_url }}"
+            alt="The Wardrobe Shillong — Police Bazar"
+            class="wardrobe-story__store-photo"
+            loading="lazy"
+          >
         {%- endif -%}
       </div>
     </div>

@@ -70,7 +70,7 @@
       loading="eager"
     >
   {%- else -%}
-    {%- assign fallback_image = 'collection-' | append: collection.handle | append: '.jpg' -%}
+    {%- assign fallback_image = 'collection-' | append: collection.handle | append: '.avif' -%}
     <img
       src="{{ fallback_image | asset_url }}"
       alt="{{ collection.title }}"
