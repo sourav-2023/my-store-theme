@@ -26,32 +26,56 @@
     text-decoration: none;
     display: flex;
     align-items: center;
+    gap: 14px;
     flex-shrink: 0;
+    transition: opacity 0.15s ease;
   }
 
-  .wh-logo:hover {
-    opacity: 0.85;
-  }
+  .wh-logo:hover { opacity: 0.8; }
 
-  .wh-logo__full {
-    height: 48px;
+  .wh-logo__monogram {
+    height: 42px;
     width: auto;
     display: block;
   }
 
-  .wh-logo__monogram {
-    height: 38px;
-    width: auto;
-    display: none;
+  .wh-logo__text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .wh-logo__name {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #1A1A1A;
+    line-height: 1;
+  }
+
+  .wh-logo__city {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-size: 11px;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.14em;
+    color: #6B7280;
+    line-height: 1;
+    text-align: center;
   }
 
   @media (max-width: 1024px) {
-    .wh-logo__full {
-      display: none;
+    .wh-header { position: relative; }
+    .wh-logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      gap: 0;
     }
-    .wh-logo__monogram {
-      display: block;
-    }
+    .wh-logo__text { display: none; }
+    .wh-logo__monogram { height: 40px; }
   }
 
   /* Navigation */
@@ -281,18 +305,15 @@
 
     <!-- Logo -->
     <a href="/" class="wh-logo" aria-label="{{ shop.name }}">
-      <!-- Desktop: full logo (W monogram + The Wardrobe Shillong text) -->
-      <img
-        src="{{ 'wardrobe-logo-full.png' | asset_url }}"
-        alt="{{ shop.name }}"
-        class="wh-logo__full"
-      >
-      <!-- Mobile: W monogram only -->
       <img
         src="{{ 'wardrobe-monogram.png' | asset_url }}"
         alt="{{ shop.name }}"
         class="wh-logo__monogram"
       >
+      <div class="wh-logo__text">
+        <span class="wh-logo__name">The Wardrobe</span>
+        <span class="wh-logo__city">Shillong</span>
+      </div>
     </a>
 
     <!-- Desktop Navigation -->
