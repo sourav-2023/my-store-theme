@@ -5,130 +5,144 @@
     background-color: #FFFFFF;
     padding: 0;
   }
+
   .wardrobe-story__container {
     max-width: 1400px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: 600px;
+    min-height: 640px;
   }
+
+  .wardrobe-story__image {
+    overflow: hidden;
+  }
+
   .wardrobe-story__image-wrapper {
     width: 100%;
     height: 100%;
-    min-height: 560px;
+    min-height: 600px;
     overflow: hidden;
   }
+
   .wardrobe-story__store-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.6s ease;
+    transition: transform 0.7s ease;
   }
+
   .wardrobe-story__image:hover .wardrobe-story__store-photo {
-    transform: scale(1.02);
+    transform: scale(1.03);
   }
-  .wardrobe-story__image-placeholder {
-    width: 100%;
-    height: 100%;
-    min-height: 560px;
-    background-color: #1A1A1A;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .wardrobe-story__placeholder-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-weight: 300;
-    letter-spacing: 0.3em;
-    color: #B8965A;
-    text-transform: uppercase;
-  }
+
   .wardrobe-story__content {
-    padding: 80px 72px;
+    padding: 72px 72px 72px 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background: #FFFFFF;
   }
+
   .wardrobe-story__label-wrapper {
     display: flex;
     align-items: center;
     gap: 16px;
-    margin-bottom: 28px;
+    margin-bottom: 32px;
   }
+
   .wardrobe-story__line {
-    width: 32px;
+    width: 40px;
     height: 1px;
     background-color: #B8965A;
     flex-shrink: 0;
   }
+
   .wardrobe-story__label {
     font-family: 'Inter', -apple-system, sans-serif;
     font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.16em;
+    font-weight: 600;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: #B8965A;
   }
+
   .wardrobe-story__title {
     font-family: 'Cormorant Garamond', Georgia, serif !important;
-    font-size: clamp(32px, 3.5vw, 48px);
+    font-size: clamp(36px, 3.8vw, 56px);
     font-weight: 300;
-    line-height: 1.15;
+    line-height: 1.1;
     color: #1A1A1A;
-    margin: 0 0 28px;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
   }
+
+  .wardrobe-story__title em {
+    font-style: italic;
+    color: #B8965A;
+  }
+
+  .wardrobe-story__separator {
+    width: 48px;
+    height: 1px;
+    background: #E8E8E8;
+    margin: 28px 0;
+  }
+
   .wardrobe-story__text {
     font-family: 'Inter', -apple-system, sans-serif;
-    font-size: 15px;
-    line-height: 1.75;
+    font-size: 14px;
+    line-height: 1.8;
     color: #6B7280;
-    margin-bottom: 40px;
+    margin-bottom: 44px;
+    max-width: 440px;
   }
-  .wardrobe-story__text p { margin: 0 0 16px; }
+
+  .wardrobe-story__text p { margin: 0 0 14px; }
   .wardrobe-story__text p:last-child { margin-bottom: 0; }
+
+  .wardrobe-story__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #1A1A1A;
+    text-decoration: none;
+    border-bottom: 1px solid #1A1A1A;
+    padding-bottom: 4px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+    align-self: flex-start;
+  }
+
+  .wardrobe-story__btn:hover {
+    color: #B8965A;
+    border-color: #B8965A;
+  }
+
+  .wardrobe-story__btn-arrow {
+    transition: transform 0.2s ease;
+  }
+
+  .wardrobe-story__btn:hover .wardrobe-story__btn-arrow {
+    transform: translateX(4px);
+  }
+
   @media (max-width: 1024px) {
-    .wardrobe-story { display: block !important; visibility: visible !important; }
-    .wardrobe-story__container { 
-      display: grid !important;
-      grid-template-columns: 1fr; 
-      min-height: auto; 
-      visibility: visible !important;
+    .wardrobe-story__container {
+      grid-template-columns: 1fr;
+      min-height: auto;
     }
-    .wardrobe-story__image { display: block !important; }
-    .wardrobe-story__content { display: flex !important; }
-    .wardrobe-story__image-wrapper { min-height: 240px; }
-    .wardrobe-story__image-placeholder { min-height: 240px; }
-    .wardrobe-story__placeholder-text { 
-      font-size: 18px; 
-      letter-spacing: 0.12em;
-      padding: 0 16px;
-      text-align: center;
-      word-break: break-word;
-    }
-    .wardrobe-story__content { padding: 32px 20px 40px; }
-    .wardrobe-story__label-wrapper { margin-bottom: 20px; }
-    .wardrobe-story__line { width: 24px; }
-    .wardrobe-story__label { font-size: 10px; letter-spacing: 0.14em; }
-    .wardrobe-story__title { 
-      font-size: 26px; 
-      line-height: 1.2;
-      margin-bottom: 20px;
-      word-break: break-word;
-    }
-    .wardrobe-story__text { 
-      font-size: 14px; 
-      line-height: 1.6;
-      margin-bottom: 28px;
-    }
-    .wardrobe-story__text p { margin-bottom: 12px; }
-    .wardrobe-story .wardrobe-button { 
-      width: 100%; 
-      justify-content: center;
-      padding: 14px 20px;
-      font-size: 11px;
-    }
+    .wardrobe-story__image-wrapper { min-height: 280px; }
+    .wardrobe-story__content { padding: 40px 24px 48px; }
+    .wardrobe-story__label-wrapper { margin-bottom: 24px; }
+    .wardrobe-story__separator { margin: 20px 0; }
+    .wardrobe-story__text { font-size: 14px; margin-bottom: 32px; max-width: 100%; }
+    .wardrobe-story__btn { align-self: stretch; justify-content: center; }
   }
 </style>
 
@@ -157,19 +171,20 @@
     <div class="wardrobe-story__content">
       <div class="wardrobe-story__label-wrapper">
         <span class="wardrobe-story__line"></span>
-        <span class="wardrobe-story__label">OUR STORY</span>
+        <span class="wardrobe-story__label">Our Story</span>
       </div>
       <h2 class="wardrobe-story__title">{{ section.settings.title }}</h2>
+      <div class="wardrobe-story__separator"></div>
       <div class="wardrobe-story__text">
         {%- if section.settings.body != blank -%}
           {{ section.settings.body }}
         {%- else -%}
-          <p>The Wardrobe was born from a simple belief — that the hills of Meghalaya deserve access to the same quality and curation found in India's fashion capitals. We source from the best — global brands, independent labels, and timeless classics.</p>
-          <p>From Police Bazar to your door. Every piece in our collection is hand-selected for quality, fit, and longevity. We believe fashion should be an investment, not just a purchase.</p>
+          <p>The Wardrobe was born from a simple belief — that the hills of Meghalaya deserve access to the same quality and curation found in India's fashion capitals.</p>
+          <p>From Police Bazar to your door. Every piece is hand-selected for quality, fit, and longevity. Fashion should be an investment, not just a purchase.</p>
         {%- endif -%}
       </div>
-      <a href="/pages/about" class="wardrobe-button wardrobe-button--ghost">
-        DISCOVER MORE →
+      <a href="/pages/about" class="wardrobe-story__btn">
+        Discover More <span class="wardrobe-story__btn-arrow">→</span>
       </a>
     </div>
   </div>

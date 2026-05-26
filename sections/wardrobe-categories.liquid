@@ -1,140 +1,199 @@
 {{ 'wardrobe-base.css' | asset_url | stylesheet_tag }}
 
 <style>
-  .wardrobe-categories {
+  .wcat {
     background-color: #FFFFFF;
-    padding: 60px 0;
+    padding: 72px 0 80px;
   }
-  .wardrobe-categories__container {
+
+  .wcat__container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 40px;
   }
-  .wardrobe-categories__grid {
+
+  .wcat__header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .wcat__rule {
+    width: 1px;
+    height: 40px;
+    background-color: #B8965A;
+    margin: 0 auto 20px;
+  }
+
+  .wcat__eyebrow {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #B8965A;
+    margin-bottom: 14px;
+  }
+
+  .wcat__heading {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 300;
+    color: #1A1A1A;
+    margin: 0;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+
+  .wcat__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 2px;
   }
-  .wardrobe-categories__card {
+
+  .wcat__card {
     position: relative;
     display: block;
     text-decoration: none;
     overflow: hidden;
-  }
-  .wardrobe-categories__image {
-    aspect-ratio: 3/4;
-    overflow: hidden;
     background: #1A1A1A;
   }
-  .wardrobe-categories__image-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #2a2a2a 0%, #1A1A1A 100%);
+
+  .wcat__img-wrap {
+    aspect-ratio: 3/4;
+    overflow: hidden;
   }
-  .wardrobe-categories__category-img {
+
+  .wcat__img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.6s ease, opacity 0.4s ease;
+    opacity: 0.82;
   }
-  .wardrobe-categories__overlay {
+
+  .wcat__card:hover .wcat__img {
+    transform: scale(1.04);
+    opacity: 0.65;
+  }
+
+  .wcat__overlay {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 40px 24px;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    justify-content: flex-end;
+    padding: 0 24px 40px;
+    gap: 10px;
+    transition: background 0.4s ease;
   }
-  .wardrobe-categories__title {
+
+  .wcat__card:hover .wcat__overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.25) 60%, transparent 100%);
+  }
+
+  .wcat__title {
     font-family: 'Cormorant Garamond', Georgia, serif !important;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 300;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: #FFFFFF;
     margin: 0;
+    line-height: 1;
   }
-  .wardrobe-categories__cta {
+
+  .wcat__divider {
+    width: 24px;
+    height: 1px;
+    background: #B8965A;
+    transition: width 0.3s ease;
+  }
+
+  .wcat__card:hover .wcat__divider {
+    width: 48px;
+  }
+
+  .wcat__cta {
     font-family: 'Inter', -apple-system, sans-serif;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: #B8965A;
   }
-  .wardrobe-categories__header {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  .wardrobe-categories__heading {
-    font-family: 'Cormorant Garamond', Georgia, serif !important;
-    font-size: 36px;
-    font-weight: 300;
-    color: #1A1A1A;
-    margin: 0;
-  }
-  
+
   @media (max-width: 1024px) {
-    .wardrobe-categories__header { margin-bottom: 24px; }
-    .wardrobe-categories__heading { font-size: 28px; }
-    .wardrobe-categories { padding: 40px 0; }
-    .wardrobe-categories__container { padding: 0 16px; }
-    .wardrobe-categories__grid { 
-      grid-template-columns: 1fr; 
-      gap: 16px; 
+    .wcat { padding: 48px 0 56px; }
+    .wcat__container { padding: 0 20px; }
+    .wcat__header { margin-bottom: 32px; }
+    .wcat__rule { height: 28px; margin-bottom: 14px; }
+    .wcat__grid {
+      grid-template-columns: 1fr;
+      gap: 2px;
     }
-    .wardrobe-categories__image { aspect-ratio: 16/10; }
-    .wardrobe-categories__overlay { padding: 24px 16px; }
-    .wardrobe-categories__title { font-size: 20px; letter-spacing: 0.1em; }
+    .wcat__img-wrap { aspect-ratio: 4/3; }
+    .wcat__overlay { padding: 0 20px 28px; }
+    .wcat__title { font-size: 22px; letter-spacing: 0.15em; }
   }
 </style>
 
-<div class="wardrobe-categories" id="wardrobe-categories">
-  <div class="wardrobe-categories__container">
-    <div class="wardrobe-categories__header">
-      <h2 class="wardrobe-categories__heading">Shop by Category</h2>
+<div class="wcat" id="wardrobe-categories">
+  <div class="wcat__container">
+    <div class="wcat__header">
+      <div class="wcat__rule"></div>
+      <p class="wcat__eyebrow">Explore</p>
+      <h2 class="wcat__heading">Shop by Category</h2>
     </div>
-    <div class="wardrobe-categories__grid">
-      <a href="/collections/sneakers" class="wardrobe-categories__card">
-        <div class="wardrobe-categories__image">
-          <div class="wardrobe-categories__image-placeholder">
-            <img src="{{ 'wardrobe-sneakers.jpg' | asset_url }}" alt="Sneakers" class="wardrobe-categories__category-img" onerror="this.style.display='none'">
-          </div>
+
+    <div class="wcat__grid">
+      <a href="/collections/sneakers" class="wcat__card">
+        <div class="wcat__img-wrap">
+          <img
+            src="{{ 'wardrobe-sneakers.jpg' | asset_url }}"
+            alt="Sneakers"
+            class="wcat__img"
+            loading="lazy"
+          >
         </div>
-        <div class="wardrobe-categories__overlay">
-          <h3 class="wardrobe-categories__title">SNEAKERS</h3>
-          <span class="wardrobe-categories__cta">SHOP →</span>
-        </div>
-      </a>
-      
-      <a href="/collections/clothing" class="wardrobe-categories__card">
-        <div class="wardrobe-categories__image">
-          <div class="wardrobe-categories__image-placeholder">
-            <img src="{{ 'wardrobe-clothing.jpg' | asset_url }}" alt="Clothing" class="wardrobe-categories__category-img" onerror="this.style.display='none'">
-          </div>
-        </div>
-        <div class="wardrobe-categories__overlay">
-          <h3 class="wardrobe-categories__title">CLOTHING</h3>
-          <span class="wardrobe-categories__cta">SHOP →</span>
+        <div class="wcat__overlay">
+          <h3 class="wcat__title">Sneakers</h3>
+          <div class="wcat__divider"></div>
+          <span class="wcat__cta">Shop →</span>
         </div>
       </a>
-      
-      <a href="/collections/accessories" class="wardrobe-categories__card">
-        <div class="wardrobe-categories__image">
-          <div class="wardrobe-categories__image-placeholder">
-            <img src="{{ 'wardrobe-accessories.jpg' | asset_url }}" alt="Accessories" class="wardrobe-categories__category-img" onerror="this.style.display='none'">
-          </div>
+
+      <a href="/collections/clothing" class="wcat__card">
+        <div class="wcat__img-wrap">
+          <img
+            src="{{ 'wardrobe-clothing.jpg' | asset_url }}"
+            alt="Clothing"
+            class="wcat__img"
+            loading="lazy"
+          >
         </div>
-        <div class="wardrobe-categories__overlay">
-          <h3 class="wardrobe-categories__title">ACCESSORIES</h3>
-          <span class="wardrobe-categories__cta">SHOP →</span>
+        <div class="wcat__overlay">
+          <h3 class="wcat__title">Clothing</h3>
+          <div class="wcat__divider"></div>
+          <span class="wcat__cta">Shop →</span>
+        </div>
+      </a>
+
+      <a href="/collections/accessories" class="wcat__card">
+        <div class="wcat__img-wrap">
+          <img
+            src="{{ 'wardrobe-accessories.jpg' | asset_url }}"
+            alt="Accessories"
+            class="wcat__img"
+            loading="lazy"
+          >
+        </div>
+        <div class="wcat__overlay">
+          <h3 class="wcat__title">Accessories</h3>
+          <div class="wcat__divider"></div>
+          <span class="wcat__cta">Shop →</span>
         </div>
       </a>
     </div>
