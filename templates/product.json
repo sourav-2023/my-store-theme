@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main-product": {
@@ -39,20 +48,20 @@
           "settings": {}
         }
       },
-      "block_order": ["vendor", "title", "price", "variant_picker", "quantity_selector", "buy_buttons", "description"],
-      "settings": {
-        "enable_sticky_header": true
-      }
+      "block_order": [
+        "vendor",
+        "title",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "description"
+      ],
+      "settings": {}
     },
     "wardrobe-product-accordions": {
       "type": "wardrobe-product-accordions",
-      "settings": {
-        "show_details": true,
-        "show_condition": true,
-        "show_shipping": true,
-        "show_returns": true,
-        "show_size_guide": true
-      }
+      "settings": {}
     },
     "wardrobe-related-products": {
       "type": "wardrobe-related-products",
