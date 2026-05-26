@@ -14,14 +14,14 @@
 
 /* CSS Variables */
 :root {
-  --w-cream: #F5F0E8;
-  --w-off-white: #FAF8F4;
+  --w-cream: #FFFFFF;
+  --w-off-white: #F8F8F8;
   --w-charcoal: #1A1A1A;
-  --w-sand: #8B7355;
+  --w-sand: #9CA3AF;
   --w-gold: #B8965A;
   --w-dark-section: #1C1A17;
-  --w-muted: #6B6560;
-  --w-separator: #E8E3DA;
+  --w-muted: #6B7280;
+  --w-separator: #E8E8E8;
   --w-warm-white: #FFFFFF;
 
   --w-margin-desktop: 40px;

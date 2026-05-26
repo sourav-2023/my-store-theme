@@ -5,12 +5,12 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: #F5F0E8;
-  border-bottom: 1px solid #E8E3DA;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #E8E8E8;
 }
 
 .header {
-  background-color: #F5F0E8;
+  background-color: #FFFFFF;
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 40px;
