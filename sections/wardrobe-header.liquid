@@ -26,48 +26,31 @@
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 12px;
+    flex-shrink: 0;
   }
 
-  .wh-logo__desktop {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  .wh-logo:hover {
+    opacity: 0.85;
   }
 
-  .wh-logo__mobile {
-    display: none;
-  }
-
-  .wh-logo__text {
-    font-family: 'Cormorant Garamond', Georgia, serif !important;
-    font-size: 18px;
-    font-weight: 400;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #1A1A1A;
-  }
-
-  .wh-logo img {
-    height: 32px;
+  .wh-logo__full {
+    height: 48px;
     width: auto;
     display: block;
   }
 
-  .wh-logo:hover {
-    opacity: 0.8;
+  .wh-logo__monogram {
+    height: 38px;
+    width: auto;
+    display: none;
   }
 
   @media (max-width: 1024px) {
-    .wh-logo__desktop {
+    .wh-logo__full {
       display: none;
     }
-    .wh-logo__mobile {
-      display: flex;
-      align-items: center;
-    }
-    .wh-logo img {
-      height: 28px;
+    .wh-logo__monogram {
+      display: block;
     }
   }
 
@@ -297,28 +280,19 @@
     </button>
 
     <!-- Logo -->
-    <a href="/" class="wh-logo">
-      <!-- Desktop Logo: Logo + Text -->
-      <div class="wh-logo__desktop">
-        {%- if section.settings.desktop_logo != blank -%}
-          <img src="{{ section.settings.desktop_logo | image_url: width: 200 }}" alt="{{ shop.name }}">
-        {%- elsif settings.logo != blank -%}
-          <img src="{{ settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}">
-        {%- endif -%}
-        <span class="wh-logo__text">THE WARDROBE</span>
-      </div>
-      <!-- Mobile Logo: Logo Only (with text fallback) -->
-      <div class="wh-logo__mobile">
-        {%- if section.settings.mobile_logo != blank -%}
-          <img src="{{ section.settings.mobile_logo | image_url: width: 200 }}" alt="{{ shop.name }}">
-        {%- elsif section.settings.desktop_logo != blank -%}
-          <img src="{{ section.settings.desktop_logo | image_url: width: 200 }}" alt="{{ shop.name }}">
-        {%- elsif settings.logo != blank -%}
-          <img src="{{ settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}">
-        {%- else -%}
-          <span class="wh-logo__text">THE WARDROBE</span>
-        {%- endif -%}
-      </div>
+    <a href="/" class="wh-logo" aria-label="{{ shop.name }}">
+      <!-- Desktop: full logo (W monogram + The Wardrobe Shillong text) -->
+      <img
+        src="{{ 'wardrobe-logo-full.png' | asset_url }}"
+        alt="{{ shop.name }}"
+        class="wh-logo__full"
+      >
+      <!-- Mobile: W monogram only -->
+      <img
+        src="{{ 'wardrobe-monogram.png' | asset_url }}"
+        alt="{{ shop.name }}"
+        class="wh-logo__monogram"
+      >
     </a>
 
     <!-- Desktop Navigation -->
